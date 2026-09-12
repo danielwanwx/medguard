@@ -1,0 +1,974 @@
+{
+  "generatedAt": "2026-09-12T18:36:12.196Z",
+  "baselineUrl": "http://127.0.0.1:5175",
+  "syntheticProfileOnly": true,
+  "profile": {
+    "meds": [
+      "warfarin"
+    ],
+    "conditions": [
+      "hypertension"
+    ]
+  },
+  "screenshots": {
+    "desktopInitial": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/baseline/desktop-initial.png",
+    "mobileInitial": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/baseline/mobile-initial.png",
+    "fish-oilLoading": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/baseline/desktop-fish-oil-loading.png",
+    "fish-oilResults": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/baseline/desktop-fish-oil-results.png",
+    "ginkgoLoading": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/baseline/desktop-ginkgo-loading.png",
+    "ginkgoResults": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/baseline/desktop-ginkgo-results.png",
+    "st-john-s-wortLoading": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/baseline/desktop-st-john-s-wort-loading.png",
+    "st-john-s-wortResults": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/baseline/desktop-st-john-s-wort-results.png",
+    "mobileResults": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/baseline/mobile-results.png",
+    "doctorModal": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/baseline/desktop-doctor-modal.png",
+    "afterReload": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/baseline/desktop-after-reload.png"
+  },
+  "requests": [
+    {
+      "query": "Fish Oil",
+      "capturedAt": "2026-09-12T18:39:20.540Z",
+      "status": 200,
+      "statusText": "OK",
+      "bodyJson": {
+        "answer": "The 'Fish Oil' supplement by Harry & David is currently under recall due to CGMP Deviations as of October 10, 2025, and the recall is ongoing. Additionally, the supplement contains Eicosapentaenoic Acid (EPA) and Docosahexaenoic Acid (DHA), which can increase the risk of bleeding when taken with warfarin, and Mixed Tocopherols (Vitamin E), which may also increase bleeding risk with warfarin. There are no specific upper intake limits flagged for the ingredients in this supplement.\n\n**Summary:**\n- The 'Fish Oil' supplement is under recall (openFDA enforcement).\n- HIGH interaction risk: Omega-3 (EPA/DHA) with warfarin can increase bleeding risk (NIH ODS Omega-3).\n- MODERATE interaction risk: High-dose vitamin E with warfarin may increase bleeding (NIH ODS Vitamin E).\n\nConfirm with your pharmacist or doctor.",
+        "tool_trace": [
+          {
+            "tool": "identify_supplement",
+            "query": "Fish Oil",
+            "result": {
+              "source": "NIH DSLD (live)",
+              "brand": "Harry & David",
+              "name": "Fish Oil",
+              "ingredients": [
+                "Calories",
+                "Calories from Fat",
+                "Total Fat",
+                "Eicosapentaenoic Acid",
+                "Docosahexaenoic Acid",
+                "Gelatin",
+                "purified Water and Glycerin (vegetable source) gelcap",
+                "Mixed Tocopherols"
+              ]
+            }
+          },
+          {
+            "tool": "check_recall",
+            "product": "Fish Oil",
+            "result": {
+              "source": "openFDA enforcement (live)",
+              "recalled": true,
+              "date": "20251010",
+              "reason": "CGMP Deviations",
+              "status": "Ongoing"
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "result": {
+              "source": "curated rules (cited)",
+              "findings": [
+                {
+                  "risk": "HIGH",
+                  "note": "Omega-3 (EPA/DHA) with warfarin can increase bleeding risk / raise INR.",
+                  "source": "NIH ODS Omega-3",
+                  "against": "warfarin"
+                },
+                {
+                  "risk": "MODERATE",
+                  "note": "High-dose vitamin E with warfarin may increase bleeding.",
+                  "source": "NIH ODS Vitamin E",
+                  "against": "warfarin"
+                }
+              ]
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "result": {
+              "source": "NIH ODS Upper Intake Levels",
+              "limits": []
+            }
+          }
+        ],
+        "tools": 4,
+        "identity": {
+          "source": "NIH DSLD (live)",
+          "brand": "Harry & David",
+          "name": "Fish Oil",
+          "ingredients": [
+            "Calories",
+            "Calories from Fat",
+            "Total Fat",
+            "Eicosapentaenoic Acid",
+            "Docosahexaenoic Acid",
+            "Gelatin",
+            "purified Water and Glycerin (vegetable source) gelcap",
+            "Mixed Tocopherols"
+          ]
+        },
+        "recall": {
+          "source": "openFDA enforcement (live)",
+          "recalled": true,
+          "date": "20251010",
+          "reason": "CGMP Deviations",
+          "status": "Ongoing"
+        },
+        "interactions": [
+          {
+            "risk": "HIGH",
+            "note": "Omega-3 (EPA/DHA) with warfarin can increase bleeding risk / raise INR.",
+            "source": "NIH ODS Omega-3",
+            "against": "warfarin"
+          },
+          {
+            "risk": "MODERATE",
+            "note": "High-dose vitamin E with warfarin may increase bleeding.",
+            "source": "NIH ODS Vitamin E",
+            "against": "warfarin"
+          }
+        ],
+        "dosage": []
+      },
+      "bodyText": null,
+      "traceComparison": {
+        "responseToolTrace": [
+          {
+            "tool": "identify_supplement",
+            "query": "Fish Oil",
+            "result": {
+              "source": "NIH DSLD (live)",
+              "brand": "Harry & David",
+              "name": "Fish Oil",
+              "ingredients": [
+                "Calories",
+                "Calories from Fat",
+                "Total Fat",
+                "Eicosapentaenoic Acid",
+                "Docosahexaenoic Acid",
+                "Gelatin",
+                "purified Water and Glycerin (vegetable source) gelcap",
+                "Mixed Tocopherols"
+              ]
+            }
+          },
+          {
+            "tool": "check_recall",
+            "product": "Fish Oil",
+            "result": {
+              "source": "openFDA enforcement (live)",
+              "recalled": true,
+              "date": "20251010",
+              "reason": "CGMP Deviations",
+              "status": "Ongoing"
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "result": {
+              "source": "curated rules (cited)",
+              "findings": [
+                {
+                  "risk": "HIGH",
+                  "note": "Omega-3 (EPA/DHA) with warfarin can increase bleeding risk / raise INR.",
+                  "source": "NIH ODS Omega-3",
+                  "against": "warfarin"
+                },
+                {
+                  "risk": "MODERATE",
+                  "note": "High-dose vitamin E with warfarin may increase bleeding.",
+                  "source": "NIH ODS Vitamin E",
+                  "against": "warfarin"
+                }
+              ]
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "result": {
+              "source": "NIH ODS Upper Intake Levels",
+              "limits": []
+            }
+          }
+        ],
+        "renderedRows": [
+          "Identified product\n● NIH DSLD · live",
+          "Checked recall feed\n● openFDA · live",
+          "Cross-checked interactions vs your profile\n● cited rules",
+          "Checked dosage limits\n● NIH ODS"
+        ],
+        "responseTraceCount": 4,
+        "renderedTraceCount": 4
+      },
+      "dosageComparison": {
+        "responseHasDosageField": true,
+        "renderedDedicatedDosageElementCount": 0,
+        "renderedInFindingBody": false
+      }
+    },
+    {
+      "query": "Ginkgo",
+      "capturedAt": "2026-09-12T18:39:27.138Z",
+      "status": 200,
+      "statusText": "OK",
+      "bodyJson": {
+        "answer": "The supplement 'Ginkgo' by Vitanica contains Ginkgo leaf extract, which has a high-risk interaction with warfarin, increasing the risk of bleeding (source: NIH ODS / NCCIH). There are no recalls on this product (source: openFDA enforcement) and no specific upper intake levels flagged for its ingredients (source: NIH ODS Upper Intake Levels).\n\n**Summary:** Taking Ginkgo with warfarin significantly increases the risk of bleeding. There are no recalls on this product, and no specific upper intake levels are flagged. Confirm with your pharmacist or doctor.",
+        "tool_trace": [
+          {
+            "tool": "identify_supplement",
+            "query": "Ginkgo",
+            "result": {
+              "source": "NIH DSLD (live)",
+              "brand": "Vitanica",
+              "name": "Ginkgo",
+              "ingredients": [
+                "Ginkgo leaf extract",
+                "Ginkgo",
+                "Vegetarian Capsule",
+                "Cellulose",
+                "Water",
+                "L-Leucine"
+              ]
+            }
+          },
+          {
+            "tool": "check_recall",
+            "product": "Ginkgo",
+            "result": {
+              "source": "openFDA enforcement (live)",
+              "recalled": false,
+              "note": "no matching recall record"
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "result": {
+              "source": "curated rules (cited)",
+              "findings": [
+                {
+                  "risk": "HIGH",
+                  "note": "Ginkgo with warfarin increases bleeding risk.",
+                  "source": "NIH ODS / NCCIH",
+                  "against": "warfarin"
+                }
+              ]
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "result": {
+              "source": "NIH ODS Upper Intake Levels",
+              "limits": []
+            }
+          }
+        ],
+        "tools": 4,
+        "identity": {
+          "source": "NIH DSLD (live)",
+          "brand": "Vitanica",
+          "name": "Ginkgo",
+          "ingredients": [
+            "Ginkgo leaf extract",
+            "Ginkgo",
+            "Vegetarian Capsule",
+            "Cellulose",
+            "Water",
+            "L-Leucine"
+          ]
+        },
+        "recall": {
+          "source": "openFDA enforcement (live)",
+          "recalled": false,
+          "note": "no matching recall record"
+        },
+        "interactions": [
+          {
+            "risk": "HIGH",
+            "note": "Ginkgo with warfarin increases bleeding risk.",
+            "source": "NIH ODS / NCCIH",
+            "against": "warfarin"
+          }
+        ],
+        "dosage": []
+      },
+      "bodyText": null,
+      "traceComparison": {
+        "responseToolTrace": [
+          {
+            "tool": "identify_supplement",
+            "query": "Ginkgo",
+            "result": {
+              "source": "NIH DSLD (live)",
+              "brand": "Vitanica",
+              "name": "Ginkgo",
+              "ingredients": [
+                "Ginkgo leaf extract",
+                "Ginkgo",
+                "Vegetarian Capsule",
+                "Cellulose",
+                "Water",
+                "L-Leucine"
+              ]
+            }
+          },
+          {
+            "tool": "check_recall",
+            "product": "Ginkgo",
+            "result": {
+              "source": "openFDA enforcement (live)",
+              "recalled": false,
+              "note": "no matching recall record"
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "result": {
+              "source": "curated rules (cited)",
+              "findings": [
+                {
+                  "risk": "HIGH",
+                  "note": "Ginkgo with warfarin increases bleeding risk.",
+                  "source": "NIH ODS / NCCIH",
+                  "against": "warfarin"
+                }
+              ]
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "result": {
+              "source": "NIH ODS Upper Intake Levels",
+              "limits": []
+            }
+          }
+        ],
+        "renderedRows": [
+          "Identified product\n● NIH DSLD · live",
+          "Checked recall feed\n● openFDA · live",
+          "Cross-checked interactions vs your profile\n● cited rules",
+          "Checked dosage limits\n● NIH ODS"
+        ],
+        "responseTraceCount": 4,
+        "renderedTraceCount": 4
+      },
+      "dosageComparison": {
+        "responseHasDosageField": true,
+        "renderedDedicatedDosageElementCount": 0,
+        "renderedInFindingBody": false
+      }
+    },
+    {
+      "query": "St. John's Wort",
+      "capturedAt": "2026-09-12T18:39:34.250Z",
+      "status": 200,
+      "statusText": "OK",
+      "bodyJson": {
+        "answer": "There is an ongoing recall for the St. John's Wort 440 mg product due to impurities, specifically an out-of-specification result for a process impurity, dicyclohexylurea (DCU). There are no known interactions between St. John's Wort and your current medications (warfarin) and condition (hypertension). The dosage of St. John's Wort in the product is within safe limits.\n\nHowever, it's important to note that St. John's Wort can still interact with other medications and may affect their efficacy. Confirm with your pharmacist or doctor before proceeding, especially given the recall status of the product.",
+        "tool_trace": [
+          {
+            "tool": "identify_supplement",
+            "query": "St. John's Wort",
+            "result": {
+              "source": "NIH DSLD (live)",
+              "brand": "Christopher's Original Formulas",
+              "name": "St. John's Wort 440 mg",
+              "ingredients": [
+                "St. John's Wort",
+                "plant-derived Capsule"
+              ]
+            }
+          },
+          {
+            "tool": "check_recall",
+            "product": "St. John's Wort 440 mg",
+            "result": {
+              "source": "openFDA enforcement (live)",
+              "recalled": true,
+              "date": "20260824",
+              "reason": "Failed Impurities/Degradation Specifications: OOS result obtained for a process impurity, dicyclohexylurea (DCU).",
+              "status": "Ongoing"
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "result": {
+              "source": "curated rules (cited)",
+              "findings": []
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "result": {
+              "source": "NIH ODS Upper Intake Levels",
+              "limits": []
+            }
+          }
+        ],
+        "tools": 4,
+        "identity": {
+          "source": "NIH DSLD (live)",
+          "brand": "Christopher's Original Formulas",
+          "name": "St. John's Wort 440 mg",
+          "ingredients": [
+            "St. John's Wort",
+            "plant-derived Capsule"
+          ]
+        },
+        "recall": {
+          "source": "openFDA enforcement (live)",
+          "recalled": true,
+          "date": "20260824",
+          "reason": "Failed Impurities/Degradation Specifications: OOS result obtained for a process impurity, dicyclohexylurea (DCU).",
+          "status": "Ongoing"
+        },
+        "interactions": [],
+        "dosage": []
+      },
+      "bodyText": null,
+      "traceComparison": {
+        "responseToolTrace": [
+          {
+            "tool": "identify_supplement",
+            "query": "St. John's Wort",
+            "result": {
+              "source": "NIH DSLD (live)",
+              "brand": "Christopher's Original Formulas",
+              "name": "St. John's Wort 440 mg",
+              "ingredients": [
+                "St. John's Wort",
+                "plant-derived Capsule"
+              ]
+            }
+          },
+          {
+            "tool": "check_recall",
+            "product": "St. John's Wort 440 mg",
+            "result": {
+              "source": "openFDA enforcement (live)",
+              "recalled": true,
+              "date": "20260824",
+              "reason": "Failed Impurities/Degradation Specifications: OOS result obtained for a process impurity, dicyclohexylurea (DCU).",
+              "status": "Ongoing"
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "result": {
+              "source": "curated rules (cited)",
+              "findings": []
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "result": {
+              "source": "NIH ODS Upper Intake Levels",
+              "limits": []
+            }
+          }
+        ],
+        "renderedRows": [
+          "Identified product\n● NIH DSLD · live",
+          "Checked recall feed\n● openFDA · live",
+          "Cross-checked interactions vs your profile\n● cited rules",
+          "Checked dosage limits\n● NIH ODS"
+        ],
+        "responseTraceCount": 4,
+        "renderedTraceCount": 4
+      },
+      "dosageComparison": {
+        "responseHasDosageField": true,
+        "renderedDedicatedDosageElementCount": 0,
+        "renderedInFindingBody": true
+      }
+    }
+  ],
+  "ui": {
+    "desktopInitial": {
+      "capturedAt": "2026-09-12T18:36:12.267Z",
+      "url": "http://127.0.0.1:5175/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "profile": {
+        "meds": [
+          "warfarin"
+        ],
+        "conditions": [
+          "hypertension"
+        ]
+      },
+      "traceRows": [],
+      "loading": false,
+      "result": {
+        "visible": false,
+        "name": null,
+        "severity": null,
+        "answer": null,
+        "interactions": [],
+        "recall": [],
+        "dedicatedDosageElement": 0
+      },
+      "cabinet": [],
+      "doctorModalVisible": false,
+      "horizontalOverflow": {
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "overflows": false
+      },
+      "bodyText": "MedGuard\nYour medicine & supplement safety agent — grounded in live FDA / NIH data\nYOUR HEALTH PROFILE\nwarfarin\nhypertension\n· drives every “is it safe for you” check\n\nSCAN OR ADD A SUPPLEMENT / MED\n\nCheck\nFish Oil\nGinkgo\nSt. John's Wort\nVitamin K\nTurmeric\n\nMedGuard surfaces official NIH / FDA information and flags — it is not medical advice. Confirm with your pharmacist or doctor."
+    },
+    "mobileInitial": {
+      "capturedAt": "2026-09-12T18:37:42.332Z",
+      "url": "http://127.0.0.1:5175/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "profile": {
+        "meds": [
+          "warfarin"
+        ],
+        "conditions": [
+          "hypertension"
+        ]
+      },
+      "traceRows": [],
+      "loading": false,
+      "result": {
+        "visible": false,
+        "name": null,
+        "severity": null,
+        "answer": null,
+        "interactions": [],
+        "recall": [],
+        "dedicatedDosageElement": 0
+      },
+      "cabinet": [],
+      "doctorModalVisible": false,
+      "horizontalOverflow": {
+        "scrollWidth": 390,
+        "viewportWidth": 390,
+        "overflows": false
+      },
+      "bodyText": "MedGuard\nYour medicine & supplement safety agent — grounded in live FDA / NIH data\nYOUR HEALTH PROFILE\nwarfarin\nhypertension\n· drives every “is it safe for you” check\n\nSCAN OR ADD A SUPPLEMENT / MED\n\nCheck\nFish Oil\nGinkgo\nSt. John's Wort\nVitamin K\nTurmeric\n\nMedGuard surfaces official NIH / FDA information and flags — it is not medical advice. Confirm with your pharmacist or doctor."
+    },
+    "fish-oilLoading": {
+      "capturedAt": "2026-09-12T18:39:14.930Z",
+      "url": "http://127.0.0.1:5175/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "profile": {
+        "meds": [
+          "warfarin"
+        ],
+        "conditions": [
+          "hypertension"
+        ]
+      },
+      "traceRows": [
+        "Identified product\n● NIH DSLD · live",
+        "Checked recall feed\n● openFDA · live",
+        "Cross-checked interactions vs your profile\n● cited rules",
+        "Checked dosage limits\n● NIH ODS",
+        "agent investigating…"
+      ],
+      "loading": true,
+      "result": {
+        "visible": false,
+        "name": "Fish Oil · Harry & David",
+        "severity": "RECALLED",
+        "answer": "● Real Strands agent · 4 live tools\nThe 'Fish Oil' supplement by Harry & David is currently under recall due to CGMP Deviations as of October 10, 2025, and the recall is ongoing. Additionally, the supplement contains Eicosapentaenoic Acid (EPA) and Docosahexaenoic Acid (DHA), which can increase the risk of bleeding when taken with warfarin, and Mixed Tocopherols (Vitamin E), which may also increase bleeding risk with warfarin. There are no specific upper intake limits flagged for the ingredients in this supplement. **Summary:** - The 'Fish Oil' supplement is under recall (openFDA enforcement). - HIGH interaction risk: Omega-3 (EPA/DHA) with warfarin can increase bleeding risk (NIH ODS Omega-3). - MODERATE interaction risk: High-dose vitamin E with warfarin may increase bleeding (NIH ODS Vitamin E). Confirm with your pharmacist or doctor.",
+        "interactions": [
+          "HIGH interaction · vs your warfarin\nOmega-3 (EPA/DHA) with warfarin can increase bleeding risk / raise INR.\n source: NIH ODS Omega-3",
+          "MODERATE interaction · vs your warfarin\nHigh-dose vitamin E with warfarin may increase bleeding.\n source: NIH ODS Vitamin E"
+        ],
+        "recall": [
+          "LIVE RECALL · openFDA\nRecalled 20251010 · Ongoing · CGMP Deviations\nGPT trained on old data can’t know this. MedGuard checked the live feed."
+        ],
+        "dedicatedDosageElement": 0
+      },
+      "cabinet": [
+        "Fish Oil\nHarry & David · RECALLED"
+      ],
+      "doctorModalVisible": false,
+      "horizontalOverflow": {
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "overflows": false
+      },
+      "bodyText": "MedGuard\nYour medicine & supplement safety agent — grounded in live FDA / NIH data\nYOUR HEALTH PROFILE\nwarfarin\nhypertension\n· drives every “is it safe for you” check\n\nSCAN OR ADD A SUPPLEMENT / MED\n\nCheck\nFish Oil\nGinkgo\nSt. John's Wort\nVitamin K\nTurmeric\n\nAGENT WORKFLOW · autonomous, live sources\n\nIdentified product\n● NIH DSLD · live\nChecked recall feed\n● openFDA · live\nCross-checked interactions vs your profile\n● cited rules\nChecked dosage limits\n● NIH ODS\nagent investigating…\n\nMedGuard surfaces official NIH / FDA information and flags — it is not medical advice. Confirm with your pharmacist or doctor."
+    },
+    "fish-oilResults": {
+      "capturedAt": "2026-09-12T18:39:20.469Z",
+      "url": "http://127.0.0.1:5175/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "profile": {
+        "meds": [
+          "warfarin"
+        ],
+        "conditions": [
+          "hypertension"
+        ]
+      },
+      "traceRows": [
+        "Identified product\n● NIH DSLD · live",
+        "Checked recall feed\n● openFDA · live",
+        "Cross-checked interactions vs your profile\n● cited rules",
+        "Checked dosage limits\n● NIH ODS"
+      ],
+      "loading": false,
+      "result": {
+        "visible": true,
+        "name": "Fish Oil · Harry & David",
+        "severity": "RECALLED",
+        "answer": "● Real Strands agent · 4 live tools\nThe 'Fish Oil' supplement by Harry & David is currently under recall due to CGMP Deviations as of October 10, 2025, and the recall is ongoing. Additionally, the supplement contains Eicosapentaenoic Acid (EPA) and Docosahexaenoic Acid (DHA), which can increase the risk of bleeding when taken with warfarin, and Mixed Tocopherols (Vitamin E), which may also increase bleeding risk with warfarin. There are no specific upper intake limits flagged for the ingredients in this supplement. **Summary:** - The 'Fish Oil' supplement is under recall (openFDA enforcement). - HIGH interaction risk: Omega-3 (EPA/DHA) with warfarin can increase bleeding risk (NIH ODS Omega-3). - MODERATE interaction risk: High-dose vitamin E with warfarin may increase bleeding (NIH ODS Vitamin E). Confirm with your pharmacist or doctor.",
+        "interactions": [
+          "HIGH interaction · vs your warfarin\nOmega-3 (EPA/DHA) with warfarin can increase bleeding risk / raise INR.\n source: NIH ODS Omega-3",
+          "MODERATE interaction · vs your warfarin\nHigh-dose vitamin E with warfarin may increase bleeding.\n source: NIH ODS Vitamin E"
+        ],
+        "recall": [
+          "LIVE RECALL · openFDA\nRecalled 20251010 · Ongoing · CGMP Deviations\nGPT trained on old data can’t know this. MedGuard checked the live feed."
+        ],
+        "dedicatedDosageElement": 0
+      },
+      "cabinet": [
+        "Fish Oil\nHarry & David · RECALLED"
+      ],
+      "doctorModalVisible": false,
+      "horizontalOverflow": {
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "overflows": false
+      },
+      "bodyText": "MedGuard\nYour medicine & supplement safety agent — grounded in live FDA / NIH data\nYOUR HEALTH PROFILE\nwarfarin\nhypertension\n· drives every “is it safe for you” check\n\nSCAN OR ADD A SUPPLEMENT / MED\n\nCheck\nFish Oil\nGinkgo\nSt. John's Wort\nVitamin K\nTurmeric\n\nAGENT WORKFLOW · autonomous, live sources\n\nIdentified product\n● NIH DSLD · live\nChecked recall feed\n● openFDA · live\nCross-checked interactions vs your profile\n● cited rules\nChecked dosage limits\n● NIH ODS\n\nAGENT FINDING\n\nFish Oil · Harry & David\nRECALLED\nLIVE RECALL · openFDA\nRecalled 20251010 · Ongoing · CGMP Deviations\nGPT trained on old data can’t know this. MedGuard checked the live feed.\nHIGH interaction · vs your warfarin\nOmega-3 (EPA/DHA) with warfarin can increase bleeding risk / raise INR.\n source: NIH ODS Omega-3\nMODERATE interaction · vs your warfarin\nHigh-dose vitamin E with warfarin may increase bleeding.\n source: NIH ODS Vitamin E\nIngredients (NIH DSLD): Calories, Calories from Fat, Total Fat, Eicosapentaenoic Acid, Docosahexaenoic Acid, Gelatin, purified Water and Glycerin (vegetable source) gelcap, Mixed Tocopherols\n● Real Strands agent · 4 live tools\nThe 'Fish Oil' supplement by Harry & David is currently under recall due to CGMP Deviations as of October 10, 2025, and the recall is ongoing. Additionally, the supplement contains Eicosapentaenoic Acid (EPA) and Docosahexaenoic Acid (DHA), which can increase the risk of bleeding when taken with warfarin, and Mixed Tocopherols (Vitamin E), which may also increase bleeding risk with warfarin. There are no specific upper intake limits flagged for the ingredients in this supplement. **Summary:** - The 'Fish Oil' supplement is under recall (openFDA enforcement). - HIGH interaction risk: Omega-3 (EPA/DHA) with warfarin can increase bleeding risk (NIH ODS Omega-3). - MODERATE interaction risk: High-dose vitamin E with warfarin may increase bleeding (NIH ODS Vitamin E). Confirm with your pharmacist or doctor.\nPROACTIVE ALERT — MedGuard is watching the live openFDA feed: Fish Oil in your cabinet has an active recall. It caught this without you asking.\n\nYOUR CABINET · 1 ITEM\n\nShare with my doctor\nFish Oil\nHarry & David · RECALLED\n\nMedGuard surfaces official NIH / FDA information and flags — it is not medical advice. Confirm with your pharmacist or doctor."
+    },
+    "ginkgoLoading": {
+      "capturedAt": "2026-09-12T18:39:23.054Z",
+      "url": "http://127.0.0.1:5175/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "profile": {
+        "meds": [
+          "warfarin"
+        ],
+        "conditions": [
+          "hypertension"
+        ]
+      },
+      "traceRows": [
+        "Identified product\n● NIH DSLD · live",
+        "Checked recall feed\n● openFDA · live",
+        "Cross-checked interactions vs your profile\n● cited rules",
+        "Checked dosage limits\n● NIH ODS",
+        "agent investigating…"
+      ],
+      "loading": true,
+      "result": {
+        "visible": false,
+        "name": "Ginkgo · Vitanica",
+        "severity": "HIGH RISK",
+        "answer": "● Real Strands agent · 4 live tools\nThe supplement 'Ginkgo' by Vitanica contains Ginkgo leaf extract, which has a high-risk interaction with warfarin, increasing the risk of bleeding (source: NIH ODS / NCCIH). There are no recalls on this product (source: openFDA enforcement) and no specific upper intake levels flagged for its ingredients (source: NIH ODS Upper Intake Levels). **Summary:** Taking Ginkgo with warfarin significantly increases the risk of bleeding. There are no recalls on this product, and no specific upper intake levels are flagged. Confirm with your pharmacist or doctor.",
+        "interactions": [
+          "HIGH interaction · vs your warfarin\nGinkgo with warfarin increases bleeding risk.\n source: NIH ODS / NCCIH"
+        ],
+        "recall": [],
+        "dedicatedDosageElement": 0
+      },
+      "cabinet": [
+        "Ginkgo\nVitanica · HIGH RISK",
+        "Fish Oil\nHarry & David · RECALLED"
+      ],
+      "doctorModalVisible": false,
+      "horizontalOverflow": {
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "overflows": false
+      },
+      "bodyText": "MedGuard\nYour medicine & supplement safety agent — grounded in live FDA / NIH data\nYOUR HEALTH PROFILE\nwarfarin\nhypertension\n· drives every “is it safe for you” check\n\nSCAN OR ADD A SUPPLEMENT / MED\n\nCheck\nFish Oil\nGinkgo\nSt. John's Wort\nVitamin K\nTurmeric\n\nAGENT WORKFLOW · autonomous, live sources\n\nIdentified product\n● NIH DSLD · live\nChecked recall feed\n● openFDA · live\nCross-checked interactions vs your profile\n● cited rules\nChecked dosage limits\n● NIH ODS\nagent investigating…\nPROACTIVE ALERT — MedGuard is watching the live openFDA feed: Fish Oil in your cabinet has an active recall. It caught this without you asking.\n\nYOUR CABINET · 1 ITEM\n\nShare with my doctor\nFish Oil\nHarry & David · RECALLED\n\nMedGuard surfaces official NIH / FDA information and flags — it is not medical advice. Confirm with your pharmacist or doctor."
+    },
+    "ginkgoResults": {
+      "capturedAt": "2026-09-12T18:39:27.077Z",
+      "url": "http://127.0.0.1:5175/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "profile": {
+        "meds": [
+          "warfarin"
+        ],
+        "conditions": [
+          "hypertension"
+        ]
+      },
+      "traceRows": [
+        "Identified product\n● NIH DSLD · live",
+        "Checked recall feed\n● openFDA · live",
+        "Cross-checked interactions vs your profile\n● cited rules",
+        "Checked dosage limits\n● NIH ODS"
+      ],
+      "loading": false,
+      "result": {
+        "visible": true,
+        "name": "Ginkgo · Vitanica",
+        "severity": "HIGH RISK",
+        "answer": "● Real Strands agent · 4 live tools\nThe supplement 'Ginkgo' by Vitanica contains Ginkgo leaf extract, which has a high-risk interaction with warfarin, increasing the risk of bleeding (source: NIH ODS / NCCIH). There are no recalls on this product (source: openFDA enforcement) and no specific upper intake levels flagged for its ingredients (source: NIH ODS Upper Intake Levels). **Summary:** Taking Ginkgo with warfarin significantly increases the risk of bleeding. There are no recalls on this product, and no specific upper intake levels are flagged. Confirm with your pharmacist or doctor.",
+        "interactions": [
+          "HIGH interaction · vs your warfarin\nGinkgo with warfarin increases bleeding risk.\n source: NIH ODS / NCCIH"
+        ],
+        "recall": [],
+        "dedicatedDosageElement": 0
+      },
+      "cabinet": [
+        "Ginkgo\nVitanica · HIGH RISK",
+        "Fish Oil\nHarry & David · RECALLED"
+      ],
+      "doctorModalVisible": false,
+      "horizontalOverflow": {
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "overflows": false
+      },
+      "bodyText": "MedGuard\nYour medicine & supplement safety agent — grounded in live FDA / NIH data\nYOUR HEALTH PROFILE\nwarfarin\nhypertension\n· drives every “is it safe for you” check\n\nSCAN OR ADD A SUPPLEMENT / MED\n\nCheck\nFish Oil\nGinkgo\nSt. John's Wort\nVitamin K\nTurmeric\n\nAGENT WORKFLOW · autonomous, live sources\n\nIdentified product\n● NIH DSLD · live\nChecked recall feed\n● openFDA · live\nCross-checked interactions vs your profile\n● cited rules\nChecked dosage limits\n● NIH ODS\n\nAGENT FINDING\n\nGinkgo · Vitanica\nHIGH RISK\nHIGH interaction · vs your warfarin\nGinkgo with warfarin increases bleeding risk.\n source: NIH ODS / NCCIH\nIngredients (NIH DSLD): Ginkgo leaf extract, Ginkgo, Vegetarian Capsule, Cellulose, Water, L-Leucine\n● Real Strands agent · 4 live tools\nThe supplement 'Ginkgo' by Vitanica contains Ginkgo leaf extract, which has a high-risk interaction with warfarin, increasing the risk of bleeding (source: NIH ODS / NCCIH). There are no recalls on this product (source: openFDA enforcement) and no specific upper intake levels flagged for its ingredients (source: NIH ODS Upper Intake Levels). **Summary:** Taking Ginkgo with warfarin significantly increases the risk of bleeding. There are no recalls on this product, and no specific upper intake levels are flagged. Confirm with your pharmacist or doctor.\nPROACTIVE ALERT — MedGuard is watching the live openFDA feed: Fish Oil in your cabinet has an active recall. It caught this without you asking.\n\nYOUR CABINET · 2 ITEMS\n\nShare with my doctor\nGinkgo\nVitanica · HIGH RISK\nFish Oil\nHarry & David · RECALLED\n\nMedGuard surfaces official NIH / FDA information and flags — it is not medical advice. Confirm with your pharmacist or doctor."
+    },
+    "st-john-s-wortLoading": {
+      "capturedAt": "2026-09-12T18:39:29.662Z",
+      "url": "http://127.0.0.1:5175/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "profile": {
+        "meds": [
+          "warfarin"
+        ],
+        "conditions": [
+          "hypertension"
+        ]
+      },
+      "traceRows": [
+        "Identified product\n● NIH DSLD · live",
+        "Checked recall feed\n● openFDA · live",
+        "Cross-checked interactions vs your profile\n● cited rules",
+        "Checked dosage limits\n● NIH ODS",
+        "agent investigating…"
+      ],
+      "loading": true,
+      "result": {
+        "visible": false,
+        "name": "St. John's Wort 440 mg · Christopher's Original Formulas",
+        "severity": "RECALLED",
+        "answer": "● Real Strands agent · 4 live tools\nThere is an ongoing recall for the St. John's Wort 440 mg product due to impurities, specifically an out-of-specification result for a process impurity, dicyclohexylurea (DCU). There are no known interactions between St. John's Wort and your current medications (warfarin) and condition (hypertension). The dosage of St. John's Wort in the product is within safe limits. However, it's important to note that St. John's Wort can still interact with other medications and may affect their efficacy. Confirm with your pharmacist or doctor before proceeding, especially given the recall status of the product.",
+        "interactions": [],
+        "recall": [
+          "LIVE RECALL · openFDA\nRecalled 20260824 · Ongoing · Failed Impurities/Degradation Specifications: OOS result obtained for a process impurity, dicyclohexylurea (DCU).\nGPT trained on old data can’t know this. MedGuard checked the live feed."
+        ],
+        "dedicatedDosageElement": 0
+      },
+      "cabinet": [
+        "St. John's Wort 440 mg\nChristopher's Original Formulas · RECALLED",
+        "Ginkgo\nVitanica · HIGH RISK",
+        "Fish Oil\nHarry & David · RECALLED"
+      ],
+      "doctorModalVisible": false,
+      "horizontalOverflow": {
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "overflows": false
+      },
+      "bodyText": "MedGuard\nYour medicine & supplement safety agent — grounded in live FDA / NIH data\nYOUR HEALTH PROFILE\nwarfarin\nhypertension\n· drives every “is it safe for you” check\n\nSCAN OR ADD A SUPPLEMENT / MED\n\nCheck\nFish Oil\nGinkgo\nSt. John's Wort\nVitamin K\nTurmeric\n\nAGENT WORKFLOW · autonomous, live sources\n\nIdentified product\n● NIH DSLD · live\nChecked recall feed\n● openFDA · live\nCross-checked interactions vs your profile\n● cited rules\nChecked dosage limits\n● NIH ODS\nagent investigating…\nPROACTIVE ALERT — MedGuard is watching the live openFDA feed: Fish Oil in your cabinet has an active recall. It caught this without you asking.\n\nYOUR CABINET · 2 ITEMS\n\nShare with my doctor\nGinkgo\nVitanica · HIGH RISK\nFish Oil\nHarry & David · RECALLED\n\nMedGuard surfaces official NIH / FDA information and flags — it is not medical advice. Confirm with your pharmacist or doctor."
+    },
+    "st-john-s-wortResults": {
+      "capturedAt": "2026-09-12T18:39:34.188Z",
+      "url": "http://127.0.0.1:5175/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "profile": {
+        "meds": [
+          "warfarin"
+        ],
+        "conditions": [
+          "hypertension"
+        ]
+      },
+      "traceRows": [
+        "Identified product\n● NIH DSLD · live",
+        "Checked recall feed\n● openFDA · live",
+        "Cross-checked interactions vs your profile\n● cited rules",
+        "Checked dosage limits\n● NIH ODS"
+      ],
+      "loading": false,
+      "result": {
+        "visible": true,
+        "name": "St. John's Wort 440 mg · Christopher's Original Formulas",
+        "severity": "RECALLED",
+        "answer": "● Real Strands agent · 4 live tools\nThere is an ongoing recall for the St. John's Wort 440 mg product due to impurities, specifically an out-of-specification result for a process impurity, dicyclohexylurea (DCU). There are no known interactions between St. John's Wort and your current medications (warfarin) and condition (hypertension). The dosage of St. John's Wort in the product is within safe limits. However, it's important to note that St. John's Wort can still interact with other medications and may affect their efficacy. Confirm with your pharmacist or doctor before proceeding, especially given the recall status of the product.",
+        "interactions": [],
+        "recall": [
+          "LIVE RECALL · openFDA\nRecalled 20260824 · Ongoing · Failed Impurities/Degradation Specifications: OOS result obtained for a process impurity, dicyclohexylurea (DCU).\nGPT trained on old data can’t know this. MedGuard checked the live feed."
+        ],
+        "dedicatedDosageElement": 0
+      },
+      "cabinet": [
+        "St. John's Wort 440 mg\nChristopher's Original Formulas · RECALLED",
+        "Ginkgo\nVitanica · HIGH RISK",
+        "Fish Oil\nHarry & David · RECALLED"
+      ],
+      "doctorModalVisible": false,
+      "horizontalOverflow": {
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "overflows": false
+      },
+      "bodyText": "MedGuard\nYour medicine & supplement safety agent — grounded in live FDA / NIH data\nYOUR HEALTH PROFILE\nwarfarin\nhypertension\n· drives every “is it safe for you” check\n\nSCAN OR ADD A SUPPLEMENT / MED\n\nCheck\nFish Oil\nGinkgo\nSt. John's Wort\nVitamin K\nTurmeric\n\nAGENT WORKFLOW · autonomous, live sources\n\nIdentified product\n● NIH DSLD · live\nChecked recall feed\n● openFDA · live\nCross-checked interactions vs your profile\n● cited rules\nChecked dosage limits\n● NIH ODS\n\nAGENT FINDING\n\nSt. John's Wort 440 mg · Christopher's Original Formulas\nRECALLED\nLIVE RECALL · openFDA\nRecalled 20260824 · Ongoing · Failed Impurities/Degradation Specifications: OOS result obtained for a process impurity, dicyclohexylurea (DCU).\nGPT trained on old data can’t know this. MedGuard checked the live feed.\nIngredients (NIH DSLD): St. John's Wort, plant-derived Capsule\n● Real Strands agent · 4 live tools\nThere is an ongoing recall for the St. John's Wort 440 mg product due to impurities, specifically an out-of-specification result for a process impurity, dicyclohexylurea (DCU). There are no known interactions between St. John's Wort and your current medications (warfarin) and condition (hypertension). The dosage of St. John's Wort in the product is within safe limits. However, it's important to note that St. John's Wort can still interact with other medications and may affect their efficacy. Confirm with your pharmacist or doctor before proceeding, especially given the recall status of the product.\nPROACTIVE ALERT — MedGuard is watching the live openFDA feed: St. John's Wort 440 mg in your cabinet has an active recall. It caught this without you asking.\n\nYOUR CABINET · 3 ITEMS\n\nShare with my doctor\nSt. John's Wort 440 mg\nChristopher's Original Formulas · RECALLED\nGinkgo\nVitanica · HIGH RISK\nFish Oil\nHarry & David · RECALLED\n\nMedGuard surfaces official NIH / FDA information and flags — it is not medical advice. Confirm with your pharmacist or doctor."
+    },
+    "mobileResults": {
+      "capturedAt": "2026-09-12T18:39:34.253Z",
+      "url": "http://127.0.0.1:5175/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "profile": {
+        "meds": [
+          "warfarin"
+        ],
+        "conditions": [
+          "hypertension"
+        ]
+      },
+      "traceRows": [
+        "Identified product\n● NIH DSLD · live",
+        "Checked recall feed\n● openFDA · live",
+        "Cross-checked interactions vs your profile\n● cited rules",
+        "Checked dosage limits\n● NIH ODS"
+      ],
+      "loading": false,
+      "result": {
+        "visible": true,
+        "name": "St. John's Wort 440 mg · Christopher's Original Formulas",
+        "severity": "RECALLED",
+        "answer": "● Real Strands agent · 4 live tools\nThere is an ongoing recall for the St. John's Wort 440 mg product due to impurities, specifically an out-of-specification result for a process impurity, dicyclohexylurea (DCU). There are no known interactions between St. John's Wort and your current medications (warfarin) and condition (hypertension). The dosage of St. John's Wort in the product is within safe limits. However, it's important to note that St. John's Wort can still interact with other medications and may affect their efficacy. Confirm with your pharmacist or doctor before proceeding, especially given the recall status of the product.",
+        "interactions": [],
+        "recall": [
+          "LIVE RECALL · openFDA\nRecalled 20260824 · Ongoing · Failed Impurities/Degradation Specifications: OOS result obtained for a process impurity, dicyclohexylurea (DCU).\nGPT trained on old data can’t know this. MedGuard checked the live feed."
+        ],
+        "dedicatedDosageElement": 0
+      },
+      "cabinet": [
+        "St. John's Wort 440 mg\nChristopher's Original Formulas · RECALLED",
+        "Ginkgo\nVitanica · HIGH RISK",
+        "Fish Oil\nHarry & David · RECALLED"
+      ],
+      "doctorModalVisible": false,
+      "horizontalOverflow": {
+        "scrollWidth": 390,
+        "viewportWidth": 390,
+        "overflows": false
+      },
+      "bodyText": "MedGuard\nYour medicine & supplement safety agent — grounded in live FDA / NIH data\nYOUR HEALTH PROFILE\nwarfarin\nhypertension\n· drives every “is it safe for you” check\n\nSCAN OR ADD A SUPPLEMENT / MED\n\nCheck\nFish Oil\nGinkgo\nSt. John's Wort\nVitamin K\nTurmeric\n\nAGENT WORKFLOW · autonomous, live sources\n\nIdentified product\n● NIH DSLD · live\nChecked recall feed\n● openFDA · live\nCross-checked interactions vs your profile\n● cited rules\nChecked dosage limits\n● NIH ODS\n\nAGENT FINDING\n\nSt. John's Wort 440 mg · Christopher's Original Formulas\nRECALLED\nLIVE RECALL · openFDA\nRecalled 20260824 · Ongoing · Failed Impurities/Degradation Specifications: OOS result obtained for a process impurity, dicyclohexylurea (DCU).\nGPT trained on old data can’t know this. MedGuard checked the live feed.\nIngredients (NIH DSLD): St. John's Wort, plant-derived Capsule\n● Real Strands agent · 4 live tools\nThere is an ongoing recall for the St. John's Wort 440 mg product due to impurities, specifically an out-of-specification result for a process impurity, dicyclohexylurea (DCU). There are no known interactions between St. John's Wort and your current medications (warfarin) and condition (hypertension). The dosage of St. John's Wort in the product is within safe limits. However, it's important to note that St. John's Wort can still interact with other medications and may affect their efficacy. Confirm with your pharmacist or doctor before proceeding, especially given the recall status of the product.\nPROACTIVE ALERT — MedGuard is watching the live openFDA feed: St. John's Wort 440 mg in your cabinet has an active recall. It caught this without you asking.\n\nYOUR CABINET · 3 ITEMS\n\nShare with my doctor\nSt. John's Wort 440 mg\nChristopher's Original Formulas · RECALLED\nGinkgo\nVitanica · HIGH RISK\nFish Oil\nHarry & David · RECALLED\n\nMedGuard surfaces official NIH / FDA information and flags — it is not medical advice. Confirm with your pharmacist or doctor."
+    },
+    "afterReload": {
+      "capturedAt": "2026-09-12T18:39:34.430Z",
+      "url": "http://127.0.0.1:5175/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "profile": {
+        "meds": [
+          "warfarin"
+        ],
+        "conditions": [
+          "hypertension"
+        ]
+      },
+      "traceRows": [],
+      "loading": false,
+      "result": {
+        "visible": false,
+        "name": null,
+        "severity": null,
+        "answer": null,
+        "interactions": [],
+        "recall": [],
+        "dedicatedDosageElement": 0
+      },
+      "cabinet": [],
+      "doctorModalVisible": false,
+      "horizontalOverflow": {
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "overflows": false
+      },
+      "bodyText": "MedGuard\nYour medicine & supplement safety agent — grounded in live FDA / NIH data\nYOUR HEALTH PROFILE\nwarfarin\nhypertension\n· drives every “is it safe for you” check\n\nSCAN OR ADD A SUPPLEMENT / MED\n\nCheck\nFish Oil\nGinkgo\nSt. John's Wort\nVitamin K\nTurmeric\n\nMedGuard surfaces official NIH / FDA information and flags — it is not medical advice. Confirm with your pharmacist or doctor."
+    }
+  },
+  "persistence": {
+    "beforeReloadCabinet": [
+      "St. John's Wort 440 mg\nChristopher's Original Formulas · RECALLED",
+      "Ginkgo\nVitanica · HIGH RISK",
+      "Fish Oil\nHarry & David · RECALLED"
+    ],
+    "afterReloadCabinet": [],
+    "survivesReload": false,
+    "note": "This is an observed browser reload result, not a claim about intended persistence."
+  },
+  "doctorModal": {
+    "capturedAt": "2026-09-12T18:39:34.344Z",
+    "url": "http://127.0.0.1:5175/",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "profile": {
+      "meds": [
+        "warfarin"
+      ],
+      "conditions": [
+        "hypertension"
+      ]
+    },
+    "traceRows": [
+      "Identified product\n● NIH DSLD · live",
+      "Checked recall feed\n● openFDA · live",
+      "Cross-checked interactions vs your profile\n● cited rules",
+      "Checked dosage limits\n● NIH ODS"
+    ],
+    "loading": false,
+    "result": {
+      "visible": true,
+      "name": "St. John's Wort 440 mg · Christopher's Original Formulas",
+      "severity": "RECALLED",
+      "answer": "● Real Strands agent · 4 live tools\nThere is an ongoing recall for the St. John's Wort 440 mg product due to impurities, specifically an out-of-specification result for a process impurity, dicyclohexylurea (DCU). There are no known interactions between St. John's Wort and your current medications (warfarin) and condition (hypertension). The dosage of St. John's Wort in the product is within safe limits. However, it's important to note that St. John's Wort can still interact with other medications and may affect their efficacy. Confirm with your pharmacist or doctor before proceeding, especially given the recall status of the product.",
+      "interactions": [],
+      "recall": [
+        "LIVE RECALL · openFDA\nRecalled 20260824 · Ongoing · Failed Impurities/Degradation Specifications: OOS result obtained for a process impurity, dicyclohexylurea (DCU).\nGPT trained on old data can’t know this. MedGuard checked the live feed."
+      ],
+      "dedicatedDosageElement": 0
+    },
+    "cabinet": [
+      "St. John's Wort 440 mg\nChristopher's Original Formulas · RECALLED",
+      "Ginkgo\nVitanica · HIGH RISK",
+      "Fish Oil\nHarry & David · RECALLED"
+    ],
+    "doctorModalVisible": true,
+    "horizontalOverflow": {
+      "scrollWidth": 1440,
+      "viewportWidth": 1440,
+      "overflows": false
+    },
+    "bodyText": "MedGuard\nYour medicine & supplement safety agent — grounded in live FDA / NIH data\nYOUR HEALTH PROFILE\nwarfarin\nhypertension\n· drives every “is it safe for you” check\n\nSCAN OR ADD A SUPPLEMENT / MED\n\nCheck\nFish Oil\nGinkgo\nSt. John's Wort\nVitamin K\nTurmeric\n\nAGENT WORKFLOW · autonomous, live sources\n\nIdentified product\n● NIH DSLD · live\nChecked recall feed\n● openFDA · live\nCross-checked interactions vs your profile\n● cited rules\nChecked dosage limits\n● NIH ODS\n\nAGENT FINDING\n\nSt. John's Wort 440 mg · Christopher's Original Formulas\nRECALLED\nLIVE RECALL · openFDA\nRecalled 20260824 · Ongoing · Failed Impurities/Degradation Specifications: OOS result obtained for a process impurity, dicyclohexylurea (DCU).\nGPT trained on old data can’t know this. MedGuard checked the live feed.\nIngredients (NIH DSLD): St. John's Wort, plant-derived Capsule\n● Real Strands agent · 4 live tools\nThere is an ongoing recall for the St. John's Wort 440 mg product due to impurities, specifically an out-of-specification result for a process impurity, dicyclohexylurea (DCU). There are no known interactions between St. John's Wort and your current medications (warfarin) and condition (hypertension). The dosage of St. John's Wort in the product is within safe limits. However, it's important to note that St. John's Wort can still interact with other medications and may affect their efficacy. Confirm with your pharmacist or doctor before proceeding, especially given the recall status of the product.\nPROACTIVE ALERT — MedGuard is watching the live openFDA feed: St. John's Wort 440 mg in your cabinet has an active recall. It caught this without you asking.\n\nYOUR CABINET · 3 ITEMS\n\nShare with my doctor\nSt. John's Wort 440 mg\nChristopher's Original Formulas · RECALLED\nGinkgo\nVitanica · HIGH RISK\nFish Oil\nHarry & David · RECALLED\n\nMedGuard surfaces official NIH / FDA information and flags — it is not medical advice. Confirm with your pharmacist or doctor.\n\nONE-TAP MEDICATION HISTORY\n\nFor your doctor / ER\n\nComplete & current — no guessing from memory.\n\nConditions\nhypertension\nPrescription meds\nwarfarin\nSupplements (3)\n• St. John's Wort 440 mg (RECALLED)\n• Ginkgo (HIGH RISK)\n• Fish Oil (RECALLED)"
+  },
+  "failures": [],
+  "finishedAt": "2026-09-12T18:41:04.480Z"
+}

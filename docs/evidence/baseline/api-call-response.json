@@ -1,0 +1,471 @@
+{
+  "generatedAt": "2026-09-12T18:41:04.480Z",
+  "syntheticProfileOnly": true,
+  "profile": {
+    "meds": [
+      "warfarin"
+    ],
+    "conditions": [
+      "hypertension"
+    ]
+  },
+  "requests": [
+    {
+      "query": "Fish Oil",
+      "capturedAt": "2026-09-12T18:39:20.540Z",
+      "status": 200,
+      "statusText": "OK",
+      "bodyJson": {
+        "answer": "The 'Fish Oil' supplement by Harry & David is currently under recall due to CGMP Deviations as of October 10, 2025, and the recall is ongoing. Additionally, the supplement contains Eicosapentaenoic Acid (EPA) and Docosahexaenoic Acid (DHA), which can increase the risk of bleeding when taken with warfarin, and Mixed Tocopherols (Vitamin E), which may also increase bleeding risk with warfarin. There are no specific upper intake limits flagged for the ingredients in this supplement.\n\n**Summary:**\n- The 'Fish Oil' supplement is under recall (openFDA enforcement).\n- HIGH interaction risk: Omega-3 (EPA/DHA) with warfarin can increase bleeding risk (NIH ODS Omega-3).\n- MODERATE interaction risk: High-dose vitamin E with warfarin may increase bleeding (NIH ODS Vitamin E).\n\nConfirm with your pharmacist or doctor.",
+        "tool_trace": [
+          {
+            "tool": "identify_supplement",
+            "query": "Fish Oil",
+            "result": {
+              "source": "NIH DSLD (live)",
+              "brand": "Harry & David",
+              "name": "Fish Oil",
+              "ingredients": [
+                "Calories",
+                "Calories from Fat",
+                "Total Fat",
+                "Eicosapentaenoic Acid",
+                "Docosahexaenoic Acid",
+                "Gelatin",
+                "purified Water and Glycerin (vegetable source) gelcap",
+                "Mixed Tocopherols"
+              ]
+            }
+          },
+          {
+            "tool": "check_recall",
+            "product": "Fish Oil",
+            "result": {
+              "source": "openFDA enforcement (live)",
+              "recalled": true,
+              "date": "20251010",
+              "reason": "CGMP Deviations",
+              "status": "Ongoing"
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "result": {
+              "source": "curated rules (cited)",
+              "findings": [
+                {
+                  "risk": "HIGH",
+                  "note": "Omega-3 (EPA/DHA) with warfarin can increase bleeding risk / raise INR.",
+                  "source": "NIH ODS Omega-3",
+                  "against": "warfarin"
+                },
+                {
+                  "risk": "MODERATE",
+                  "note": "High-dose vitamin E with warfarin may increase bleeding.",
+                  "source": "NIH ODS Vitamin E",
+                  "against": "warfarin"
+                }
+              ]
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "result": {
+              "source": "NIH ODS Upper Intake Levels",
+              "limits": []
+            }
+          }
+        ],
+        "tools": 4,
+        "identity": {
+          "source": "NIH DSLD (live)",
+          "brand": "Harry & David",
+          "name": "Fish Oil",
+          "ingredients": [
+            "Calories",
+            "Calories from Fat",
+            "Total Fat",
+            "Eicosapentaenoic Acid",
+            "Docosahexaenoic Acid",
+            "Gelatin",
+            "purified Water and Glycerin (vegetable source) gelcap",
+            "Mixed Tocopherols"
+          ]
+        },
+        "recall": {
+          "source": "openFDA enforcement (live)",
+          "recalled": true,
+          "date": "20251010",
+          "reason": "CGMP Deviations",
+          "status": "Ongoing"
+        },
+        "interactions": [
+          {
+            "risk": "HIGH",
+            "note": "Omega-3 (EPA/DHA) with warfarin can increase bleeding risk / raise INR.",
+            "source": "NIH ODS Omega-3",
+            "against": "warfarin"
+          },
+          {
+            "risk": "MODERATE",
+            "note": "High-dose vitamin E with warfarin may increase bleeding.",
+            "source": "NIH ODS Vitamin E",
+            "against": "warfarin"
+          }
+        ],
+        "dosage": []
+      },
+      "bodyText": null,
+      "traceComparison": {
+        "responseToolTrace": [
+          {
+            "tool": "identify_supplement",
+            "query": "Fish Oil",
+            "result": {
+              "source": "NIH DSLD (live)",
+              "brand": "Harry & David",
+              "name": "Fish Oil",
+              "ingredients": [
+                "Calories",
+                "Calories from Fat",
+                "Total Fat",
+                "Eicosapentaenoic Acid",
+                "Docosahexaenoic Acid",
+                "Gelatin",
+                "purified Water and Glycerin (vegetable source) gelcap",
+                "Mixed Tocopherols"
+              ]
+            }
+          },
+          {
+            "tool": "check_recall",
+            "product": "Fish Oil",
+            "result": {
+              "source": "openFDA enforcement (live)",
+              "recalled": true,
+              "date": "20251010",
+              "reason": "CGMP Deviations",
+              "status": "Ongoing"
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "result": {
+              "source": "curated rules (cited)",
+              "findings": [
+                {
+                  "risk": "HIGH",
+                  "note": "Omega-3 (EPA/DHA) with warfarin can increase bleeding risk / raise INR.",
+                  "source": "NIH ODS Omega-3",
+                  "against": "warfarin"
+                },
+                {
+                  "risk": "MODERATE",
+                  "note": "High-dose vitamin E with warfarin may increase bleeding.",
+                  "source": "NIH ODS Vitamin E",
+                  "against": "warfarin"
+                }
+              ]
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "result": {
+              "source": "NIH ODS Upper Intake Levels",
+              "limits": []
+            }
+          }
+        ],
+        "renderedRows": [
+          "Identified product\n● NIH DSLD · live",
+          "Checked recall feed\n● openFDA · live",
+          "Cross-checked interactions vs your profile\n● cited rules",
+          "Checked dosage limits\n● NIH ODS"
+        ],
+        "responseTraceCount": 4,
+        "renderedTraceCount": 4
+      },
+      "dosageComparison": {
+        "responseHasDosageField": true,
+        "renderedDedicatedDosageElementCount": 0,
+        "renderedInFindingBody": false
+      }
+    },
+    {
+      "query": "Ginkgo",
+      "capturedAt": "2026-09-12T18:39:27.138Z",
+      "status": 200,
+      "statusText": "OK",
+      "bodyJson": {
+        "answer": "The supplement 'Ginkgo' by Vitanica contains Ginkgo leaf extract, which has a high-risk interaction with warfarin, increasing the risk of bleeding (source: NIH ODS / NCCIH). There are no recalls on this product (source: openFDA enforcement) and no specific upper intake levels flagged for its ingredients (source: NIH ODS Upper Intake Levels).\n\n**Summary:** Taking Ginkgo with warfarin significantly increases the risk of bleeding. There are no recalls on this product, and no specific upper intake levels are flagged. Confirm with your pharmacist or doctor.",
+        "tool_trace": [
+          {
+            "tool": "identify_supplement",
+            "query": "Ginkgo",
+            "result": {
+              "source": "NIH DSLD (live)",
+              "brand": "Vitanica",
+              "name": "Ginkgo",
+              "ingredients": [
+                "Ginkgo leaf extract",
+                "Ginkgo",
+                "Vegetarian Capsule",
+                "Cellulose",
+                "Water",
+                "L-Leucine"
+              ]
+            }
+          },
+          {
+            "tool": "check_recall",
+            "product": "Ginkgo",
+            "result": {
+              "source": "openFDA enforcement (live)",
+              "recalled": false,
+              "note": "no matching recall record"
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "result": {
+              "source": "curated rules (cited)",
+              "findings": [
+                {
+                  "risk": "HIGH",
+                  "note": "Ginkgo with warfarin increases bleeding risk.",
+                  "source": "NIH ODS / NCCIH",
+                  "against": "warfarin"
+                }
+              ]
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "result": {
+              "source": "NIH ODS Upper Intake Levels",
+              "limits": []
+            }
+          }
+        ],
+        "tools": 4,
+        "identity": {
+          "source": "NIH DSLD (live)",
+          "brand": "Vitanica",
+          "name": "Ginkgo",
+          "ingredients": [
+            "Ginkgo leaf extract",
+            "Ginkgo",
+            "Vegetarian Capsule",
+            "Cellulose",
+            "Water",
+            "L-Leucine"
+          ]
+        },
+        "recall": {
+          "source": "openFDA enforcement (live)",
+          "recalled": false,
+          "note": "no matching recall record"
+        },
+        "interactions": [
+          {
+            "risk": "HIGH",
+            "note": "Ginkgo with warfarin increases bleeding risk.",
+            "source": "NIH ODS / NCCIH",
+            "against": "warfarin"
+          }
+        ],
+        "dosage": []
+      },
+      "bodyText": null,
+      "traceComparison": {
+        "responseToolTrace": [
+          {
+            "tool": "identify_supplement",
+            "query": "Ginkgo",
+            "result": {
+              "source": "NIH DSLD (live)",
+              "brand": "Vitanica",
+              "name": "Ginkgo",
+              "ingredients": [
+                "Ginkgo leaf extract",
+                "Ginkgo",
+                "Vegetarian Capsule",
+                "Cellulose",
+                "Water",
+                "L-Leucine"
+              ]
+            }
+          },
+          {
+            "tool": "check_recall",
+            "product": "Ginkgo",
+            "result": {
+              "source": "openFDA enforcement (live)",
+              "recalled": false,
+              "note": "no matching recall record"
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "result": {
+              "source": "curated rules (cited)",
+              "findings": [
+                {
+                  "risk": "HIGH",
+                  "note": "Ginkgo with warfarin increases bleeding risk.",
+                  "source": "NIH ODS / NCCIH",
+                  "against": "warfarin"
+                }
+              ]
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "result": {
+              "source": "NIH ODS Upper Intake Levels",
+              "limits": []
+            }
+          }
+        ],
+        "renderedRows": [
+          "Identified product\n● NIH DSLD · live",
+          "Checked recall feed\n● openFDA · live",
+          "Cross-checked interactions vs your profile\n● cited rules",
+          "Checked dosage limits\n● NIH ODS"
+        ],
+        "responseTraceCount": 4,
+        "renderedTraceCount": 4
+      },
+      "dosageComparison": {
+        "responseHasDosageField": true,
+        "renderedDedicatedDosageElementCount": 0,
+        "renderedInFindingBody": false
+      }
+    },
+    {
+      "query": "St. John's Wort",
+      "capturedAt": "2026-09-12T18:39:34.250Z",
+      "status": 200,
+      "statusText": "OK",
+      "bodyJson": {
+        "answer": "There is an ongoing recall for the St. John's Wort 440 mg product due to impurities, specifically an out-of-specification result for a process impurity, dicyclohexylurea (DCU). There are no known interactions between St. John's Wort and your current medications (warfarin) and condition (hypertension). The dosage of St. John's Wort in the product is within safe limits.\n\nHowever, it's important to note that St. John's Wort can still interact with other medications and may affect their efficacy. Confirm with your pharmacist or doctor before proceeding, especially given the recall status of the product.",
+        "tool_trace": [
+          {
+            "tool": "identify_supplement",
+            "query": "St. John's Wort",
+            "result": {
+              "source": "NIH DSLD (live)",
+              "brand": "Christopher's Original Formulas",
+              "name": "St. John's Wort 440 mg",
+              "ingredients": [
+                "St. John's Wort",
+                "plant-derived Capsule"
+              ]
+            }
+          },
+          {
+            "tool": "check_recall",
+            "product": "St. John's Wort 440 mg",
+            "result": {
+              "source": "openFDA enforcement (live)",
+              "recalled": true,
+              "date": "20260824",
+              "reason": "Failed Impurities/Degradation Specifications: OOS result obtained for a process impurity, dicyclohexylurea (DCU).",
+              "status": "Ongoing"
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "result": {
+              "source": "curated rules (cited)",
+              "findings": []
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "result": {
+              "source": "NIH ODS Upper Intake Levels",
+              "limits": []
+            }
+          }
+        ],
+        "tools": 4,
+        "identity": {
+          "source": "NIH DSLD (live)",
+          "brand": "Christopher's Original Formulas",
+          "name": "St. John's Wort 440 mg",
+          "ingredients": [
+            "St. John's Wort",
+            "plant-derived Capsule"
+          ]
+        },
+        "recall": {
+          "source": "openFDA enforcement (live)",
+          "recalled": true,
+          "date": "20260824",
+          "reason": "Failed Impurities/Degradation Specifications: OOS result obtained for a process impurity, dicyclohexylurea (DCU).",
+          "status": "Ongoing"
+        },
+        "interactions": [],
+        "dosage": []
+      },
+      "bodyText": null,
+      "traceComparison": {
+        "responseToolTrace": [
+          {
+            "tool": "identify_supplement",
+            "query": "St. John's Wort",
+            "result": {
+              "source": "NIH DSLD (live)",
+              "brand": "Christopher's Original Formulas",
+              "name": "St. John's Wort 440 mg",
+              "ingredients": [
+                "St. John's Wort",
+                "plant-derived Capsule"
+              ]
+            }
+          },
+          {
+            "tool": "check_recall",
+            "product": "St. John's Wort 440 mg",
+            "result": {
+              "source": "openFDA enforcement (live)",
+              "recalled": true,
+              "date": "20260824",
+              "reason": "Failed Impurities/Degradation Specifications: OOS result obtained for a process impurity, dicyclohexylurea (DCU).",
+              "status": "Ongoing"
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "result": {
+              "source": "curated rules (cited)",
+              "findings": []
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "result": {
+              "source": "NIH ODS Upper Intake Levels",
+              "limits": []
+            }
+          }
+        ],
+        "renderedRows": [
+          "Identified product\n● NIH DSLD · live",
+          "Checked recall feed\n● openFDA · live",
+          "Cross-checked interactions vs your profile\n● cited rules",
+          "Checked dosage limits\n● NIH ODS"
+        ],
+        "responseTraceCount": 4,
+        "renderedTraceCount": 4
+      },
+      "dosageComparison": {
+        "responseHasDosageField": true,
+        "renderedDedicatedDosageElementCount": 0,
+        "renderedInFindingBody": true
+      }
+    }
+  ],
+  "failures": []
+}
