@@ -1,87 +1,97 @@
 # MedGuard
 
-**Your medicine & supplement safety agent — grounded in live FDA / NIH data.**
+**A little clarity for your cabinet.** Confirm a supplement label, inspect dated evidence, and prepare a note for your pharmacist.
 
-Scan the bottles in your medicine cabinet. MedGuard builds your authoritative medication +
-supplement record and keeps you safe: it identifies each product from official databases,
-cross-checks your **whole cabinet against your health profile** for **interactions, duplicate
-ingredients, suitability, dosage limits, expired items, and live recalls**, proactively alerts
-you the moment something you own is recalled, and gives you a **one-tap medication history for
-your doctor or ER**. The model advises and cites official sources; **you and your pharmacist decide.**
+A real **Strands agent on Amazon Bedrock Nova Pro** invokes official-source tools. Request-local code controls facts and completeness. You choose which catalog label matches the bottle and what to save; a pharmacist or clinician interprets the findings.
 
-Built for the [Agents for Humans](https://agentsforhumans.devpost.com/) hackathon with the
-**Strands Agents SDK** on **Amazon Bedrock (Nova Pro)**.
+> MedGuard surfaces evidence and reference flags. It is not medical advice, a diagnosis, a prescription, or a guarantee of safety.
 
-> *"Don't ask an AI that guesses from last year's data. Run an agent that checks the live FDA
-> recall feed, your whole cabinet, and your conditions — and acts for you."*
+## The working flow
 
----
+1. Create an optional medicines/conditions profile, or explicitly choose a synthetic sample.
+2. Type a supplement label. The agent retrieves up to five **live NIH DSLD catalog candidates**.
+3. Compare name, brand and ingredients with the bottle, then select a label. A catalog entry does not verify a physical product.
+4. The agent rechecks that selection, searches **live openFDA food and drug enforcement**, applies a **small cited interaction ruleset**, and retrieves **curated adult dosage references**. Inspect the source links and actual tool trace.
+5. Explicitly save a completed review to the browser's cabinet. Profile changes make old reviews stale. Prepare, review and download or print a pharmacist note.
 
-## Why an agent (not "just ask GPT with a photo")
-The competition rewards agents that "do real work end to end, not just chat." MedGuard does what a
-one-shot chatbot cannot:
+This version has **no camera/OCR, prescription-pill identification, whole-cabinet interaction engine, background recall monitoring, cloud account, automatic clinician messaging, or AgentCore deployment**. Actual dose, frequency, expiry and bottle lot are unknown. The cabinet holds individual dated label reviews, not an authoritative medical history.
 
-1. **Live authoritative grounding vs hallucination** — a chatbot trained months ago can't know last
-   week's recall. MedGuard queries the **live openFDA recall feed** and catches it.
-2. **Whole-cabinet × profile memory** — it persists your record and re-checks every new item against
-   your other meds/supplements and your conditions.
-3. **Proactive monitoring** — it alerts you to a recall without being asked.
-4. **Real actions + human approval** — drafts refills, returns, and a pharmacist note; you approve.
-5. **Fail-closed safety** — it won't guess a loose, no-imprint pill; it won't invent a verdict.
-6. **Auditable** — every flag cites its official source.
+## Why an agent here?
 
-## Architecture
-See [`architecture.md`](architecture.md). In short: a React UI → `POST /api/medcheck` → a Strands
-agent (Bedrock Nova Pro) that **autonomously calls real tools**, each returning authoritative live data:
+The work is a controlled sequence: label lookup → human selection → evidence collection → inspectable record → human handoff. Strands really invokes the tools, but cannot supply replacement ingredients or invented profile data. A missing source/tool leaves the review incomplete. Structured evidence generates the displayed summary, rather than unrestricted model prose.
 
-| Tool | Source (public, free, no auth) |
-| --- | --- |
-| `identify_supplement` | **NIH DSLD** Dietary Supplement Label Database (live) |
-| `check_recall` | **openFDA** drug enforcement / recall feed (live) |
-| `check_interactions` | curated, **source-cited** interaction ruleset (NIH ODS / NCCIH) |
-| `check_dosage` | **NIH ODS** Tolerable Upper Intake Levels |
+Live search, context and exports are not unique to MedGuard. Current Medisafe, MyTherapy and ChatGPT Health overlap parts of the workflow. Our proposed distinction is focused supplement-label confirmation and an inspectable evidence trail. See [COMPETITORS.md](COMPETITORS.md); no head-to-head or clinical effectiveness advantage has been demonstrated.
 
-The model never invents ingredients, recalls, or verdicts — the tools own the facts.
+## Run locally
 
-## Quickstart
+Use Python 3.12+ and Node 22.12+ (also verified with Node 24). AWS credentials must permit Bedrock invocation of `us.amazon.nova-pro-v1:0` in `us-west-2`.
 
-### 1. Backend (the real Strands agent)
-Requires an AWS account with Bedrock access to Nova Pro (`us.amazon.nova-pro-v1:0`) in `us-west-2`.
 ```bash
-python -m venv .venv && source .venv/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
-export AWS_PROFILE=<your-profile> AWS_REGION=us-west-2   # credentials must allow bedrock:InvokeModel
-python server.py 8910          # POST /api/medcheck {scan, profile} -> finding + tool trace
+AWS_PROFILE=your-profile AWS_REGION=us-west-2 python server.py 8910
 ```
-Prove the data chain without the agent: `python core-chain.py`.
 
-### 2. Frontend
+In a second terminal:
+
 ```bash
 cd ui
-npm install
-npm run dev                    # http://localhost:5173  (proxies /api -> :8910)
+npm ci --ignore-scripts
+npm run dev -- --port 5173 --strictPort
 ```
-Open the app, then type or pick a supplement (Fish Oil, Ginkgo, St. John's Wort…) to watch the
-agent call its live tools and surface the finding. If the backend is offline the UI degrades gracefully.
 
-## Example (real, live)
-Profile: **warfarin + hypertension**. Scan **Fish Oil** →
-- **Identified** via NIH DSLD (EPA/DHA).
-- **LIVE RECALL** found on the openFDA feed (a chatbot on stale data can't know this).
-- **HIGH interaction** — omega-3 with warfarin increases bleeding risk (source: NIH ODS).
-- Grounded, cited answer ending "Confirm with your pharmacist or doctor."
+Open **http://localhost:5173**. Vite proxies `/api` to port 8910. This is a local development service, not an authenticated public deployment. Do not expose the Python development server directly to the internet.
 
-## Docs
-- [`DESIGN.md`](DESIGN.md) — full product / UX / data / agent design.
-- [`RESEARCH.md`](RESEARCH.md) — the research + sources behind every decision.
+On this development machine, `missing20-sandbox` assumes a role from `missing20-login`. If credentials expire, run in a real terminal:
 
-## Safety & honest boundaries
-MedGuard **surfaces official NIH/FDA information and flags — it is not medical advice.** It does not
-diagnose or prescribe; always confirm with your pharmacist or doctor. Product identity and recalls are
-live official data. The interaction ruleset is a small, high-value, source-cited set (there is no free
-official drug-interaction API since NLM RxNav's was retired in 2024) and is labeled as such. Loose pills
-without an imprint cannot be reliably identified from an image, so MedGuard fails closed and asks you to
-scan the bottle.
+```bash
+aws login --profile missing20-login --region us-west-2
+```
+
+Then retry. A blocked browser callback alone does not prove login failed; verify the actual API call. Never commit credentials.
+
+### Data chain without AWS
+
+```bash
+python3 core-chain.py
+```
+
+This shares the agent's data helpers but is **not a Bedrock test**. The CLI explicitly labels its first-candidate choice as a demonstration, not a physical-bottle match. Supplied demo health data is synthetic.
+
+### Verification
+
+```bash
+python -m unittest discover -s tests -v
+cd ui
+npm test
+npm run build
+npm audit
+```
+
+The real-browser acceptance runner is `scripts/verify-medguard.mjs`; it requires Playwright and running frontend/backend. From the repository root, set `PLAYWRIGHT_MODULE` to an installed Playwright module path if it is not locally resolvable, then run `node scripts/verify-medguard.mjs`. It saves actual responses and screenshots under `docs/evidence/current/`. Failure injection is separately labeled; the successful flow never substitutes mock responses.
+
+[ACCEPTANCE.md](ACCEPTANCE.md) records current verification and remaining gaps. [EVALUATION.md](EVALUATION.md) records the strict pre-change judge assessment. [Baseline evidence](docs/evidence/baseline/browser-evidence.json) preserves unsafe original responses for regression review, not as recommended medical information.
+
+## Evidence boundaries
+
+| Tool | Data ownership | Cannot establish |
+|---|---|---|
+| `identify_supplement` | Live NIH DSLD labels, selected by the user | Authenticity, exact physical identity or clinical suitability |
+| `check_recall` | Quoted phrase search across FDA food/drug enforcement, preserving product/firm/lot/status/dates | That this bottle is recalled or recall-free; records can be historical/terminated |
+| `check_interactions` | Curated NIH/NCCIH rules with direct citations | Comprehensive interactions or official severity; priorities are app labels |
+| `check_dosage` | Small NIH ODS adult reference table with formulation/scope limits | Actual intake or a personalized safe dose; an empty table is not reassurance |
+
+## Privacy
+
+Profile and reviews stay in this browser's local storage; anyone with access to the browser profile can read them. Remove controls are provided. There is no account sync or server-side cabinet database. A check sends entered profile and product text to the local service; relevant tool results and matched profile terms reach Amazon Bedrock. Public NIH/FDA requests contain product text, not the health profile. HTTP request content is not logged. Notes are downloaded locally and never automatically sent.
+
+## Project materials
+
+[Design](DESIGN.md) · [Architecture](architecture.md) · [API](docs/API.md) · [Research](RESEARCH.md) · [Devpost copy and video plan](DEVPOST.md) · [Baseline evaluation](EVALUATION.md)
+
+Built for [Agents for Humans](https://agentsforhumans.devpost.com/). This project pivoted from **The Missing 20**, a prior warehouse-receiving project. The starting scaffold and working discipline were reused; supplement workflows, source repairs and the consumer redesign are tracked in this repository. Prior warehouse integrations are not MedGuard features.
 
 ## License
-[MIT](LICENSE).
+
+[MIT](LICENSE). Third-party packages, fonts and icons retain their own licenses.
