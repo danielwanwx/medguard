@@ -1,185 +1,782 @@
-import { useState } from "react";
+import { useEffect, useMemo, useReducer, useRef, useState } from "react";
+import * as Accordion from "@radix-ui/react-accordion";
+import * as Dialog from "@radix-ui/react-dialog";
+import {
+  ArrowLeft,
+  ArrowRight,
+  BadgeCheck,
+  Check,
+  ChevronDown,
+  CircleAlert,
+  ClipboardList,
+  Download,
+  ExternalLink,
+  FileText,
+  HeartPulse,
+  Info,
+  Package,
+  Plus,
+  Printer,
+  RotateCcw,
+  Search,
+  ShieldCheck,
+  Trash2,
+  UserRound,
+  X,
+} from "lucide-react";
+import { BottleArtwork, CabinetArtwork } from "./components/Artwork.jsx";
+import { Badge, Button, Field, IconButton, SourceLink } from "./components/Primitives.jsx";
+import { requestMedcheck } from "./lib/api.js";
+import { buildReviewNote, downloadReviewNote, printReviewNote } from "./lib/note.js";
+import {
+  clearPersistedState,
+  loadPersistedState,
+  normalizeProfile,
+  normalizeResult,
+  savePersistedState,
+} from "./lib/storage.js";
+import { appReducer, createInitialState, makeCabinetItem, resultCanBeSaved } from "./lib/state.js";
 
-const Icon = ({ name, bold = false }) => <i aria-hidden="true" className={`${bold ? "ph-bold" : "ph"} ph-${name}`} />;
+const SAMPLE_PROFILE = { meds: ["warfarin"], conditions: ["hypertension"], mode: "sample" };
+const PRODUCT_EXAMPLES = ["Fish oil", "Ginkgo", "St. John's Wort"];
 
-const PRESETS = ["Fish Oil", "Ginkgo", "St. John's Wort", "Vitamin K", "Turmeric"];
-const TOOL_LABEL = {
-  identify_supplement: ["Identified product", "NIH DSLD · live"],
-  check_recall: ["Checked recall feed", "openFDA · live"],
-  check_interactions: ["Cross-checked interactions vs your profile", "cited rules"],
-  check_dosage: ["Checked dosage limits", "NIH ODS"],
+const TOOL_META = {
+  identify_supplement: { label: "Label catalog", source: "NIH DSLD", type: "live" },
+  check_recall: { label: "Recall records", source: "openFDA", type: "live" },
+  check_interactions: { label: "Interaction references", source: "Curated references", type: "curated" },
+  check_dosage: { label: "Adult dosage references", source: "NIH ODS reference", type: "curated" },
 };
-const sevLabel = { recall: "RECALLED", high: "HIGH RISK", warning: "CAUTION", good: "CLEAR" };
 
-function severityOf(r) {
-  if (r?.recall?.recalled) return "recall";
-  const risks = (r?.interactions || []).map((f) => f.risk);
-  if (risks.includes("HIGH")) return "high";
-  if (risks.includes("MODERATE")) return "warning";
-  return "good";
-}
-const dotColor = (s) => (s === "recall" || s === "high" ? "var(--mg-red)" : s === "warning" ? "var(--mg-warn)" : "var(--mg-green)");
+const formatDate = (value, withTime = false) => {
+  if (!value || Number.isNaN(Date.parse(value))) return "Date not returned";
+  return new Intl.DateTimeFormat(undefined, {
+    dateStyle: "medium",
+    ...(withTime ? { timeStyle: "short" } : {}),
+  }).format(new Date(value));
+};
 
-async function medcheck(scan, profile) {
-  const res = await fetch("/api/medcheck", {
-    method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ scan, profile }),
-  });
-  if (!res.ok) throw new Error(`medcheck ${res.status}`);
-  return res.json();
-}
+const singular = (count, word) => `${count} ${word}${count === 1 ? "" : "s"}`;
+const formatRecordDates = (dates) => {
+  if (typeof dates === "string") return dates;
+  if (!dates || typeof dates !== "object") return "";
+  return Object.entries(dates)
+    .map(([label, value]) => `${label.replaceAll("_", " ")}: ${value}`)
+    .join(" · ");
+};
 
-function TracePanel({ trace, busy }) {
-  return <div className="mg-trace-box">
-    <p className="mg-trace-title">AGENT WORKFLOW · autonomous, live sources</p>
-    {trace.map((t, i) => {
-      const [label, src] = TOOL_LABEL[t.tool] || [t.tool, ""];
-      return <div key={i} className="mg-trace-row">
-        <span className="ok"><Icon name="check-circle" bold /></span>
-        <span style={{ fontWeight: 600 }}>{label}</span>
-        {src && <span className="mg-src">● {src}</span>}
-      </div>;
-    })}
-    {busy && <div className="mg-trace-row" style={{ color: "var(--mg-muted)" }}>
-      <span className="mg-spin"><Icon name="arrows-clockwise" /></span> agent investigating…</div>}
-  </div>;
-}
-
-function ResultCard({ r }) {
-  const sev = severityOf(r);
-  return <section className="mg-card">
-    <div className="mg-finding-head">
-      <div>
-        <p className="mg-eyebrow"><span className="status-dot" /> Agent finding</p>
-        <h2 className="mg-finding-name">{r.identity?.name || r.scan} {r.identity?.brand && <small>· {r.identity.brand}</small>}</h2>
-      </div>
-      <span className={`mg-sev ${sev}`}>{sevLabel[sev]}</span>
+function Brand() {
+  return (
+    <div className="mg-brand" aria-label="MedGuard">
+      <span className="mg-brand__mark"><ShieldCheck aria-hidden="true" size={22} strokeWidth={2.2} /></span>
+      <span>MedGuard</span>
     </div>
+  );
+}
 
-    {r.recall?.recalled && <div className="mg-banner">
-      <span className="ic"><Icon name="siren" bold /></span>
-      <div>
-        <div className="mg-banner-title">LIVE RECALL · openFDA</div>
-        <div className="mg-banner-body">Recalled {r.recall.date} · {r.recall.status} · {r.recall.reason}</div>
-        <div className="mg-banner-note">GPT trained on old data can’t know this. MedGuard checked the live feed.</div>
+function AppHeader({ profile, onboarded, onNavigate }) {
+  return (
+    <header className="mg-header">
+      <Brand />
+      {onboarded && (
+        <button className="mg-header__profile" type="button" onClick={() => onNavigate("profile")}>
+          <UserRound aria-hidden="true" size={17} />
+          <span>{profile.mode === "sample" ? "Sample profile" : "Your profile"}</span>
+        </button>
+      )}
+    </header>
+  );
+}
+
+function BottomNavigation({ active, onboarded, onNavigate }) {
+  const destinations = [
+    { id: "check", label: "Check", icon: Search },
+    { id: "cabinet", label: "Cabinet", icon: Package },
+    { id: "profile", label: "Profile", icon: UserRound },
+  ];
+  return (
+    <nav className="mg-bottom-nav" aria-label="Primary navigation">
+      {destinations.map(({ id, label, icon: Icon }) => {
+        const selected = active === id || (!onboarded && active === "welcome" && id === "profile");
+        return (
+          <button
+            key={id}
+            type="button"
+            className={`mg-bottom-nav__item ${selected ? "is-active" : ""}`}
+            aria-current={selected ? "page" : undefined}
+            onClick={() => onNavigate(!onboarded && id !== "profile" ? "profile" : id)}
+          >
+            <Icon aria-hidden="true" size={20} strokeWidth={selected ? 2.5 : 2} />
+            <span>{label}</span>
+          </button>
+        );
+      })}
+    </nav>
+  );
+}
+
+function SampleBanner({ onEdit }) {
+  return (
+    <aside className="mg-sample-banner" aria-label="Sample profile notice">
+      <Info aria-hidden="true" size={19} />
+      <p><strong>Sample profile</strong> — warfarin and hypertension are example data. Edit before using this for yourself.</p>
+      <button type="button" onClick={onEdit}>Edit</button>
+    </aside>
+  );
+}
+
+function WelcomeScreen({ onSetUp, onTrySample }) {
+  return (
+    <main className="mg-welcome" id="main-content">
+      <div className="mg-welcome__copy">
+        <span className="mg-kicker"><HeartPulse aria-hidden="true" size={16} /> A thoughtful cabinet check</span>
+        <h1>A little clarity for your cabinet.</h1>
+        <p className="mg-lede">Choose the label on your bottle, gather the evidence behind it, and bring a dated record to your pharmacist.</p>
+        <div className="mg-welcome__actions">
+          <Button onClick={onSetUp}><span>Set up my profile</span><ArrowRight aria-hidden="true" size={18} /></Button>
+          <Button variant="secondary" onClick={onTrySample}>Try a sample profile</Button>
+        </div>
+        <p className="mg-quiet-note">No name or email. Your profile is saved in this browser only after you choose to continue.</p>
       </div>
-    </div>}
+      <div className="mg-welcome__art" aria-hidden="true"><BottleArtwork /></div>
+    </main>
+  );
+}
 
-    {(r.interactions || []).map((f, i) => <div key={i} className={`mg-inter ${f.risk === "HIGH" ? "high" : ""}`}>
-      <span className="mg-dot" style={{ background: f.risk === "HIGH" ? "var(--mg-red)" : "var(--mg-warn)" }} />
-      <div>
-        <strong className="mg-inter-note">{f.risk} interaction · vs your {f.against}</strong>
-        <div className="mg-inter-note">{f.note}</div>
-        <div className="mg-inter-src"><Icon name="git-branch" /> source: {f.source}</div>
+function TagEditor({ label, hint, entries, onChange, idPrefix, placeholder }) {
+  const [draft, setDraft] = useState("");
+  const inputId = `${idPrefix}-input`;
+  const add = () => {
+    const value = draft.trim();
+    if (!value || entries.some((entry) => entry.toLocaleLowerCase() === value.toLocaleLowerCase())) return;
+    onChange([...entries, value]);
+    setDraft("");
+  };
+  return (
+    <Field label={label} hint={hint} htmlFor={inputId}>
+      <div className="mg-tag-editor">
+        <div className="mg-tag-editor__tags" aria-live="polite">
+          {entries.length ? entries.map((entry) => (
+            <span key={entry.toLocaleLowerCase()} className="mg-tag">
+              {entry}
+              <button type="button" aria-label={`Remove ${entry}`} onClick={() => onChange(entries.filter((item) => item !== entry))}>
+                <X aria-hidden="true" size={14} />
+              </button>
+            </span>
+          )) : <span className="mg-tag-editor__empty">Nothing added yet</span>}
+        </div>
+        <div className="mg-tag-editor__input-row">
+          <input
+            id={inputId}
+            value={draft}
+            maxLength={100}
+            onChange={(event) => setDraft(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") { event.preventDefault(); add(); }
+            }}
+            placeholder={placeholder}
+          />
+          <IconButton label={`Add ${label.toLocaleLowerCase()}`} onClick={add} disabled={!draft.trim()}>
+            <Plus aria-hidden="true" size={18} />
+          </IconButton>
+        </div>
       </div>
-    </div>)}
+    </Field>
+  );
+}
 
-    {r.identity?.ingredients?.length > 0 && <div className="mg-ingredients">Ingredients (NIH DSLD): {r.identity.ingredients.slice(0, 8).join(", ")}</div>}
+function StorageStatus({ state }) {
+  if (state === "unavailable") {
+    return <p className="mg-storage-status mg-storage-status--warning"><CircleAlert aria-hidden="true" size={17} /> Browser storage is unavailable, so changes will not persist after this session.</p>;
+  }
+  if (state === "corrupt") {
+    return <p className="mg-storage-status mg-storage-status--warning"><CircleAlert aria-hidden="true" size={17} /> An unreadable saved record was cleared. Save this profile to start a new local record.</p>;
+  }
+  return <p className="mg-storage-status"><BadgeCheck aria-hidden="true" size={17} /> Saved in this browser. You can remove it below.</p>;
+}
 
-    <div className="mg-answer">
-      <span className="mg-agent-badge">● Real Strands agent · {r.tools} live tools</span>
-      {r.answer}
-    </div>
-  </section>;
+function ProfileScreen({ profile, storage, onboarded, cabinetCount, onSave, onReset }) {
+  const [meds, setMeds] = useState(profile.meds);
+  const [conditions, setConditions] = useState(profile.conditions);
+  const [mode, setMode] = useState(profile.mode);
+
+  useEffect(() => {
+    setMeds(profile.meds);
+    setConditions(profile.conditions);
+    setMode(profile.mode);
+  }, [profile]);
+
+  const save = (event) => {
+    event.preventDefault();
+    onSave({ meds, conditions, mode });
+  };
+
+  return (
+    <main className="mg-page mg-profile-page" id="main-content">
+      <span className="mg-kicker"><UserRound aria-hidden="true" size={16} /> Your context</span>
+      <h1>{onboarded ? "Your profile" : "A few details, if you want them."}</h1>
+      <p className="mg-lede">List the medicines and conditions you want the review to consider. You can leave either list empty and update it any time.</p>
+
+      <form className="mg-profile-form" onSubmit={save}>
+        {mode === "sample" && (
+          <div className="mg-inline-callout">
+            <Info aria-hidden="true" size={19} />
+            <p>This is a labeled sample profile. Keep it for a demo, or make it personal before saving.</p>
+            <Button variant="quiet" onClick={() => setMode("personal")}>Use as my profile</Button>
+          </div>
+        )}
+        <TagEditor
+          label="Medicines"
+          hint="Examples: warfarin, metformin. Include what you want reviewed; this is not a full medication record."
+          entries={meds}
+          onChange={setMeds}
+          idPrefix="medicines"
+          placeholder="Add a medicine"
+        />
+        <TagEditor
+          label="Conditions"
+          hint="Examples: hypertension, kidney disease. Leave empty if you do not want to add conditions."
+          entries={conditions}
+          onChange={setConditions}
+          idPrefix="conditions"
+          placeholder="Add a condition"
+        />
+
+        <section className="mg-privacy-card" aria-labelledby="privacy-title">
+          <div className="mg-privacy-card__icon"><ShieldCheck aria-hidden="true" size={21} /></div>
+          <div>
+            <h2 id="privacy-title">Before your first check</h2>
+            <p>Your profile and confirmed cabinet are saved in this browser. When you request a review, MedGuard sends the profile to its server and Strands on Amazon Bedrock; it sends the product text to the cited source APIs. No name or email is requested.</p>
+          </div>
+        </section>
+
+        <StorageStatus state={storage} />
+        <div className="mg-profile-form__actions">
+          <Button type="submit">{onboarded ? "Save profile" : "Continue to Find my label"}<ArrowRight aria-hidden="true" size={18} /></Button>
+          {onboarded && (
+            <Button
+              variant="danger-quiet"
+              onClick={() => {
+                if (window.confirm(`Remove this local profile and ${singular(cabinetCount, "cabinet item")} from this browser?`)) onReset();
+              }}
+            >
+              <Trash2 aria-hidden="true" size={17} /> Remove local data
+            </Button>
+          )}
+        </div>
+      </form>
+    </main>
+  );
+}
+
+function WaitingCard() {
+  return (
+    <section className="mg-waiting-card" role="status" aria-live="polite">
+      <span className="mg-waiting-card__orbit" aria-hidden="true"><span /></span>
+      <div>
+        <h2>Gathering your evidence</h2>
+        <p>We will show completed source calls only when the review returns.</p>
+      </div>
+    </section>
+  );
+}
+
+function CandidateChoices({ result, onChoose, busy }) {
+  const candidates = result.candidates || [];
+  return (
+    <section className="mg-candidates" aria-labelledby="candidate-title">
+      <span className="mg-kicker"><BadgeCheck aria-hidden="true" size={16} /> Confirm the label</span>
+      <h1 id="candidate-title">This matches my bottle</h1>
+      <p>Catalog search results are not automatic matches. Compare the product name, brand, and ingredients with the label in your hand.</p>
+      {candidates.length ? <div className="mg-candidate-list">
+        {candidates.map((candidate) => (
+          <article className="mg-candidate" key={candidate.id}>
+            <div className="mg-candidate__identity">
+              <h3>{candidate.name}</h3>
+              {candidate.brand && <p>{candidate.brand}</p>}
+              {candidate.ingredients.length > 0 && <p className="mg-candidate__ingredients">{candidate.ingredients.join(", ")}</p>}
+              {candidate.ingredient_coverage && <p className="mg-candidate__coverage">{candidate.ingredient_coverage}</p>}
+              <SourceLink href={candidate.source_url}>{candidate.source || "NIH DSLD catalog record"} <ExternalLink aria-hidden="true" size={13} /></SourceLink>
+            </div>
+            <Button onClick={() => onChoose(candidate)} disabled={busy}>
+              <Check aria-hidden="true" size={18} /> This matches my bottle
+            </Button>
+          </article>
+        ))}
+      </div> : <div className="mg-no-candidates">
+        <CircleAlert aria-hidden="true" size={20} />
+        <p>No catalog labels came back for this wording. Try the product name and brand from the bottle.</p>
+      </div>}
+      {result.answer && <p className="mg-evidence-summary"><strong>Catalog result:</strong> {result.answer}</p>}
+      <ToolTrace trace={result.tool_trace} />
+    </section>
+  );
+}
+
+function TraceValue({ value, depth = 0 }) {
+  if (value === null || value === "" || value === undefined) return <span>Not returned</span>;
+  if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") return <span>{String(value)}</span>;
+  if (depth >= 3) return <span>Additional details returned</span>;
+  if (Array.isArray(value)) {
+    return value.length
+      ? <ul className="mg-trace-result__list">{value.map((item, index) => <li key={index}><TraceValue value={item} depth={depth + 1} /></li>)}</ul>
+      : <span>None</span>;
+  }
+  return (
+    <dl className="mg-trace-result">
+      {Object.entries(value).map(([key, item]) => <div key={key}><dt>{key}</dt><dd><TraceValue value={item} depth={depth + 1} /></dd></div>)}
+    </dl>
+  );
+}
+
+function TraceResult({ result }) {
+  return <div className="mg-trace-result__text"><TraceValue value={result} /></div>;
+}
+
+function ToolTrace({ trace = [] }) {
+  if (!trace.length) return null;
+  return (
+    <section className="mg-tool-trace" aria-labelledby="tool-trace-title">
+      <div className="mg-tool-trace__heading">
+        <div>
+          <span className="mg-overline">Review provenance</span>
+          <h3 id="tool-trace-title">{singular(trace.length, "actual tool call")}</h3>
+        </div>
+        <span className="mg-bedrock">Strands · Amazon Bedrock</span>
+      </div>
+      <Accordion.Root type="multiple" className="mg-trace-accordion">
+        {trace.map((entry, index) => {
+          const meta = TOOL_META[entry.tool] || { label: entry.tool, source: "Review tool", type: "curated" };
+          const status = ["success", "error", "blocked"].includes(entry.status) ? entry.status : "blocked";
+          return (
+            <Accordion.Item className={`mg-trace-row mg-trace-row--${status}`} value={`${entry.tool}-${index}`} key={`${entry.tool}-${index}`}>
+              <Accordion.Header>
+                <Accordion.Trigger className="mg-trace-trigger">
+                  <span className="mg-trace-trigger__main">
+                    <span className={`mg-trace-status mg-trace-status--${status}`} aria-hidden="true" />
+                    <span><strong>{meta.label}</strong><small>{meta.source}</small></span>
+                  </span>
+                  <span className="mg-trace-trigger__meta">
+                    <Badge tone={meta.type === "live" ? "live" : "reference"}>{meta.type === "live" ? "Live source" : "Curated reference"}</Badge>
+                    <Badge tone={status === "success" ? "success" : "warning"}>{status}</Badge>
+                    <ChevronDown aria-hidden="true" className="mg-trace-chevron" size={18} />
+                  </span>
+                </Accordion.Trigger>
+              </Accordion.Header>
+              <Accordion.Content className="mg-trace-content">
+                <TraceResult result={entry.result} />
+                {entry.source_urls?.length > 0 && <div className="mg-trace-content__sources">{entry.source_urls.map((url) => <SourceLink key={url} href={url}>{entry.source || "Open returned source"} <ExternalLink aria-hidden="true" size={13} /></SourceLink>)}</div>}
+              </Accordion.Content>
+            </Accordion.Item>
+          );
+        })}
+      </Accordion.Root>
+    </section>
+  );
+}
+
+function RecallFinding({ recall }) {
+  if (!recall) return (
+    <section className="mg-finding-section">
+      <h3>Recall record scope</h3>
+      <p>The recall source did not return a usable record for this review. That is missing evidence, not reassurance.</p>
+    </section>
+  );
+  if (recall.status === "potential_matches") {
+    const recordCount = recall.records.length;
+    const statusCounts = recall.records.reduce((counts, record) => {
+      const status = record.status || "Not reported";
+      counts.set(status, (counts.get(status) || 0) + 1);
+      return counts;
+    }, new Map());
+    const statusSummary = [...statusCounts.entries()].map(([status, count]) => `${status} (${count})`).join(" · ");
+    return (
+      <section className="mg-finding-section mg-finding-section--attention">
+        <div className="mg-finding-section__heading">
+          <div><span className="mg-overline">openFDA records</span><h3>Potential recall matches</h3></div>
+          <Badge tone="attention">Compare product &amp; lot</Badge>
+        </div>
+        <p>These are text or category matches, not a claim that your bottle is recalled. Compare the product name, manufacturer, and lot or package code before acting.</p>
+        <p className="mg-recall-count"><strong>{singular(recordCount, "potential FDA record")}</strong> returned for this text/category search.{statusSummary && <> Record statuses: {statusSummary}.</>}</p>
+        {recordCount ? <details className="mg-recall-details">
+          <summary>Review FDA record details</summary>
+          <div className="mg-recall-records">
+            {recall.records.map((record, index) => (
+              <article key={`${record.recall_number}-${index}`} className="mg-recall-record">
+                <h4>{record.product_description}</h4>
+                <dl>
+                  {record.recalling_firm && <div><dt>Recalling firm</dt><dd>{record.recalling_firm}</dd></div>}
+                  {record.recall_number && <div><dt>Recall number</dt><dd>{record.recall_number}</dd></div>}
+                  {record.status && <div><dt>Status</dt><dd>{record.status}</dd></div>}
+                  {record.classification && <div><dt>Classification</dt><dd>{record.classification}</dd></div>}
+                  {record.reason_for_recall && <div><dt>Reason for recall</dt><dd>{record.reason_for_recall}</dd></div>}
+                  {record.dates && <div><dt>Dates</dt><dd>{formatRecordDates(record.dates)}</dd></div>}
+                  {record.code_info && <div><dt>Lot / package code</dt><dd>{record.code_info}</dd></div>}
+                </dl>
+                <SourceLink href={record.source_url}>Open FDA record <ExternalLink aria-hidden="true" size={13} /></SourceLink>
+              </article>
+            ))}
+          </div>
+        </details> : <p className="mg-small-callout">The source described potential matches but returned no record details. Use the source link and compare your bottle.</p>}
+        {recall.coverage && <p className="mg-coverage-note">{recall.coverage}</p>}
+        {recall.metadata?.last_updated && <p className="mg-retrieved-note">Source last updated: {formatRecordDates(recall.metadata.last_updated)}</p>}
+        {recall.source_urls?.map((url) => <SourceLink key={url} href={url}>{recall.source || "Open FDA search"} <ExternalLink aria-hidden="true" size={13} /></SourceLink>)}
+      </section>
+    );
+  }
+  if (recall.status === "no_match") {
+    return (
+      <section className="mg-finding-section">
+        <h3>Recall record scope</h3>
+        <p>No matching record was returned by the covered recall sources at check time. This does not verify your bottle, its lot, or establish safety.</p>
+        {recall.coverage && <p className="mg-coverage-note">{recall.coverage}</p>}
+        {recall.metadata?.last_updated && <p className="mg-retrieved-note">Source last updated: {formatRecordDates(recall.metadata.last_updated)}</p>}
+        {recall.source_urls?.map((url) => <SourceLink key={url} href={url}>{recall.source || "Covered recall source"} <ExternalLink aria-hidden="true" size={13} /></SourceLink>)}
+      </section>
+    );
+  }
+  return (
+    <section className="mg-finding-section mg-finding-section--incomplete">
+      <h3>Recall source unavailable</h3>
+      <p>The covered recall source could not be completed. A missing result cannot be treated as no recall.</p>
+      {recall.coverage && <p className="mg-coverage-note">{recall.coverage}</p>}
+      {recall.metadata?.last_updated && <p className="mg-retrieved-note">Source last updated: {formatRecordDates(recall.metadata.last_updated)}</p>}
+      {recall.source_urls?.map((url) => <SourceLink key={url} href={url}>{recall.source || "Recall source"} <ExternalLink aria-hidden="true" size={13} /></SourceLink>)}
+    </section>
+  );
+}
+
+function InteractionFindings({ interactions = [], coverage }) {
+  return (
+    <section className="mg-finding-section">
+      <div className="mg-finding-section__heading">
+        <div><span className="mg-overline">Cited review prompts</span><h3>Things to ask about</h3></div>
+        <Badge tone="reference">Not clinical severity</Badge>
+      </div>
+      {interactions.length ? <div className="mg-interactions">
+        {interactions.map((finding, index) => (
+          <article className="mg-interaction" key={`${finding.note}-${index}`}>
+            <Badge tone="attention">{finding.risk}</Badge>
+            <div>
+              {finding.against && <p className="mg-interaction__against">With {finding.against}</p>}
+              <p>{finding.note}</p>
+              <SourceLink href={finding.source_url}>{finding.source || "Cited reference"} <ExternalLink aria-hidden="true" size={13} /></SourceLink>
+            </div>
+          </article>
+        ))}
+      </div> : <p>No bounded interaction prompt was returned for this profile. The curated references do not cover every medicine, condition, ingredient, dose, or formulation, so an empty list is not a safety finding.</p>}
+      {coverage && <p className="mg-coverage-note">{coverage}</p>}
+    </section>
+  );
+}
+
+function DosageReferences({ dosage = [], coverage }) {
+  return (
+    <Accordion.Root type="single" collapsible className="mg-dosage-accordion">
+      <Accordion.Item value="dosage">
+        <Accordion.Header>
+          <Accordion.Trigger className="mg-dosage-trigger">
+            <span><strong>Adult reference limits</strong><small>Actual dose and frequency are unknown</small></span>
+            <ChevronDown aria-hidden="true" size={20} />
+          </Accordion.Trigger>
+        </Accordion.Header>
+        <Accordion.Content className="mg-dosage-content">
+          {dosage.length ? dosage.map((reference, index) => (
+            <article className="mg-dosage-reference" key={`${reference.ingredient}-${index}`}>
+              <h4>{reference.ingredient}</h4>
+              <p>{reference.adult_reference_limit}</p>
+              {reference.scope && <p className="mg-dosage-reference__scope">{reference.scope}</p>}
+              <SourceLink href={reference.source_url}>{reference.source || "NIH ODS reference"} <ExternalLink aria-hidden="true" size={13} /></SourceLink>
+            </article>
+          )) : <p>No adult reference row was returned for the detected ingredients. That does not mean a dose is appropriate or safe for you.</p>}
+          {coverage && <p className="mg-coverage-note">{coverage}</p>}
+        </Accordion.Content>
+      </Accordion.Item>
+    </Accordion.Root>
+  );
+}
+
+function IncompleteResult({ result, onRetry }) {
+  const unidentified = result.status === "unidentified";
+  return (
+    <section className="mg-result mg-result--incomplete">
+      <Badge tone="warning">{unidentified ? "Need the bottle label" : "Evidence incomplete"}</Badge>
+      <h1>{unidentified ? "Use the bottle label, not a guess." : "This review is not ready to save."}</h1>
+      <p className="mg-lede">{result.answer || (unidentified ? "MedGuard does not identify a loose pill or an unclear description. Type the product and brand from its bottle label." : "A required source did not finish. Missing findings are not reassurance.")}</p>
+      <div className="mg-result__actions"><Button onClick={onRetry}><RotateCcw aria-hidden="true" size={18} /> Try again</Button></div>
+      <ToolTrace trace={result.tool_trace} />
+    </section>
+  );
+}
+
+function CompleteResult({ result, stale, savedView, existingItem, onAdd, onRecheck }) {
+  const identity = result.identity;
+  return (
+    <section className="mg-result">
+      <div className="mg-result__title-row">
+        <div>
+          <Badge tone="review"><BadgeCheck aria-hidden="true" size={14} /> Review ready</Badge>
+          <h1>{identity.name}</h1>
+          <p className="mg-product-subtitle">{[identity.brand, identity.confirmation === "user_label_selection" ? "Label selection confirmed" : "", identity.clinical_verification === "not_clinically_verified" ? "Not clinically verified" : ""].filter(Boolean).join(" · ")}</p>
+        </div>
+        <span className="mg-check-date">Checked {formatDate(result.checked_at, true)}</span>
+      </div>
+      {stale && <div className="mg-stale-banner"><CircleAlert aria-hidden="true" size={19} /><p><strong>Profile changed after this review.</strong> These findings are dated to an earlier profile. Recheck before relying on them.</p></div>}
+      <div className="mg-result__actions">
+        {savedView ? <Button variant="secondary" disabled><BadgeCheck aria-hidden="true" size={18} /> In your cabinet</Button> : <Button onClick={onAdd}>{existingItem ? <RotateCcw aria-hidden="true" size={18} /> : <Plus aria-hidden="true" size={18} />}{existingItem ? " Update cabinet review" : " Add to cabinet"}</Button>}
+        <Button variant="quiet" onClick={onRecheck}><RotateCcw aria-hidden="true" size={17} /> Recheck current profile</Button>
+      </div>
+
+      <section className="mg-review-heading"><span className="mg-kicker"><ClipboardList aria-hidden="true" size={16} /> Evidence, with limits</span><h2>Things to review</h2></section>
+      <InteractionFindings interactions={result.interactions} coverage={result.interaction_coverage} />
+      <RecallFinding recall={result.recall} />
+      <DosageReferences dosage={result.dosage} coverage={result.dosage_coverage} />
+      <details className="mg-result__summary">
+        <summary>Read full evidence summary</summary>
+        <p>{result.answer || "The review returned structured evidence without a written summary."}</p>
+      </details>
+      <section className="mg-ingredients-section">
+        <h3>Catalog ingredients</h3>
+        {identity.ingredients.length ? <p>{identity.ingredients.join(", ")}</p> : <p>{identity.ingredient_status === "explicitly_empty" ? "The selected catalog record explicitly returned an empty ingredient list. Ingredient coverage is unknown." : "The selected catalog record did not list ingredients."}</p>}
+        {identity.ingredient_coverage && <p className="mg-coverage-note">{identity.ingredient_coverage}</p>}
+        <SourceLink href={identity.source_url}>{identity.source || "Confirmed catalog record"} <ExternalLink aria-hidden="true" size={13} /></SourceLink>
+      </section>
+      <ToolTrace trace={result.tool_trace} />
+    </section>
+  );
+}
+
+function CheckScreen({ state, onLookup, onChooseCandidate, onRetry, onAdd, onRecheck, onNewLabel }) {
+  const existingItem = state.result?.identity ? state.cabinet.find((item) => item.id === state.result.identity.id) : null;
+  const savedView = Boolean(existingItem && state.activeCabinetId === existingItem.id);
+  const canSave = resultCanBeSaved(state.result);
+  const hasDecisionScreen = Boolean(state.candidates || state.result);
+  return (
+    <main className="mg-page mg-check-page" id="main-content">
+      {hasDecisionScreen ? <button className="mg-back-link" type="button" onClick={onNewLabel}><ArrowLeft aria-hidden="true" size={17} /> Find another label</button> : <>
+        <span className="mg-kicker"><Search aria-hidden="true" size={16} /> Start with the label</span>
+        <h1>Find my label</h1>
+        <p className="mg-lede">Type the product and brand as they appear on the bottle. MedGuard cannot scan a camera image or identify a loose pill.</p>
+
+        <form className="mg-label-search" onSubmit={(event) => { event.preventDefault(); onLookup(state.query); }}>
+          <Field label="Product label" htmlFor="label-search" hint="A fuller label name helps you choose the right catalog result.">
+            <div className="mg-label-search__field-row">
+              <Search aria-hidden="true" className="mg-label-search__icon" size={20} />
+              <input id="label-search" maxLength={160} value={state.query} onChange={(event) => onLookup(event.target.value, { changeOnly: true })} placeholder="Example: fish oil, Nordic Naturals" autoComplete="off" />
+              <Button type="submit" disabled={state.busy || !state.query.trim()} loading={state.busy}><span className="mg-label-search__button-copy">Find label</span></Button>
+            </div>
+          </Field>
+          <div className="mg-examples" aria-label="Label search examples">
+            <span>Try</span>
+            {PRODUCT_EXAMPLES.map((example) => <button type="button" key={example} onClick={() => onLookup(example, { changeOnly: true })}>{example}</button>)}
+          </div>
+        </form>
+      </>}
+
+      {state.busy && <WaitingCard />}
+      {state.error && (
+        <section className="mg-request-error" role="alert">
+          <CircleAlert aria-hidden="true" size={21} />
+          <div><h2>We could not finish that review.</h2><p>{state.error}</p></div>
+          <Button variant="secondary" onClick={onRetry}><RotateCcw aria-hidden="true" size={17} /> Retry</Button>
+        </section>
+      )}
+      {state.candidates && <CandidateChoices result={state.candidates} onChoose={onChooseCandidate} busy={state.busy} />}
+      {state.result && !canSave && <IncompleteResult result={state.result} onRetry={onRetry} />}
+      {state.result && canSave && <CompleteResult result={state.result} stale={savedView && existingItem?.stale} savedView={savedView} existingItem={existingItem} onAdd={onAdd} onRecheck={onRecheck} />}
+    </main>
+  );
+}
+
+function CabinetCard({ item, onOpen, onRemove }) {
+  return (
+    <article className={`mg-cabinet-card ${item.stale ? "mg-cabinet-card--stale" : ""}`}>
+      <button className="mg-cabinet-card__open" type="button" onClick={() => onOpen(item)}>
+        <span className="mg-cabinet-card__icon"><Package aria-hidden="true" size={22} /></span>
+        <span className="mg-cabinet-card__content">
+          <span className="mg-cabinet-card__name">{item.identity.name}</span>
+          <span className="mg-cabinet-card__brand">{item.identity.brand || "Confirmed catalog product"}</span>
+          <span className="mg-cabinet-card__date">Reviewed {formatDate(item.checkedAt)}</span>
+        </span>
+        <ArrowRight aria-hidden="true" size={19} />
+      </button>
+      <div className="mg-cabinet-card__footer">
+        {item.stale ? <Badge tone="warning">Profile changed · recheck</Badge> : <Badge tone="review">Confirmed label</Badge>}
+        <IconButton label={`Remove ${item.identity.name} from cabinet`} onClick={() => onRemove(item.id)}><Trash2 aria-hidden="true" size={17} /></IconButton>
+      </div>
+    </article>
+  );
+}
+
+function NoteDialog({ open, onOpenChange, profile, cabinet, triggerRef }) {
+  const note = useMemo(() => buildReviewNote({ profile, cabinet }), [profile, cabinet]);
+  const [printIssue, setPrintIssue] = useState("");
+  return (
+    <Dialog.Root open={open} onOpenChange={onOpenChange}>
+      <Dialog.Portal>
+        <Dialog.Overlay className="mg-dialog-overlay" />
+        <Dialog.Content
+          className="mg-dialog-content"
+          aria-describedby="review-note-description"
+          onCloseAutoFocus={(event) => {
+            event.preventDefault();
+            triggerRef?.current?.focus();
+          }}
+        >
+          <div className="mg-dialog-content__header">
+            <div>
+              <span className="mg-kicker"><FileText aria-hidden="true" size={16} /> User-reviewed handoff</span>
+              <Dialog.Title>Pharmacist review note</Dialog.Title>
+              <Dialog.Description id="review-note-description">Review this text before downloading or printing. MedGuard does not send it anywhere.</Dialog.Description>
+            </div>
+            <Dialog.Close asChild><IconButton label="Close review note"><X aria-hidden="true" size={20} /></IconButton></Dialog.Close>
+          </div>
+          <pre className="mg-note-preview">{note}</pre>
+          {printIssue && <p className="mg-print-issue" role="alert">{printIssue}</p>}
+          <div className="mg-dialog-content__actions">
+            <Button variant="secondary" onClick={() => downloadReviewNote(note)}><Download aria-hidden="true" size={18} /> Download text</Button>
+            <Button onClick={() => setPrintIssue(printReviewNote(note) ? "" : "Your browser blocked the print window. Allow pop-ups, then try again.")}><Printer aria-hidden="true" size={18} /> Print note</Button>
+          </div>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+}
+
+function CabinetScreen({ cabinet, profile, onOpenItem, onRemove, onCheck }) {
+  const [noteOpen, setNoteOpen] = useState(false);
+  const noteTriggerRef = useRef(null);
+  const handleNoteOpenChange = (open) => {
+    setNoteOpen(open);
+    if (!open) queueMicrotask(() => noteTriggerRef.current?.focus());
+  };
+  return (
+    <main className="mg-page mg-cabinet-page" id="main-content">
+      <span className="mg-kicker"><Package aria-hidden="true" size={16} /> Confirmed labels only</span>
+      <h1>Your cabinet</h1>
+      <p className="mg-lede">Keep the catalog products you have deliberately confirmed. Each record stays dated to the profile used for its review.</p>
+      {cabinet.length ? <>
+        <div className="mg-cabinet-actions">
+          <p>{singular(cabinet.length, "confirmed product")}</p>
+          <Button ref={noteTriggerRef} variant="secondary" onClick={() => setNoteOpen(true)}><FileText aria-hidden="true" size={18} /> Prepare pharmacist note</Button>
+        </div>
+        <div className="mg-cabinet-list">
+          {cabinet.map((item) => <CabinetCard key={item.id} item={item} onOpen={onOpenItem} onRemove={onRemove} />)}
+        </div>
+      </> : <section className="mg-cabinet-empty">
+        <CabinetArtwork />
+        <h2>Your cabinet starts with a confirmed label.</h2>
+        <p>Finish a label review, then choose whether to add it here. Nothing is added automatically.</p>
+        <Button onClick={onCheck}><Search aria-hidden="true" size={18} /> Find a label</Button>
+      </section>}
+      <NoteDialog open={noteOpen} onOpenChange={handleNoteOpenChange} profile={profile} cabinet={cabinet} triggerRef={noteTriggerRef} />
+    </main>
+  );
 }
 
 export function App() {
-  const [profile] = useState({ meds: ["warfarin"], conditions: ["hypertension"] });
-  const [input, setInput] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [trace, setTrace] = useState([]);
-  const [current, setCurrent] = useState(null);
-  const [cabinet, setCabinet] = useState([]);
-  const [doctor, setDoctor] = useState(false);
+  const abortRef = useRef(null);
+  const requestInFlightRef = useRef(false);
+  const requestGenerationRef = useRef(0);
+  const [state, dispatch] = useReducer(appReducer, undefined, () => createInitialState(loadPersistedState()));
 
-  const check = async (query) => {
-    if (!query.trim() || busy) return;
-    setInput(""); setBusy(true); setCurrent(null); setTrace([]);
-    const steps = ["identify_supplement", "check_recall", "check_interactions", "check_dosage"];
-    steps.forEach((tool, i) => setTimeout(() => setTrace((t) => [...t, { tool }]), 450 + i * 620));
-    try {
-      const r = await medcheck(query, profile);
-      r.scan = query;
-      setTrace(r.tool_trace?.length ? r.tool_trace : steps.map((tool) => ({ tool })));
-      setCurrent(r);
-      const name = r.identity?.name || query;
-      setCabinet((c) => [{ name, brand: r.identity?.brand, sev: severityOf(r) }, ...c.filter((x) => x.name !== name)]);
-    } catch (e) {
-      setCurrent({ scan: query, tools: 0, answer: `MedGuard backend unavailable (${e.message}). Start medguard/server.py.`, interactions: [], recall: null });
-    } finally { setBusy(false); }
+  useEffect(() => () => {
+    requestGenerationRef.current += 1;
+    requestInFlightRef.current = false;
+    abortRef.current?.abort();
+  }, []);
+
+  useEffect(() => {
+    if (!state.onboarded) return;
+    const saved = savePersistedState({ version: 1, onboarded: state.onboarded, profile: state.profile, cabinet: state.cabinet });
+    if (saved && state.storage !== "available") dispatch({ type: "STORAGE_AVAILABLE" });
+    if (!saved && state.storage !== "unavailable") dispatch({ type: "STORAGE_UNAVAILABLE" });
+  }, [state.onboarded, state.profile, state.cabinet, state.storage]);
+
+  const navigate = (tab) => dispatch({ type: "NAVIGATE", tab });
+  const invalidateInFlightRequest = () => {
+    requestGenerationRef.current += 1;
+    requestInFlightRef.current = false;
+    abortRef.current?.abort();
+    abortRef.current = null;
+  };
+  const saveProfile = (profile) => {
+    invalidateInFlightRequest();
+    dispatch({ type: "PROFILE_SAVED", profile: normalizeProfile(profile) });
+  };
+  const resetLocalData = () => {
+    invalidateInFlightRequest();
+    const cleared = clearPersistedState();
+    dispatch({ type: "LOCAL_DATA_RESET", storage: cleared ? "available" : "unavailable" });
   };
 
-  const recalled = cabinet.find((x) => x.sev === "recall");
+  const performRequest = async ({ scan, selectedId = null }) => {
+    const label = scan.trim();
+    if (!label || state.busy || requestInFlightRef.current) return;
+    const controller = new AbortController();
+    const generation = requestGenerationRef.current + 1;
+    const profileSnapshot = normalizeProfile(state.profile);
+    requestGenerationRef.current = generation;
+    requestInFlightRef.current = true;
+    abortRef.current = controller;
+    dispatch({ type: "REQUEST_STARTED", scan: label, selectedId, profileSnapshot, generation });
+    try {
+      const response = await requestMedcheck({ scan: label, profile: { meds: profileSnapshot.meds, conditions: profileSnapshot.conditions }, selectedId }, { signal: controller.signal });
+      const result = normalizeResult(response);
+      if (!result) throw new Error("The review service returned an unreadable result.");
+      if (requestGenerationRef.current !== generation) return;
+      if (result.status === "needs_confirmation") dispatch({ type: "CANDIDATES_RECEIVED", result, generation });
+      else dispatch({ type: "RESULT_RECEIVED", result, generation });
+    } catch (error) {
+      if (requestGenerationRef.current === generation) {
+        dispatch({ type: "REQUEST_ERROR", error: error?.message || "We could not finish the review. Please try again.", generation });
+      }
+    } finally {
+      if (requestGenerationRef.current === generation) {
+        requestInFlightRef.current = false;
+        if (abortRef.current === controller) abortRef.current = null;
+      }
+    }
+  };
 
-  return <div className="mg-app">
-    <header className="mg-header">
-      <span className="mg-mark"><Icon name="shield-check" bold /></span>
-      <div>
-        <h1 className="mg-title">Med<b>Guard</b></h1>
-        <div className="mg-tagline">Your medicine &amp; supplement safety agent — grounded in live FDA / NIH data</div>
+  const lookup = (query, options = {}) => {
+    if (options.changeOnly) dispatch({ type: "QUERY_CHANGED", query });
+    else performRequest({ scan: query });
+  };
+  const chooseCandidate = (candidate) => performRequest({ scan: state.request?.scan || state.query, selectedId: candidate.id });
+  const retry = () => state.request && performRequest(state.request);
+  const addToCabinet = () => {
+    const item = makeCabinetItem(state.result, state.request?.profileSnapshot, state.request?.scan);
+    if (item) dispatch({ type: "CABINET_ADDED", item });
+  };
+  const recheck = () => {
+    if (state.result?.identity?.id && state.request?.scan) performRequest({ scan: state.request.scan, selectedId: state.result.identity.id });
+  };
+  const startAnotherLabel = () => {
+    invalidateInFlightRequest();
+    dispatch({ type: "REVIEW_RESET" });
+  };
+
+  let content;
+  if (state.tab === "welcome") {
+    content = <WelcomeScreen onSetUp={() => navigate("profile")} onTrySample={() => saveProfile(SAMPLE_PROFILE)} />;
+  } else if (state.tab === "profile") {
+    content = <ProfileScreen profile={state.profile} storage={state.storage} onboarded={state.onboarded} cabinetCount={state.cabinet.length} onSave={saveProfile} onReset={resetLocalData} />;
+  } else if (state.tab === "cabinet") {
+    content = <CabinetScreen cabinet={state.cabinet} profile={state.profile} onOpenItem={(item) => dispatch({ type: "OPEN_CABINET_ITEM", item })} onRemove={(id) => dispatch({ type: "CABINET_REMOVED", id })} onCheck={() => navigate("check")} />;
+  } else {
+    content = <CheckScreen state={state} onLookup={lookup} onChooseCandidate={chooseCandidate} onRetry={retry} onAdd={addToCabinet} onRecheck={recheck} onNewLabel={startAnotherLabel} />;
+  }
+
+  return (
+    <div className="mg-app-shell">
+      <a className="mg-skip-link" href="#main-content">Skip to content</a>
+      <div className="mg-app-frame">
+        <AppHeader profile={state.profile} onboarded={state.onboarded} onNavigate={navigate} />
+        {state.onboarded && state.profile.mode === "sample" && <SampleBanner onEdit={() => navigate("profile")} />}
+        {content}
       </div>
-    </header>
-
-    <div className="mg-profile">
-      <span className="mg-profile-label">YOUR HEALTH PROFILE</span>
-      {profile.meds.map((m) => <span key={m} className="mg-chip med"><Icon name="database" /> {m}</span>)}
-      {profile.conditions.map((c) => <span key={c} className="mg-chip cond"><Icon name="warning" /> {c}</span>)}
-      <span className="mg-profile-hint">· drives every “is it safe for you” check</span>
+      <BottomNavigation active={state.tab} onboarded={state.onboarded} onNavigate={navigate} />
+      <footer className="mg-boundary"><Info aria-hidden="true" size={15} /> MedGuard surfaces evidence and reference flags for a pharmacist conversation. It is not medical advice.</footer>
     </div>
-
-    <section className="mg-card">
-      <p className="mg-eyebrow"><Icon name="camera" /> Scan or add a supplement / med</p>
-      <div className="mg-scan-row">
-        <input className="mg-input" value={input} onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && check(input)}
-          placeholder="Type a product (e.g. Fish Oil) — or scan a bottle" aria-label="Product name" />
-        <button className="mg-btn" disabled={busy} onClick={() => check(input)}><Icon name="magnifying-glass" bold /> Check</button>
-      </div>
-      <div className="mg-presets">
-        {PRESETS.map((p) => <button key={p} className="mg-preset" disabled={busy} onClick={() => check(p)}>{p}</button>)}
-      </div>
-      {(trace.length > 0 || busy) && <TracePanel trace={trace} busy={busy} />}
-    </section>
-
-    {current && <ResultCard r={current} />}
-
-    {recalled && <div className="mg-banner" style={{ alignItems: "center" }}>
-      <span className="ic"><Icon name="siren" bold /></span>
-      <div className="mg-banner-body"><span className="mg-banner-title">PROACTIVE ALERT</span> — MedGuard is watching the live openFDA feed: <b>{recalled.name}</b> in your cabinet has an active recall. It caught this without you asking.</div>
-    </div>}
-
-    {cabinet.length > 0 && <section className="mg-card">
-      <div className="mg-cabinet-head">
-        <p className="mg-eyebrow" style={{ margin: 0 }}><Icon name="grid-four" /> Your cabinet · {cabinet.length} {cabinet.length === 1 ? "item" : "items"}</p>
-        <button className="mg-btn" onClick={() => setDoctor(true)}><Icon name="download-simple" bold /> Share with my doctor</button>
-      </div>
-      <div className="mg-cab-grid">
-        {cabinet.map((x, i) => <div key={i} className="mg-cab-item">
-          <span className="mg-dot" style={{ background: dotColor(x.sev), marginTop: 0 }} />
-          <div style={{ minWidth: 0 }}>
-            <div className="mg-cab-name">{x.name}</div>
-            <div className="mg-cab-sub">{x.brand || "supplement"} · {sevLabel[x.sev]}</div>
-          </div>
-        </div>)}
-      </div>
-    </section>}
-
-    <p className="mg-footer">MedGuard surfaces official NIH / FDA information and flags — it is not medical advice. Confirm with your pharmacist or doctor.</p>
-
-    {doctor && <div className="mg-modal-backdrop" onMouseDown={(e) => e.target === e.currentTarget && setDoctor(false)}>
-      <div className="mg-modal">
-        <div className="mg-modal-head">
-          <div><p className="mg-eyebrow">One-tap medication history</p><h2 style={{ margin: "2px 0 0" }}>For your doctor / ER</h2></div>
-          <button className="mg-x" onClick={() => setDoctor(false)}><Icon name="x" /></button>
-        </div>
-        <p style={{ fontSize: 13, color: "var(--mg-muted)", margin: "8px 0 14px" }}>Complete &amp; current — no guessing from memory.</p>
-        <div style={{ fontSize: 13.5, lineHeight: 1.7 }}>
-          <div className="mg-hist-section">Conditions</div>{profile.conditions.join(", ")}
-          <div className="mg-hist-section">Prescription meds</div>{profile.meds.join(", ")}
-          <div className="mg-hist-section">Supplements ({cabinet.length})</div>
-          {cabinet.length ? cabinet.map((x, i) => <div key={i}>• {x.name}{x.sev !== "good" && <span style={{ color: dotColor(x.sev) }}> ({sevLabel[x.sev]})</span>}</div>) : "none yet"}
-        </div>
-      </div>
-    </div>}
-  </div>;
+  );
 }
