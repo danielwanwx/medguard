@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
+    "terms": "https://open.fda.gov/terms/",
+    "license": "https://open.fda.gov/license/",
+    "last_updated": "2026-09-02",
+    "results": {
+      "skip": 0,
+      "limit": 1,
+      "total": 303
+    }
+  },
+  "results": [
+    {
+      "status": "Ongoing",
+      "city": "San Diego",
+      "state": "CA",
+      "country": "United States",
+      "classification": "Class II",
+      "openfda": {},
+      "product_type": "Drugs",
+      "event_id": "97820",
+      "recalling_firm": "CA BOTANA International, Inc.",
+      "address_1": "9505 Chesapeake Dr",
+      "address_2": "N/A",
+      "postal_code": "92123-1304",
+      "voluntary_mandated": "Voluntary: Firm initiated",
+      "initial_firm_notification": "Letter",
+      "distribution_pattern": "CA, CO, FL, PR, WA",
+      "recall_number": "D-0185-2026",
+      "product_description": "Doctor D. Schwab Controlling Balm with Tea Tree Oil, Salicyclic Acid 0.8%, 1 FL OZ/ 30 ML per tube, Doctor D. Schwab, A division of CA BOTANA, San Diego, CA 92123. NDC: 35192-016-05",
+      "product_quantity": "555 tubes",
+      "reason_for_recall": "CGMP Deviations",
+      "recall_initiation_date": "20251010",
+      "center_classification_date": "20251126",
+      "report_date": "20251203",
+      "code_info": "Lot Code D54361, exp 8/31/2027",
+      "more_code_info": ""
+    }
+  ]
+}
