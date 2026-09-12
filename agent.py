@@ -11,6 +11,7 @@ from dataclasses import dataclass, field
 import json
 from typing import Any, Callable
 
+from botocore.exceptions import MissingDependencyException
 from strands import Agent, tool
 from strands.models import BedrockModel
 
@@ -231,6 +232,11 @@ def make_request_tools(ctx: RequestContext) -> list[Any]:
 
 
 def _agent_failure(error: Exception) -> dict[str, str]:
+    if isinstance(error, MissingDependencyException):
+        return {
+            "code": "setup_required",
+            "message": "AWS CRT support is missing. Install the pinned runtime dependencies with pip install -r requirements.txt, then retry.",
+        }
     detail = str(error).casefold()
     if any(token in detail for token in (
         "session has expired", "credential", "reauthenticate", "expired token", "expiredtoken", "token is expired",

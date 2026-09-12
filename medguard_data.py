@@ -160,14 +160,14 @@ def unidentified_pill_query(query: str) -> bool:
     explicit = (
         "no imprint", "without imprint", "unknown pill", "unknown tablet", "unknown capsule",
         "unidentified pill", "unidentified tablet", "unidentified capsule", "loose pill", "loose tablet",
-        "loose capsule", "unmarked pill", "unmarked tablet", "unmarked capsule",
+        "loose capsule", "unmarked pill", "unmarked tablet", "unmarked capsule", "no markings", "no mark",
     )
     if any(phrase in value for phrase in explicit):
         return True
     pill_words = {"pill", "pills", "tablet", "tablets", "capsule", "capsules", "softgel", "softgels", "caplet", "caplets"}
     descriptor_words = {
         "white", "blue", "pink", "red", "yellow", "green", "round", "oval", "oblong", "small", "large",
-        "one", "a", "an", "the", "with", "and", "mark", "markings", "imprint", "unknown",
+        "one", "a", "an", "the", "with", "and", "no", "mark", "markings", "imprint", "unknown",
     }
     tokens = set(_tokens(query))
     loose_words = {"unknown", "unidentified", "mystery", "unmarked", "loose"}

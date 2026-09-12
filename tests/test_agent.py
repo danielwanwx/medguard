@@ -14,6 +14,8 @@ from unittest.mock import patch
 from urllib.error import HTTPError
 from urllib.parse import parse_qs, urlparse
 
+from botocore.exceptions import MissingDependencyException
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from agent import (  # noqa: E402
@@ -183,6 +185,7 @@ class MedGuardSafetyTests(unittest.TestCase):
         self.assertEqual(result["tools"], 0)
         self.assertEqual(result["candidates"], [])
         self.assertEqual(run_synthetic(scan="mystery capsule")["status"], "unidentified")
+        self.assertEqual(run_synthetic(scan="white round tablet no markings")["status"], "unidentified")
 
     def test_quoted_food_and_drug_recall_search_excludes_unrelated_balm(self):
         result = openfda_recall("fish oil", fetch_json=fake_fetch)
@@ -269,6 +272,12 @@ class MedGuardSafetyTests(unittest.TestCase):
         self.assertEqual(error["code"], "authentication_required")
         self.assertIn("aws login --profile missing20-login", error["message"])
         self.assertNotIn("synthetic provider detail", error["message"])
+
+    def test_missing_crt_dependency_gets_setup_error_before_auth_mapping(self):
+        error = _agent_failure(MissingDependencyException(msg="Using the login credential provider requires an additional dependency."))
+        self.assertEqual(error["code"], "setup_required")
+        self.assertIn("pip install -r requirements.txt", error["message"])
+        self.assertNotEqual(error["code"], "authentication_required")
 
     def test_request_shape_and_profile_limits_are_rejected_before_agent_use(self):
         with self.assertRaises(RequestValidationError) as missing_conditions:

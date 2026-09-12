@@ -1,0 +1,102 @@
+MEDGUARD — PHARMACIST / CLINICIAN REVIEW NOTE
+Prepared: 9/12/2026, 12:34:30 PM
+
+This is a user-reviewed cabinet summary, not a complete medical history or medical advice.
+Please confirm medicines, conditions, supplement labels, dose, frequency, and lot numbers directly with the patient.
+
+CURRENT PROFILE — SYNTHETIC SAMPLE DATA
+Medicines: warfarin
+Conditions: hypertension
+
+CATALOG PRODUCTS (4)
+
+1. Vitamin D Gummy Vitamins — Nutrition Now
+Catalog ID: 20581
+Original label search: Vitamin D
+Confirmed label identity: user_label_selection
+Last review: 9/12/2026, 12:34:29 PM
+Review status: complete
+Ingredients listed by catalog: Calories, Total Carbohydrates, Sugar, Vitamin D, Glucose Syrup, Sucrose, Gelatin, Citric Acid, Natural flavors, Lactic Acid, colors, fractionated Coconut Oil, Beeswax
+Ingredient coverage: Ingredient names are copied from the NIH DSLD label record.
+Dose: Unknown. Frequency: Unknown. Lot / package code: Unknown.
+Things to review:
+- Potential recall matches were returned. Compare the bottle’s product name, manufacturer, and lot/code with each record before acting.
+Direct sources:
+- NIH Dietary Supplement Label Database (DSLD): https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Vitamin+D&size=5
+- openFDA food and drug enforcement feeds: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5
+- openFDA food and drug enforcement feeds: https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record H-0403-2025: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record F-1241-2024: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record F-0092-2022: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record F-0384-2021: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record F-1143-2020: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record D-0250-2025: https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record D-0855-2023: https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record D-0503-2021: https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record D-0646-2018: https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record D-0589-2018: https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5
+- NIH ODS Vitamin D Fact Sheet for Health Professionals: https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/
+
+2. St. John's Wort 440 mg — Christopher's Original Formulas
+Catalog ID: 200553
+Original label search: St. John's Wort
+Confirmed label identity: user_label_selection
+Last review: 9/12/2026, 12:34:17 PM
+Review status: complete
+Ingredients listed by catalog: St. John's Wort, plant-derived Capsule
+Ingredient coverage: Ingredient names are copied from the NIH DSLD label record.
+Dose: Unknown. Frequency: Unknown. Lot / package code: Unknown.
+Things to review:
+- HIGH: NCCIH lists warfarin among medicines whose effects St. John's Wort can weaken.
+Direct sources:
+- NIH Dietary Supplement Label Database (DSLD): https://api.ods.od.nih.gov/dsld/v9/search-filter?q=St.+John%27s+Wort&size=5
+- openFDA food and drug enforcement feeds: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22st+johns+wort%22&sort=recall_initiation_date%3Adesc&limit=5
+- openFDA food and drug enforcement feeds: https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22st+johns+wort%22&sort=recall_initiation_date%3Adesc&limit=5
+- NCCIH: St. John's Wort and Depression (In Depth): https://www.nccih.nih.gov/health/st-johns-wort-and-depression-in-depth
+
+3. Ginkgo — Vitanica
+Catalog ID: 33452
+Original label search: Ginkgo
+Confirmed label identity: user_label_selection
+Last review: 9/12/2026, 12:34:05 PM
+Review status: complete
+Ingredients listed by catalog: Ginkgo leaf extract, Ginkgo, Vegetarian Capsule, Cellulose, Water, L-Leucine
+Ingredient coverage: Ingredient names are copied from the NIH DSLD label record.
+Dose: Unknown. Frequency: Unknown. Lot / package code: Unknown.
+Things to review:
+- HIGH: NCCIH advises discussing ginkgo with a clinician when taking medicines, including warfarin.
+- Potential recall matches were returned. Compare the bottle’s product name, manufacturer, and lot/code with each record before acting.
+Direct sources:
+- NIH Dietary Supplement Label Database (DSLD): https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Ginkgo&size=5
+- openFDA food and drug enforcement feeds: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5
+- openFDA food and drug enforcement feeds: https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record F-0010-2022: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record F-1178-2016: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record F-0286-2015: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5
+- NCCIH: Ginkgo: https://www.nccih.nih.gov/health/ginkgo
+
+4. Fish Oil — Harry & David
+Catalog ID: 64567
+Original label search: Fish oil
+Confirmed label identity: user_label_selection
+Last review: 9/12/2026, 12:33:53 PM
+Review status: complete
+Ingredients listed by catalog: Calories, Calories from Fat, Total Fat, Eicosapentaenoic Acid, Docosahexaenoic Acid, Gelatin, purified Water and Glycerin (vegetable source) gelcap, Mixed Tocopherols
+Ingredient coverage: Ingredient names are copied from the NIH DSLD label record.
+Dose: Unknown. Frequency: Unknown. Lot / package code: Unknown.
+Things to review:
+- REVIEW: Omega-3 products merit a pharmacist review with warfarin. NIH ODS describes mixed evidence and notes INR monitoring; do not change either product from this result alone.
+- Potential recall matches were returned. Compare the bottle’s product name, manufacturer, and lot/code with each record before acting.
+Direct sources:
+- NIH Dietary Supplement Label Database (DSLD): https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Fish+oil&size=5
+- openFDA food and drug enforcement feeds: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5
+- openFDA food and drug enforcement feeds: https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record H-0589-2025: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record F-1361-2019: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record F-1360-2019: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record F-1362-2019: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5
+- Recall record F-1363-2019: https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5
+- NIH ODS Omega-3 Fact Sheet for Health Professionals: https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/#h8
+
+SCOPE AND LIMITS
+MedGuard submits the entered profile to its review service (Strands on Amazon Bedrock) and sends the product query to cited source APIs. It surfaces bounded source results and reference flags; it does not diagnose, prescribe, verify a bottle’s lot, or guarantee safety. Ask a pharmacist or clinician to interpret this note.

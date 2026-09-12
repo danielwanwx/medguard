@@ -124,9 +124,11 @@ until it appears in the response. Any missing, blocked, or error tool makes the 
 | `needs_confirmation` | Official catalog candidates need a user bottle-label selection. | Show choices; do not add to cabinet or show a safety result. |
 | `complete` | The selected catalog label and all required evidence calls completed. | Present evidence and limits with their coverage notes. |
 | `incomplete` | A required source/tool was missing, blocked, errored, or timed out. | Show retry and state that missing findings are not reassurance. |
-| `unidentified` | A loose/no-imprint/unknown pill description was refused. | Ask for the bottle label or an identifiable imprint; do not guess. |
+| `unidentified` | A loose/no-imprint/unknown pill description was refused. | Ask for the supplement bottle label or pharmacist help; this app does not identify prescription pills. |
 
 Error bodies are `{ "error": { "code": "...", "message": "..." } }`. Validation and
 stale/invalid selections use HTTP 400. Expired AWS authentication uses HTTP 503 with an
-actionable `authentication_required` message; no credential details are returned. The
-service does not send wildcard CORS headers.
+actionable `authentication_required` message; no credential details are returned.
+Missing AWS CRT support returns `setup_required` with instructions to install
+requirements.txt; it must not be presented as an expired login. The service does not
+send wildcard CORS headers.

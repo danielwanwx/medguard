@@ -1,0 +1,703 @@
+{
+  "generatedAt": "2026-09-12T19:29:59.929Z",
+  "baseUrl": "http://127.0.0.1:5173",
+  "apiUrl": "http://127.0.0.1:8910/api/medcheck",
+  "syntheticHealthDataOnly": true,
+  "liveFlow": {
+    "interception": false,
+    "requests": [
+      {
+        "label": "fish-oil:lookup",
+        "capturedAt": "2026-09-12T19:30:01.269Z",
+        "request": {
+          "scan": "Fish oil",
+          "profile": {
+            "meds": [
+              "warfarin"
+            ],
+            "conditions": [
+              "hypertension"
+            ]
+          }
+        },
+        "status": 503,
+        "statusText": "Service Unavailable",
+        "responseJson": {
+          "status": "incomplete",
+          "checked_at": "2026-09-12T19:30:01.013112Z",
+          "answer": "Review incomplete: identify_supplement did not complete. Missing findings are not reassurance and no personal safety conclusion can be made. Retry the review, then discuss the confirmed label, dose, and lot with a pharmacist or clinician.",
+          "tools": 0,
+          "tool_trace": [],
+          "identity": null,
+          "candidates": [],
+          "recall": null,
+          "interactions": [],
+          "interaction_coverage": null,
+          "dosage": [],
+          "dosage_coverage": null,
+          "provenance": {
+            "identity": "NIH DSLD live catalog data after user label selection.",
+            "recall": "openFDA food and drug enforcement text/category search; not lot matching.",
+            "interactions": "Curated NIH/NCCIH reference rules, bounded coverage.",
+            "dosage": "Small NIH ODS adult reference table; actual intake unknown."
+          },
+          "error": {
+            "code": "authentication_required",
+            "message": "AWS authentication expired. Run aws login --profile missing20-login --region us-west-2, then retry."
+          }
+        },
+        "responseText": null
+      }
+    ],
+    "states": [
+      {
+        "label": "welcome-empty",
+        "capturedAt": "2026-09-12T19:30:00.621Z",
+        "url": "http://127.0.0.1:5173/",
+        "waiting": false,
+        "welcome": true,
+        "candidates": false,
+        "review": false,
+        "requestError": false,
+        "cabinetCards": 0,
+        "dialog": false,
+        "toolRows": 0,
+        "headings": [
+          "A little clarity for your cabinet."
+        ],
+        "alertText": [],
+        "storage": {
+          "rawPresent": false,
+          "onboarded": false,
+          "cabinetCount": 0,
+          "profile": null,
+          "cabinet": []
+        }
+      },
+      {
+        "label": "welcome-empty:desktop",
+        "capturedAt": "2026-09-12T19:30:00.715Z",
+        "url": "http://127.0.0.1:5173/",
+        "waiting": false,
+        "welcome": true,
+        "candidates": false,
+        "review": false,
+        "requestError": false,
+        "cabinetCards": 0,
+        "dialog": false,
+        "toolRows": 0,
+        "headings": [
+          "A little clarity for your cabinet."
+        ],
+        "alertText": [],
+        "storage": {
+          "rawPresent": false,
+          "onboarded": false,
+          "cabinetCount": 0,
+          "profile": null,
+          "cabinet": []
+        }
+      },
+      {
+        "label": "welcome-empty:mobile",
+        "capturedAt": "2026-09-12T19:30:00.763Z",
+        "url": "http://127.0.0.1:5173/",
+        "waiting": false,
+        "welcome": true,
+        "candidates": false,
+        "review": false,
+        "requestError": false,
+        "cabinetCards": 0,
+        "dialog": false,
+        "toolRows": 0,
+        "headings": [
+          "A little clarity for your cabinet."
+        ],
+        "alertText": [],
+        "storage": {
+          "rawPresent": false,
+          "onboarded": false,
+          "cabinetCount": 0,
+          "profile": null,
+          "cabinet": []
+        }
+      },
+      {
+        "label": "sample-profile:desktop",
+        "capturedAt": "2026-09-12T19:30:00.906Z",
+        "url": "http://127.0.0.1:5173/",
+        "waiting": false,
+        "welcome": false,
+        "candidates": false,
+        "review": false,
+        "requestError": false,
+        "cabinetCards": 0,
+        "dialog": false,
+        "toolRows": 0,
+        "headings": [
+          "Find my label"
+        ],
+        "alertText": [],
+        "storage": {
+          "rawPresent": true,
+          "onboarded": true,
+          "cabinetCount": 0,
+          "profile": {
+            "meds": [
+              "warfarin"
+            ],
+            "conditions": [
+              "hypertension"
+            ],
+            "mode": "sample",
+            "updatedAt": "2026-09-12T19:30:00.793Z"
+          },
+          "cabinet": []
+        }
+      },
+      {
+        "label": "sample-profile:mobile",
+        "capturedAt": "2026-09-12T19:30:00.967Z",
+        "url": "http://127.0.0.1:5173/",
+        "waiting": false,
+        "welcome": false,
+        "candidates": false,
+        "review": false,
+        "requestError": false,
+        "cabinetCards": 0,
+        "dialog": false,
+        "toolRows": 0,
+        "headings": [
+          "Find my label"
+        ],
+        "alertText": [],
+        "storage": {
+          "rawPresent": true,
+          "onboarded": true,
+          "cabinetCount": 0,
+          "profile": {
+            "meds": [
+              "warfarin"
+            ],
+            "conditions": [
+              "hypertension"
+            ],
+            "mode": "sample",
+            "updatedAt": "2026-09-12T19:30:00.793Z"
+          },
+          "cabinet": []
+        }
+      },
+      {
+        "label": "fish-oil-lookup-waiting:desktop",
+        "capturedAt": "2026-09-12T19:30:01.205Z",
+        "url": "http://127.0.0.1:5173/",
+        "waiting": false,
+        "welcome": false,
+        "candidates": false,
+        "review": false,
+        "requestError": true,
+        "cabinetCards": 0,
+        "dialog": false,
+        "toolRows": 0,
+        "headings": [
+          "Find my label",
+          "We could not finish that review."
+        ],
+        "alertText": [
+          "We could not finish that review.\n\nAWS authentication expired. Run aws login --profile missing20-login --region us-west-2, then retry.\n\nRetry"
+        ],
+        "storage": {
+          "rawPresent": true,
+          "onboarded": true,
+          "cabinetCount": 0,
+          "profile": {
+            "meds": [
+              "warfarin"
+            ],
+            "conditions": [
+              "hypertension"
+            ],
+            "mode": "sample",
+            "updatedAt": "2026-09-12T19:30:00.793Z"
+          },
+          "cabinet": []
+        }
+      },
+      {
+        "label": "fish-oil-lookup-waiting:mobile",
+        "capturedAt": "2026-09-12T19:30:01.259Z",
+        "url": "http://127.0.0.1:5173/",
+        "waiting": false,
+        "welcome": false,
+        "candidates": false,
+        "review": false,
+        "requestError": true,
+        "cabinetCards": 0,
+        "dialog": false,
+        "toolRows": 0,
+        "headings": [
+          "Find my label",
+          "We could not finish that review."
+        ],
+        "alertText": [
+          "We could not finish that review.\n\nAWS authentication expired. Run aws login --profile missing20-login --region us-west-2, then retry.\n\nRetry"
+        ],
+        "storage": {
+          "rawPresent": true,
+          "onboarded": true,
+          "cabinetCount": 0,
+          "profile": {
+            "meds": [
+              "warfarin"
+            ],
+            "conditions": [
+              "hypertension"
+            ],
+            "mode": "sample",
+            "updatedAt": "2026-09-12T19:30:00.793Z"
+          },
+          "cabinet": []
+        }
+      }
+    ]
+  },
+  "directApiChecks": [
+    {
+      "label": "loose-pill-fail-closed",
+      "capturedAt": "2026-09-12T19:30:00.130Z",
+      "request": {
+        "scan": "loose white pill without imprint",
+        "profile": {
+          "meds": [
+            "warfarin"
+          ],
+          "conditions": [
+            "hypertension"
+          ]
+        }
+      },
+      "status": 200,
+      "responseJson": {
+        "status": "unidentified",
+        "checked_at": "2026-09-12T19:30:00.126846Z",
+        "answer": "MedGuard cannot identify a loose or unknown pill without an imprint and its bottle label. Use the labeled bottle or ask a pharmacist; no catalog identity or safety conclusion was made.",
+        "tools": 0,
+        "tool_trace": [],
+        "identity": null,
+        "candidates": [],
+        "recall": null,
+        "interactions": [],
+        "interaction_coverage": null,
+        "dosage": [],
+        "dosage_coverage": null,
+        "provenance": {
+          "identity": "NIH DSLD live catalog data after user label selection.",
+          "recall": "openFDA food and drug enforcement text/category search; not lot matching.",
+          "interactions": "Curated NIH/NCCIH reference rules, bounded coverage.",
+          "dosage": "Small NIH ODS adult reference table; actual intake unknown."
+        }
+      },
+      "responseText": null
+    },
+    {
+      "label": "tampered-selected-id",
+      "capturedAt": "2026-09-12T19:30:00.402Z",
+      "request": {
+        "scan": "Fish oil",
+        "profile": {
+          "meds": [
+            "warfarin"
+          ],
+          "conditions": [
+            "hypertension"
+          ]
+        },
+        "selected_id": "synthetic-not-a-returned-dsld-candidate"
+      },
+      "status": 400,
+      "responseJson": {
+        "error": {
+          "code": "invalid_selected_id",
+          "message": "selected_id is not in fresh NIH DSLD results for this scan. Search again and choose a returned label."
+        }
+      },
+      "responseText": null
+    },
+    {
+      "label": "invalid-payload",
+      "capturedAt": "2026-09-12T19:30:00.405Z",
+      "request": {
+        "scan": 42,
+        "profile": {
+          "meds": [],
+          "conditions": []
+        }
+      },
+      "status": 400,
+      "responseJson": {
+        "error": {
+          "code": "invalid_scan",
+          "message": "scan must be a string."
+        }
+      },
+      "responseText": null
+    }
+  ],
+  "negativeSuite": {
+    "interception": true,
+    "label": "synthetic_fault_injection_503",
+    "states": []
+  },
+  "screenshots": [
+    {
+      "label": "welcome-empty",
+      "desktopPath": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/current/desktop-welcome-empty.png",
+      "mobilePath": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/current/mobile-welcome-empty.png",
+      "fullPage": false,
+      "desktopOverflow": {
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "overflows": false
+      },
+      "mobileOverflow": {
+        "scrollWidth": 390,
+        "viewportWidth": 390,
+        "overflows": false
+      },
+      "capturedAt": "2026-09-12T19:30:00.770Z"
+    },
+    {
+      "label": "sample-profile",
+      "desktopPath": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/current/desktop-sample-profile.png",
+      "mobilePath": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/current/mobile-sample-profile.png",
+      "fullPage": false,
+      "desktopOverflow": {
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "overflows": false
+      },
+      "mobileOverflow": {
+        "scrollWidth": 390,
+        "viewportWidth": 390,
+        "overflows": false
+      },
+      "capturedAt": "2026-09-12T19:30:00.973Z"
+    },
+    {
+      "label": "fish-oil-lookup-waiting",
+      "desktopPath": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/current/desktop-fish-oil-lookup-waiting.png",
+      "mobilePath": "/Users/danielwan/Documents/Hackathon/medguard/docs/evidence/current/mobile-fish-oil-lookup-waiting.png",
+      "fullPage": false,
+      "desktopOverflow": {
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "overflows": false
+      },
+      "mobileOverflow": {
+        "scrollWidth": 390,
+        "viewportWidth": 390,
+        "overflows": false
+      },
+      "capturedAt": "2026-09-12T19:30:01.268Z"
+    }
+  ],
+  "consoleErrors": [
+    {
+      "suite": "live",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "at": "2026-09-12T19:30:01.014Z"
+    }
+  ],
+  "pageErrors": [],
+  "assertions": [
+    {
+      "name": "api:loose-pill-http-200",
+      "passed": true,
+      "detail": {
+        "label": "loose-pill-fail-closed",
+        "capturedAt": "2026-09-12T19:30:00.130Z",
+        "request": {
+          "scan": "loose white pill without imprint",
+          "profile": {
+            "meds": [
+              "warfarin"
+            ],
+            "conditions": [
+              "hypertension"
+            ]
+          }
+        },
+        "status": 200,
+        "responseJson": {
+          "status": "unidentified",
+          "checked_at": "2026-09-12T19:30:00.126846Z",
+          "answer": "MedGuard cannot identify a loose or unknown pill without an imprint and its bottle label. Use the labeled bottle or ask a pharmacist; no catalog identity or safety conclusion was made.",
+          "tools": 0,
+          "tool_trace": [],
+          "identity": null,
+          "candidates": [],
+          "recall": null,
+          "interactions": [],
+          "interaction_coverage": null,
+          "dosage": [],
+          "dosage_coverage": null,
+          "provenance": {
+            "identity": "NIH DSLD live catalog data after user label selection.",
+            "recall": "openFDA food and drug enforcement text/category search; not lot matching.",
+            "interactions": "Curated NIH/NCCIH reference rules, bounded coverage.",
+            "dosage": "Small NIH ODS adult reference table; actual intake unknown."
+          }
+        },
+        "responseText": null
+      },
+      "at": "2026-09-12T19:30:00.130Z"
+    },
+    {
+      "name": "api:loose-pill-unidentified",
+      "passed": true,
+      "detail": {
+        "status": "unidentified",
+        "checked_at": "2026-09-12T19:30:00.126846Z",
+        "answer": "MedGuard cannot identify a loose or unknown pill without an imprint and its bottle label. Use the labeled bottle or ask a pharmacist; no catalog identity or safety conclusion was made.",
+        "tools": 0,
+        "tool_trace": [],
+        "identity": null,
+        "candidates": [],
+        "recall": null,
+        "interactions": [],
+        "interaction_coverage": null,
+        "dosage": [],
+        "dosage_coverage": null,
+        "provenance": {
+          "identity": "NIH DSLD live catalog data after user label selection.",
+          "recall": "openFDA food and drug enforcement text/category search; not lot matching.",
+          "interactions": "Curated NIH/NCCIH reference rules, bounded coverage.",
+          "dosage": "Small NIH ODS adult reference table; actual intake unknown."
+        }
+      },
+      "at": "2026-09-12T19:30:00.130Z"
+    },
+    {
+      "name": "api:tampered-id-rejected",
+      "passed": true,
+      "detail": {
+        "label": "tampered-selected-id",
+        "capturedAt": "2026-09-12T19:30:00.402Z",
+        "request": {
+          "scan": "Fish oil",
+          "profile": {
+            "meds": [
+              "warfarin"
+            ],
+            "conditions": [
+              "hypertension"
+            ]
+          },
+          "selected_id": "synthetic-not-a-returned-dsld-candidate"
+        },
+        "status": 400,
+        "responseJson": {
+          "error": {
+            "code": "invalid_selected_id",
+            "message": "selected_id is not in fresh NIH DSLD results for this scan. Search again and choose a returned label."
+          }
+        },
+        "responseText": null
+      },
+      "at": "2026-09-12T19:30:00.402Z"
+    },
+    {
+      "name": "api:invalid-payload-rejected",
+      "passed": true,
+      "detail": {
+        "label": "invalid-payload",
+        "capturedAt": "2026-09-12T19:30:00.405Z",
+        "request": {
+          "scan": 42,
+          "profile": {
+            "meds": [],
+            "conditions": []
+          }
+        },
+        "status": 400,
+        "responseJson": {
+          "error": {
+            "code": "invalid_scan",
+            "message": "scan must be a string."
+          }
+        },
+        "responseText": null
+      },
+      "at": "2026-09-12T19:30:00.405Z"
+    },
+    {
+      "name": "welcome:empty-browser-record",
+      "passed": true,
+      "detail": {
+        "label": "welcome-empty",
+        "capturedAt": "2026-09-12T19:30:00.621Z",
+        "url": "http://127.0.0.1:5173/",
+        "waiting": false,
+        "welcome": true,
+        "candidates": false,
+        "review": false,
+        "requestError": false,
+        "cabinetCards": 0,
+        "dialog": false,
+        "toolRows": 0,
+        "headings": [
+          "A little clarity for your cabinet."
+        ],
+        "alertText": [],
+        "storage": {
+          "rawPresent": false,
+          "onboarded": false,
+          "cabinetCount": 0,
+          "profile": null,
+          "cabinet": []
+        }
+      },
+      "at": "2026-09-12T19:30:00.639Z"
+    },
+    {
+      "name": "no-horizontal-overflow:welcome-empty:desktop",
+      "passed": true,
+      "detail": {
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "overflows": false
+      },
+      "at": "2026-09-12T19:30:00.770Z"
+    },
+    {
+      "name": "no-horizontal-overflow:welcome-empty:mobile",
+      "passed": true,
+      "detail": {
+        "scrollWidth": 390,
+        "viewportWidth": 390,
+        "overflows": false
+      },
+      "at": "2026-09-12T19:30:00.770Z"
+    },
+    {
+      "name": "sample-profile:banner",
+      "passed": true,
+      "detail": {},
+      "at": "2026-09-12T19:30:00.826Z"
+    },
+    {
+      "name": "no-horizontal-overflow:sample-profile:desktop",
+      "passed": true,
+      "detail": {
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "overflows": false
+      },
+      "at": "2026-09-12T19:30:00.973Z"
+    },
+    {
+      "name": "no-horizontal-overflow:sample-profile:mobile",
+      "passed": true,
+      "detail": {
+        "scrollWidth": 390,
+        "viewportWidth": 390,
+        "overflows": false
+      },
+      "at": "2026-09-12T19:30:00.973Z"
+    },
+    {
+      "name": "no-horizontal-overflow:fish-oil-lookup-waiting:desktop",
+      "passed": true,
+      "detail": {
+        "scrollWidth": 1440,
+        "viewportWidth": 1440,
+        "overflows": false
+      },
+      "at": "2026-09-12T19:30:01.268Z"
+    },
+    {
+      "name": "no-horizontal-overflow:fish-oil-lookup-waiting:mobile",
+      "passed": true,
+      "detail": {
+        "scrollWidth": 390,
+        "viewportWidth": 390,
+        "overflows": false
+      },
+      "at": "2026-09-12T19:30:01.268Z"
+    },
+    {
+      "name": "fish-oil:lookup-http-200",
+      "passed": false,
+      "detail": {
+        "status": 503,
+        "response": {
+          "status": "incomplete",
+          "checked_at": "2026-09-12T19:30:01.013112Z",
+          "answer": "Review incomplete: identify_supplement did not complete. Missing findings are not reassurance and no personal safety conclusion can be made. Retry the review, then discuss the confirmed label, dose, and lot with a pharmacist or clinician.",
+          "tools": 0,
+          "tool_trace": [],
+          "identity": null,
+          "candidates": [],
+          "recall": null,
+          "interactions": [],
+          "interaction_coverage": null,
+          "dosage": [],
+          "dosage_coverage": null,
+          "provenance": {
+            "identity": "NIH DSLD live catalog data after user label selection.",
+            "recall": "openFDA food and drug enforcement text/category search; not lot matching.",
+            "interactions": "Curated NIH/NCCIH reference rules, bounded coverage.",
+            "dosage": "Small NIH ODS adult reference table; actual intake unknown."
+          },
+          "error": {
+            "code": "authentication_required",
+            "message": "AWS authentication expired. Run aws login --profile missing20-login --region us-west-2, then retry."
+          }
+        }
+      },
+      "at": "2026-09-12T19:30:01.269Z"
+    }
+  ],
+  "failures": [
+    {
+      "name": "fish-oil:lookup-http-200",
+      "detail": {
+        "status": 503,
+        "response": {
+          "status": "incomplete",
+          "checked_at": "2026-09-12T19:30:01.013112Z",
+          "answer": "Review incomplete: identify_supplement did not complete. Missing findings are not reassurance and no personal safety conclusion can be made. Retry the review, then discuss the confirmed label, dose, and lot with a pharmacist or clinician.",
+          "tools": 0,
+          "tool_trace": [],
+          "identity": null,
+          "candidates": [],
+          "recall": null,
+          "interactions": [],
+          "interaction_coverage": null,
+          "dosage": [],
+          "dosage_coverage": null,
+          "provenance": {
+            "identity": "NIH DSLD live catalog data after user label selection.",
+            "recall": "openFDA food and drug enforcement text/category search; not lot matching.",
+            "interactions": "Curated NIH/NCCIH reference rules, bounded coverage.",
+            "dosage": "Small NIH ODS adult reference table; actual intake unknown."
+          },
+          "error": {
+            "code": "authentication_required",
+            "message": "AWS authentication expired. Run aws login --profile missing20-login --region us-west-2, then retry."
+          }
+        }
+      },
+      "at": "2026-09-12T19:30:01.269Z"
+    },
+    {
+      "name": "runner",
+      "detail": {
+        "message": "fish-oil:lookup-http-200: {\"status\":503,\"response\":{\"status\":\"incomplete\",\"checked_at\":\"2026-09-12T19:30:01.013112Z\",\"answer\":\"Review incomplete: identify_supplement did not complete. Missing findings are not reassurance and no personal safety conclusion can be made. Retry the review, then discuss the confirmed label, dose, and lot with a pharmacist or clinician.\",\"tools\":0,\"tool_trace\":[],\"identity\":null,\"candidates\":[],\"recall\":null,\"interactions\":[],\"interaction_coverage\":null,\"dosage\":[],\"dosage_coverage\":null,\"provenance\":{\"identity\":\"NIH DSLD live catalog data after user label selection.\",\"recall\":\"openFDA food and drug enforcement text/category search; not lot matching.\",\"interactions\":\"Curated NIH/NCCIH reference rules, bounded coverage.\",\"dosage\":\"Small NIH ODS adult reference table; actual intake unknown.\"},\"error\":{\"code\":\"authentication_required\",\"message\":\"AWS authentication expired. Run aws login --profile missing20-login --region us-west-2, then retry.\"}}}"
+      },
+      "at": "2026-09-12T19:30:01.272Z"
+    }
+  ],
+  "finishedAt": "2026-09-12T19:30:01.272Z"
+}

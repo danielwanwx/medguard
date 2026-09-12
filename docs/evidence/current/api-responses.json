@@ -1,0 +1,2865 @@
+{
+  "generatedAt": "2026-09-12T19:34:39.013Z",
+  "syntheticHealthDataOnly": true,
+  "liveResponses": [
+    {
+      "label": "fish-oil:lookup",
+      "capturedAt": "2026-09-12T19:33:46.099Z",
+      "request": {
+        "scan": "Fish oil",
+        "profile": {
+          "meds": [
+            "warfarin"
+          ],
+          "conditions": [
+            "hypertension"
+          ]
+        }
+      },
+      "status": 200,
+      "statusText": "OK",
+      "responseJson": {
+        "status": "needs_confirmation",
+        "checked_at": "2026-09-12T19:33:46.083179Z",
+        "answer": "Choose the NIH DSLD catalog label that matches your bottle. A search candidate is not a physical-bottle match. Recalls, interaction references, and dosage references have not been checked until you select a label.",
+        "tools": 1,
+        "tool_trace": [
+          {
+            "tool": "identify_supplement",
+            "status": "success",
+            "result": {
+              "status": "needs_confirmation",
+              "source": "NIH Dietary Supplement Label Database (DSLD)",
+              "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Fish+oil&size=5",
+              "retrieved_at": "2026-09-12T19:33:42.947799Z",
+              "candidates": [
+                {
+                  "id": "64567",
+                  "name": "Fish Oil",
+                  "brand": "Harry & David",
+                  "ingredients": [
+                    "Calories",
+                    "Calories from Fat",
+                    "Total Fat",
+                    "Eicosapentaenoic Acid",
+                    "Docosahexaenoic Acid",
+                    "Gelatin",
+                    "purified Water and Glycerin (vegetable source) gelcap",
+                    "Mixed Tocopherols"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Fish+oil&size=5"
+                },
+                {
+                  "id": "264934",
+                  "name": "Marine Fish Oil",
+                  "brand": "Klaire Labs",
+                  "ingredients": [
+                    "Calories",
+                    "Calories from Fat",
+                    "Total Fat",
+                    "Polyunsaturated Fat",
+                    "Vitamin E",
+                    "Fish Oil Concentrate",
+                    "Total Omega-3 Fatty Acids",
+                    "Eicosapentaenoic Acid Ethyl Ester",
+                    "Docosahexaenoic Acid Ethyl Ester",
+                    "Gelatin",
+                    "Glycerin",
+                    "Water",
+                    "natural Mixed Tocopherols"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Fish+oil&size=5"
+                },
+                {
+                  "id": "281123",
+                  "name": "Marine Fish Oil",
+                  "brand": "Klaire Labs",
+                  "ingredients": [
+                    "Calories",
+                    "Calories from Fat",
+                    "Total Fat",
+                    "Polyunsaturated Fat",
+                    "Vitamin E",
+                    "Fish Oil Concentrate",
+                    "Omega-3 Fatty Acids",
+                    "Eicosapentaenoic Acid",
+                    "Docosahexaenoic Acid",
+                    "Gelatin",
+                    "Glycerin",
+                    "Water"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Fish+oil&size=5"
+                },
+                {
+                  "id": "178317",
+                  "name": "Omega-3 Fish Oil",
+                  "brand": "Spring Valley",
+                  "ingredients": [
+                    "Calories",
+                    "Calories from Fat",
+                    "Fish Oil concentrate",
+                    "Omega-3 Fatty Acid Ethyl Ester",
+                    "DHA, EPA",
+                    "Other Omega-3 Fatty Acids",
+                    "Fish Oil",
+                    "Gelatin",
+                    "Glycerin",
+                    "Water",
+                    "Mixed Tocopherols"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Fish+oil&size=5"
+                },
+                {
+                  "id": "178792",
+                  "name": "Omega-3 Fish Oil",
+                  "brand": "Spring Valley",
+                  "ingredients": [
+                    "Calories",
+                    "Calories from Fat",
+                    "Fish Oil concentrate",
+                    "Omega-3 Fatty Acid Ethyl Ester",
+                    "DHA, EPA",
+                    "Other Omega-3 Fatty Acids",
+                    "Fish Oil",
+                    "Gelatin",
+                    "Glycerin",
+                    "Water",
+                    "Mixed Tocopherols"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Fish+oil&size=5"
+                }
+              ],
+              "coverage": "Catalog candidates are not physical-bottle matches. The user must select a label."
+            }
+          }
+        ],
+        "identity": null,
+        "candidates": [
+          {
+            "id": "64567",
+            "name": "Fish Oil",
+            "brand": "Harry & David",
+            "ingredients": [
+              "Calories",
+              "Calories from Fat",
+              "Total Fat",
+              "Eicosapentaenoic Acid",
+              "Docosahexaenoic Acid",
+              "Gelatin",
+              "purified Water and Glycerin (vegetable source) gelcap",
+              "Mixed Tocopherols"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Fish+oil&size=5"
+          },
+          {
+            "id": "264934",
+            "name": "Marine Fish Oil",
+            "brand": "Klaire Labs",
+            "ingredients": [
+              "Calories",
+              "Calories from Fat",
+              "Total Fat",
+              "Polyunsaturated Fat",
+              "Vitamin E",
+              "Fish Oil Concentrate",
+              "Total Omega-3 Fatty Acids",
+              "Eicosapentaenoic Acid Ethyl Ester",
+              "Docosahexaenoic Acid Ethyl Ester",
+              "Gelatin",
+              "Glycerin",
+              "Water",
+              "natural Mixed Tocopherols"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Fish+oil&size=5"
+          },
+          {
+            "id": "281123",
+            "name": "Marine Fish Oil",
+            "brand": "Klaire Labs",
+            "ingredients": [
+              "Calories",
+              "Calories from Fat",
+              "Total Fat",
+              "Polyunsaturated Fat",
+              "Vitamin E",
+              "Fish Oil Concentrate",
+              "Omega-3 Fatty Acids",
+              "Eicosapentaenoic Acid",
+              "Docosahexaenoic Acid",
+              "Gelatin",
+              "Glycerin",
+              "Water"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Fish+oil&size=5"
+          },
+          {
+            "id": "178317",
+            "name": "Omega-3 Fish Oil",
+            "brand": "Spring Valley",
+            "ingredients": [
+              "Calories",
+              "Calories from Fat",
+              "Fish Oil concentrate",
+              "Omega-3 Fatty Acid Ethyl Ester",
+              "DHA, EPA",
+              "Other Omega-3 Fatty Acids",
+              "Fish Oil",
+              "Gelatin",
+              "Glycerin",
+              "Water",
+              "Mixed Tocopherols"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Fish+oil&size=5"
+          },
+          {
+            "id": "178792",
+            "name": "Omega-3 Fish Oil",
+            "brand": "Spring Valley",
+            "ingredients": [
+              "Calories",
+              "Calories from Fat",
+              "Fish Oil concentrate",
+              "Omega-3 Fatty Acid Ethyl Ester",
+              "DHA, EPA",
+              "Other Omega-3 Fatty Acids",
+              "Fish Oil",
+              "Gelatin",
+              "Glycerin",
+              "Water",
+              "Mixed Tocopherols"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Fish+oil&size=5"
+          }
+        ],
+        "recall": null,
+        "interactions": [],
+        "interaction_coverage": null,
+        "dosage": [],
+        "dosage_coverage": null,
+        "provenance": {
+          "identity": "NIH DSLD live catalog data after user label selection.",
+          "recall": "openFDA food and drug enforcement text/category search; not lot matching.",
+          "interactions": "Curated NIH/NCCIH reference rules, bounded coverage.",
+          "dosage": "Small NIH ODS adult reference table; actual intake unknown."
+        }
+      },
+      "responseText": null
+    },
+    {
+      "label": "fish-oil:confirmed-review",
+      "capturedAt": "2026-09-12T19:33:53.761Z",
+      "request": {
+        "scan": "Fish oil",
+        "profile": {
+          "meds": [
+            "warfarin"
+          ],
+          "conditions": [
+            "hypertension"
+          ]
+        },
+        "selected_id": "64567"
+      },
+      "status": 200,
+      "statusText": "OK",
+      "responseJson": {
+        "status": "complete",
+        "checked_at": "2026-09-12T19:33:53.726029Z",
+        "answer": "You selected the NIH DSLD label 'Fish Oil' (Harry & David). This is a user label selection, not clinical or physical-bottle verification. openFDA returned 5 potential product-description match(es); compare exact product and lot/code with the bottle. This does not establish that the bottle is recalled. The cited reference set produced 1 review prompt(s). 0 adult reference limit(s) matched the official ingredients; actual intake is unknown and the table cannot determine personal dose safety. Discuss the confirmed label, amount, and bottle lot/code with a pharmacist or clinician.",
+        "tools": 4,
+        "tool_trace": [
+          {
+            "tool": "identify_supplement",
+            "status": "success",
+            "result": {
+              "status": "success",
+              "identity": {
+                "id": "64567",
+                "name": "Fish Oil",
+                "brand": "Harry & David",
+                "ingredients": [
+                  "Calories",
+                  "Calories from Fat",
+                  "Total Fat",
+                  "Eicosapentaenoic Acid",
+                  "Docosahexaenoic Acid",
+                  "Gelatin",
+                  "purified Water and Glycerin (vegetable source) gelcap",
+                  "Mixed Tocopherols"
+                ],
+                "ingredient_status": "available",
+                "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                "source": "NIH Dietary Supplement Label Database (DSLD)",
+                "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Fish+oil&size=5",
+                "confirmed": true,
+                "confirmation": "user_label_selection",
+                "clinical_verification": "not_clinically_verified"
+              },
+              "coverage": "The user selected this catalog label; it is not a clinical or physical-bottle verification."
+            }
+          },
+          {
+            "tool": "check_recall",
+            "status": "success",
+            "result": {
+              "source": "openFDA food and drug enforcement feeds",
+              "source_urls": [
+                "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5"
+              ],
+              "query_phrase": "fish oil",
+              "status": "potential_matches",
+              "recalled": null,
+              "records": [
+                {
+                  "feed": "food",
+                  "product_description": "HI-TECH PHARMACEUTICALS FISH OIL HEART AND BRAIN HEALTH EPA/DHA OMEGA 3 FATTY ACIDS SUPPORTS CARDIOVASCULAR HEALTH MAY HELP WITH JOINT PAIN MAY IMPROVE COGNITIVE FUNCTION 90 SOFT GELS UPC 8 11836 02585 9 HI-TECH PHARMACEUTICALS, INC. 6015-B Unity Drive Norcross, GA 30071",
+                  "recalling_firm": "Hi-Tech Pharmaceuticals Inc.",
+                  "recall_number": "H-0589-2025",
+                  "code_info": "Lot 517120551 Exp Date 04/30",
+                  "reason_for_recall": "Unapproved Drug Claims.",
+                  "dates": {
+                    "recall_initiation_date": "20250806",
+                    "report_date": "20250924",
+                    "termination_date": "20260219",
+                    "center_classification_date": "20250912"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class III",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:33:49.027819Z"
+                },
+                {
+                  "feed": "food",
+                  "product_description": "Item FG 10084, Barlean s, Ultra EPA Fish Oil 1250 mg Omega-3, 60 softgels per bottle, UPC 7 05875 61005 6.",
+                  "recalling_firm": "Barlean's Llc",
+                  "recall_number": "F-1361-2019",
+                  "code_info": "Best By of January 2022 and earlier",
+                  "reason_for_recall": "Barlean's dietary supplement product is recalled due to undeclared Sulfites.  Sulfite levels of finished goods does not exceed 10 ppm.",
+                  "dates": {
+                    "recall_initiation_date": "20190506",
+                    "report_date": "20190522",
+                    "termination_date": "20201015",
+                    "center_classification_date": "20190516"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class III",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:33:49.027819Z"
+                },
+                {
+                  "feed": "food",
+                  "product_description": "Item FG 10083, Barlean's, Ultra DHA Fish Oil Omega-3, Lemonade Flavor, 90 softgels per bottle, UPC 7 05875 61004 9.",
+                  "recalling_firm": "Barlean's Llc",
+                  "recall_number": "F-1360-2019",
+                  "code_info": "Best By of January 2022 and earlier",
+                  "reason_for_recall": "Barlean's dietary supplement product is recalled due to undeclared Sulfites.  Sulfite levels of finished goods does not exceed 10 ppm.",
+                  "dates": {
+                    "recall_initiation_date": "20190506",
+                    "report_date": "20190522",
+                    "termination_date": "20201015",
+                    "center_classification_date": "20190516"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class III",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:33:49.027819Z"
+                },
+                {
+                  "feed": "food",
+                  "product_description": "Item FG 10085, Barleans, Ultra EPA-DHA Fish Oil 1,300 mg Omega-3 Orange Flavor, 60 Softgels per bottle. UPC 7 05875 61006 3.",
+                  "recalling_firm": "Barlean's Llc",
+                  "recall_number": "F-1362-2019",
+                  "code_info": "Best By of January 2022 and earlier",
+                  "reason_for_recall": "Barlean's dietary supplement product is recalled due to undeclared Sulfites.  Sulfite levels of finished goods does not exceed 10 ppm.",
+                  "dates": {
+                    "recall_initiation_date": "20190506",
+                    "report_date": "20190522",
+                    "termination_date": "20201015",
+                    "center_classification_date": "20190516"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class III",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:33:49.027819Z"
+                },
+                {
+                  "feed": "food",
+                  "product_description": "Item FG 10089,  Barlean s, Fish Oil Omega-3 EPA/DHA Orange Flavor, 100 Softgels per bottle. UPC 7 05875 61007 0.    Item FG 10090,  Barlean s, Fish Oil Omega-3 EPA/DHA Orange Flavor, 250 Softgels per bottle. UPC 7 05875 61008 7.",
+                  "recalling_firm": "Barlean's Llc",
+                  "recall_number": "F-1363-2019",
+                  "code_info": "Best By of January 2022 and earlier",
+                  "reason_for_recall": "Barlean's dietary supplement product is recalled due to undeclared Sulfites.  Sulfite levels of finished goods does not exceed 10 ppm.",
+                  "dates": {
+                    "recall_initiation_date": "20190506",
+                    "report_date": "20190522",
+                    "termination_date": "20201015",
+                    "center_classification_date": "20190516"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class III",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:33:49.027819Z"
+                }
+              ],
+              "retrieved_at": "2026-09-12T19:33:49.027819Z",
+              "metadata": {
+                "feeds": [
+                  {
+                    "feed": "food",
+                    "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                    "status": "success",
+                    "last_updated": "2026-09-02",
+                    "returned_records": 5,
+                    "matched_records": 5
+                  },
+                  {
+                    "feed": "drug",
+                    "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                    "status": "not_found"
+                  }
+                ],
+                "last_updated": {
+                  "food": "2026-09-02"
+                }
+              },
+              "source_errors": [],
+              "coverage": "These are potential text/category matches only. They do not establish that your bottle is recalled. Compare the exact product, lot/code, and FDA status with the bottle before acting; a terminated record is not represented as active."
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "status": "success",
+            "result": {
+              "source": "Curated NIH/NCCIH reference rules",
+              "findings": [
+                {
+                  "risk": "REVIEW",
+                  "review_priority": "caution",
+                  "against": "warfarin",
+                  "note": "Omega-3 products merit a pharmacist review with warfarin. NIH ODS describes mixed evidence and notes INR monitoring; do not change either product from this result alone.",
+                  "source": "NIH ODS Omega-3 Fact Sheet for Health Professionals",
+                  "source_url": "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/#h8",
+                  "severity_note": "MedGuard review priority, not an official clinical severity rating."
+                }
+              ],
+              "coverage": "This is a small, curated reference set. No matching rule does not mean no interaction, no reported interaction, or that this product is safe for you."
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "status": "success",
+            "result": {
+              "source": "NIH ODS adult reference table",
+              "limits": [],
+              "coverage": "Actual product amount, servings, other products, diet, and personal directions are unknown. These references cannot determine whether a personal dose is safe."
+            }
+          }
+        ],
+        "identity": {
+          "id": "64567",
+          "name": "Fish Oil",
+          "brand": "Harry & David",
+          "ingredients": [
+            "Calories",
+            "Calories from Fat",
+            "Total Fat",
+            "Eicosapentaenoic Acid",
+            "Docosahexaenoic Acid",
+            "Gelatin",
+            "purified Water and Glycerin (vegetable source) gelcap",
+            "Mixed Tocopherols"
+          ],
+          "ingredient_status": "available",
+          "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+          "source": "NIH Dietary Supplement Label Database (DSLD)",
+          "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Fish+oil&size=5",
+          "confirmed": true,
+          "confirmation": "user_label_selection",
+          "clinical_verification": "not_clinically_verified"
+        },
+        "candidates": [],
+        "recall": {
+          "source": "openFDA food and drug enforcement feeds",
+          "source_urls": [
+            "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+            "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5"
+          ],
+          "query_phrase": "fish oil",
+          "status": "potential_matches",
+          "recalled": null,
+          "records": [
+            {
+              "feed": "food",
+              "product_description": "HI-TECH PHARMACEUTICALS FISH OIL HEART AND BRAIN HEALTH EPA/DHA OMEGA 3 FATTY ACIDS SUPPORTS CARDIOVASCULAR HEALTH MAY HELP WITH JOINT PAIN MAY IMPROVE COGNITIVE FUNCTION 90 SOFT GELS UPC 8 11836 02585 9 HI-TECH PHARMACEUTICALS, INC. 6015-B Unity Drive Norcross, GA 30071",
+              "recalling_firm": "Hi-Tech Pharmaceuticals Inc.",
+              "recall_number": "H-0589-2025",
+              "code_info": "Lot 517120551 Exp Date 04/30",
+              "reason_for_recall": "Unapproved Drug Claims.",
+              "dates": {
+                "recall_initiation_date": "20250806",
+                "report_date": "20250924",
+                "termination_date": "20260219",
+                "center_classification_date": "20250912"
+              },
+              "status": "Terminated",
+              "classification": "Class III",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:33:49.027819Z"
+            },
+            {
+              "feed": "food",
+              "product_description": "Item FG 10084, Barlean s, Ultra EPA Fish Oil 1250 mg Omega-3, 60 softgels per bottle, UPC 7 05875 61005 6.",
+              "recalling_firm": "Barlean's Llc",
+              "recall_number": "F-1361-2019",
+              "code_info": "Best By of January 2022 and earlier",
+              "reason_for_recall": "Barlean's dietary supplement product is recalled due to undeclared Sulfites.  Sulfite levels of finished goods does not exceed 10 ppm.",
+              "dates": {
+                "recall_initiation_date": "20190506",
+                "report_date": "20190522",
+                "termination_date": "20201015",
+                "center_classification_date": "20190516"
+              },
+              "status": "Terminated",
+              "classification": "Class III",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:33:49.027819Z"
+            },
+            {
+              "feed": "food",
+              "product_description": "Item FG 10083, Barlean's, Ultra DHA Fish Oil Omega-3, Lemonade Flavor, 90 softgels per bottle, UPC 7 05875 61004 9.",
+              "recalling_firm": "Barlean's Llc",
+              "recall_number": "F-1360-2019",
+              "code_info": "Best By of January 2022 and earlier",
+              "reason_for_recall": "Barlean's dietary supplement product is recalled due to undeclared Sulfites.  Sulfite levels of finished goods does not exceed 10 ppm.",
+              "dates": {
+                "recall_initiation_date": "20190506",
+                "report_date": "20190522",
+                "termination_date": "20201015",
+                "center_classification_date": "20190516"
+              },
+              "status": "Terminated",
+              "classification": "Class III",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:33:49.027819Z"
+            },
+            {
+              "feed": "food",
+              "product_description": "Item FG 10085, Barleans, Ultra EPA-DHA Fish Oil 1,300 mg Omega-3 Orange Flavor, 60 Softgels per bottle. UPC 7 05875 61006 3.",
+              "recalling_firm": "Barlean's Llc",
+              "recall_number": "F-1362-2019",
+              "code_info": "Best By of January 2022 and earlier",
+              "reason_for_recall": "Barlean's dietary supplement product is recalled due to undeclared Sulfites.  Sulfite levels of finished goods does not exceed 10 ppm.",
+              "dates": {
+                "recall_initiation_date": "20190506",
+                "report_date": "20190522",
+                "termination_date": "20201015",
+                "center_classification_date": "20190516"
+              },
+              "status": "Terminated",
+              "classification": "Class III",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:33:49.027819Z"
+            },
+            {
+              "feed": "food",
+              "product_description": "Item FG 10089,  Barlean s, Fish Oil Omega-3 EPA/DHA Orange Flavor, 100 Softgels per bottle. UPC 7 05875 61007 0.    Item FG 10090,  Barlean s, Fish Oil Omega-3 EPA/DHA Orange Flavor, 250 Softgels per bottle. UPC 7 05875 61008 7.",
+              "recalling_firm": "Barlean's Llc",
+              "recall_number": "F-1363-2019",
+              "code_info": "Best By of January 2022 and earlier",
+              "reason_for_recall": "Barlean's dietary supplement product is recalled due to undeclared Sulfites.  Sulfite levels of finished goods does not exceed 10 ppm.",
+              "dates": {
+                "recall_initiation_date": "20190506",
+                "report_date": "20190522",
+                "termination_date": "20201015",
+                "center_classification_date": "20190516"
+              },
+              "status": "Terminated",
+              "classification": "Class III",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:33:49.027819Z"
+            }
+          ],
+          "retrieved_at": "2026-09-12T19:33:49.027819Z",
+          "metadata": {
+            "feeds": [
+              {
+                "feed": "food",
+                "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                "status": "success",
+                "last_updated": "2026-09-02",
+                "returned_records": 5,
+                "matched_records": 5
+              },
+              {
+                "feed": "drug",
+                "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                "status": "not_found"
+              }
+            ],
+            "last_updated": {
+              "food": "2026-09-02"
+            }
+          },
+          "source_errors": [],
+          "coverage": "These are potential text/category matches only. They do not establish that your bottle is recalled. Compare the exact product, lot/code, and FDA status with the bottle before acting; a terminated record is not represented as active."
+        },
+        "interactions": [
+          {
+            "risk": "REVIEW",
+            "review_priority": "caution",
+            "against": "warfarin",
+            "note": "Omega-3 products merit a pharmacist review with warfarin. NIH ODS describes mixed evidence and notes INR monitoring; do not change either product from this result alone.",
+            "source": "NIH ODS Omega-3 Fact Sheet for Health Professionals",
+            "source_url": "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/#h8",
+            "severity_note": "MedGuard review priority, not an official clinical severity rating."
+          }
+        ],
+        "interaction_coverage": "This is a small, curated reference set. No matching rule does not mean no interaction, no reported interaction, or that this product is safe for you.",
+        "dosage": [],
+        "dosage_coverage": "Actual product amount, servings, other products, diet, and personal directions are unknown. These references cannot determine whether a personal dose is safe.",
+        "provenance": {
+          "identity": "NIH DSLD live catalog data after user label selection.",
+          "recall": "openFDA food and drug enforcement text/category search; not lot matching.",
+          "interactions": "Curated NIH/NCCIH reference rules, bounded coverage.",
+          "dosage": "Small NIH ODS adult reference table; actual intake unknown."
+        }
+      },
+      "responseText": null
+    },
+    {
+      "label": "ginkgo:lookup",
+      "capturedAt": "2026-09-12T19:33:57.691Z",
+      "request": {
+        "scan": "Ginkgo",
+        "profile": {
+          "meds": [
+            "warfarin"
+          ],
+          "conditions": [
+            "hypertension"
+          ]
+        }
+      },
+      "status": 200,
+      "statusText": "OK",
+      "responseJson": {
+        "status": "needs_confirmation",
+        "checked_at": "2026-09-12T19:33:57.677397Z",
+        "answer": "Choose the NIH DSLD catalog label that matches your bottle. A search candidate is not a physical-bottle match. Recalls, interaction references, and dosage references have not been checked until you select a label.",
+        "tools": 1,
+        "tool_trace": [
+          {
+            "tool": "identify_supplement",
+            "status": "success",
+            "result": {
+              "status": "needs_confirmation",
+              "source": "NIH Dietary Supplement Label Database (DSLD)",
+              "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Ginkgo&size=5",
+              "retrieved_at": "2026-09-12T19:33:55.755315Z",
+              "candidates": [
+                {
+                  "id": "33452",
+                  "name": "Ginkgo",
+                  "brand": "Vitanica",
+                  "ingredients": [
+                    "Ginkgo leaf extract",
+                    "Ginkgo",
+                    "Vegetarian Capsule",
+                    "Cellulose",
+                    "Water",
+                    "L-Leucine"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Ginkgo&size=5"
+                },
+                {
+                  "id": "208697",
+                  "name": "Ginkgo",
+                  "brand": "plnt",
+                  "ingredients": [
+                    "organic Ginkgo",
+                    "Ginkgo extract",
+                    "Vegetable Cellulose"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Ginkgo&size=5"
+                },
+                {
+                  "id": "80702",
+                  "name": "Ginkgo",
+                  "brand": "plnt",
+                  "ingredients": [
+                    "organic Ginkgo",
+                    "Ginkgo extract",
+                    "Vegetable Cellulose"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Ginkgo&size=5"
+                },
+                {
+                  "id": "30060",
+                  "name": "Ginkgo Biloba 120",
+                  "brand": "ProCaps Laboratories",
+                  "ingredients": [
+                    "Vitamin B1",
+                    "Vitamin B2",
+                    "Niacin",
+                    "Vitamin B6",
+                    "Vitamin B12",
+                    "Pantothenic Acid",
+                    "Magnesium",
+                    "Ginkgo",
+                    "Gelatin Capsule",
+                    "Proprietary Protective B12 Matrix"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Ginkgo&size=5"
+                },
+                {
+                  "id": "56989",
+                  "name": "Ginkgo",
+                  "brand": "plnt By V",
+                  "ingredients": [
+                    "Ginkgo extract",
+                    "organic Ginkgo",
+                    "Vegetable Cellulose"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Ginkgo&size=5"
+                }
+              ],
+              "coverage": "Catalog candidates are not physical-bottle matches. The user must select a label."
+            }
+          }
+        ],
+        "identity": null,
+        "candidates": [
+          {
+            "id": "33452",
+            "name": "Ginkgo",
+            "brand": "Vitanica",
+            "ingredients": [
+              "Ginkgo leaf extract",
+              "Ginkgo",
+              "Vegetarian Capsule",
+              "Cellulose",
+              "Water",
+              "L-Leucine"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Ginkgo&size=5"
+          },
+          {
+            "id": "208697",
+            "name": "Ginkgo",
+            "brand": "plnt",
+            "ingredients": [
+              "organic Ginkgo",
+              "Ginkgo extract",
+              "Vegetable Cellulose"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Ginkgo&size=5"
+          },
+          {
+            "id": "80702",
+            "name": "Ginkgo",
+            "brand": "plnt",
+            "ingredients": [
+              "organic Ginkgo",
+              "Ginkgo extract",
+              "Vegetable Cellulose"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Ginkgo&size=5"
+          },
+          {
+            "id": "30060",
+            "name": "Ginkgo Biloba 120",
+            "brand": "ProCaps Laboratories",
+            "ingredients": [
+              "Vitamin B1",
+              "Vitamin B2",
+              "Niacin",
+              "Vitamin B6",
+              "Vitamin B12",
+              "Pantothenic Acid",
+              "Magnesium",
+              "Ginkgo",
+              "Gelatin Capsule",
+              "Proprietary Protective B12 Matrix"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Ginkgo&size=5"
+          },
+          {
+            "id": "56989",
+            "name": "Ginkgo",
+            "brand": "plnt By V",
+            "ingredients": [
+              "Ginkgo extract",
+              "organic Ginkgo",
+              "Vegetable Cellulose"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Ginkgo&size=5"
+          }
+        ],
+        "recall": null,
+        "interactions": [],
+        "interaction_coverage": null,
+        "dosage": [],
+        "dosage_coverage": null,
+        "provenance": {
+          "identity": "NIH DSLD live catalog data after user label selection.",
+          "recall": "openFDA food and drug enforcement text/category search; not lot matching.",
+          "interactions": "Curated NIH/NCCIH reference rules, bounded coverage.",
+          "dosage": "Small NIH ODS adult reference table; actual intake unknown."
+        }
+      },
+      "responseText": null
+    },
+    {
+      "label": "ginkgo:confirmed-review",
+      "capturedAt": "2026-09-12T19:34:05.363Z",
+      "request": {
+        "scan": "Ginkgo",
+        "profile": {
+          "meds": [
+            "warfarin"
+          ],
+          "conditions": [
+            "hypertension"
+          ]
+        },
+        "selected_id": "33452"
+      },
+      "status": 200,
+      "statusText": "OK",
+      "responseJson": {
+        "status": "complete",
+        "checked_at": "2026-09-12T19:34:05.338468Z",
+        "answer": "You selected the NIH DSLD label 'Ginkgo' (Vitanica). This is a user label selection, not clinical or physical-bottle verification. openFDA returned 3 potential product-description match(es); compare exact product and lot/code with the bottle. This does not establish that the bottle is recalled. The cited reference set produced 1 review prompt(s). 0 adult reference limit(s) matched the official ingredients; actual intake is unknown and the table cannot determine personal dose safety. Discuss the confirmed label, amount, and bottle lot/code with a pharmacist or clinician.",
+        "tools": 4,
+        "tool_trace": [
+          {
+            "tool": "identify_supplement",
+            "status": "success",
+            "result": {
+              "status": "success",
+              "identity": {
+                "id": "33452",
+                "name": "Ginkgo",
+                "brand": "Vitanica",
+                "ingredients": [
+                  "Ginkgo leaf extract",
+                  "Ginkgo",
+                  "Vegetarian Capsule",
+                  "Cellulose",
+                  "Water",
+                  "L-Leucine"
+                ],
+                "ingredient_status": "available",
+                "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                "source": "NIH Dietary Supplement Label Database (DSLD)",
+                "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Ginkgo&size=5",
+                "confirmed": true,
+                "confirmation": "user_label_selection",
+                "clinical_verification": "not_clinically_verified"
+              },
+              "coverage": "The user selected this catalog label; it is not a clinical or physical-bottle verification."
+            }
+          },
+          {
+            "tool": "check_recall",
+            "status": "success",
+            "result": {
+              "source": "openFDA food and drug enforcement feeds",
+              "source_urls": [
+                "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5",
+                "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5"
+              ],
+              "query_phrase": "ginkgo",
+              "status": "potential_matches",
+              "recalled": null,
+              "records": [
+                {
+                  "feed": "food",
+                  "product_description": "Brain MD - Brain & Memory Power Boost Supports Healthy Brain and Memory Performance  120 capsules - Dietary Supplement UPC: 8 57568 00341 3  Serving Size - 4 capsules' Servings per container - 30  Ingredients - amount per serving:  Phosphatidylserine (PS) - 100 mg Acetylcarnitine - 666 mg N-Acetylcysteine (NAC) - 400 mg Alpha-Lipoic Acie - 200 mg Ginkgo Biloba - 121- mg Huperzine A - 100 mcg  Other ingredients: Vegetable cellulose, silicon dioxide, magnesium stearate, microcrystalline cellulose.  Developed and distributed by: BrainMD, Irvine, CA; brainmd.com",
+                  "recalling_firm": "BRAINMD",
+                  "recall_number": "F-0010-2022",
+                  "code_info": "Lot No. N21301001, Best By 10/1/2022, sku 83-N",
+                  "reason_for_recall": "It was discovered that bottles of Brain and Memory Power Boost was filled with multi vitamin-mineral product - NeuroVite Plus",
+                  "dates": {
+                    "recall_initiation_date": "20210909",
+                    "report_date": "20211013",
+                    "termination_date": "20211029",
+                    "center_classification_date": "20211006"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class II",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:00.230589Z"
+                },
+                {
+                  "feed": "food",
+                  "product_description": "Iowa Select Herbs LLC, Ginkgo Leave (Ginkgo biloba),  www.iowaselectherbs.com, 7.5 fl. Oz., Cedar Rapids, IA 52402",
+                  "recalling_firm": "Iowa Select Herbs LLC",
+                  "recall_number": "F-1178-2016",
+                  "code_info": "Lot - 30520, Expires - 08/2018;",
+                  "reason_for_recall": "Pursuant to a consent decree for injunctive relief the recalling firm was ordered to recall all products because they are misbranded, unapproved new drugs and adulterated dietary supplements.",
+                  "dates": {
+                    "recall_initiation_date": "20150911",
+                    "report_date": "20160511",
+                    "termination_date": "20170227",
+                    "center_classification_date": "20160502"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class III",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:00.230589Z"
+                },
+                {
+                  "feed": "food",
+                  "product_description": "Good Herbs, Inc., GINKGO, 1 & 4 oz bottle, 550 Oliver Dr Troy, MI 48084 The Quality Herb That Works",
+                  "recalling_firm": "Good Herbs, Inc.",
+                  "recall_number": "F-0286-2015",
+                  "code_info": "All Lots distributed on or after October 17, 2013",
+                  "reason_for_recall": "Products not manufactured under GMP's",
+                  "dates": {
+                    "recall_initiation_date": "20140505",
+                    "report_date": "20141105",
+                    "termination_date": "20160203",
+                    "center_classification_date": "20141030"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class II",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:00.230589Z"
+                }
+              ],
+              "retrieved_at": "2026-09-12T19:34:00.230589Z",
+              "metadata": {
+                "feeds": [
+                  {
+                    "feed": "food",
+                    "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5",
+                    "status": "success",
+                    "last_updated": "2026-09-02",
+                    "returned_records": 3,
+                    "matched_records": 3
+                  },
+                  {
+                    "feed": "drug",
+                    "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5",
+                    "status": "not_found"
+                  }
+                ],
+                "last_updated": {
+                  "food": "2026-09-02"
+                }
+              },
+              "source_errors": [],
+              "coverage": "These are potential text/category matches only. They do not establish that your bottle is recalled. Compare the exact product, lot/code, and FDA status with the bottle before acting; a terminated record is not represented as active."
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "status": "success",
+            "result": {
+              "source": "Curated NIH/NCCIH reference rules",
+              "findings": [
+                {
+                  "risk": "HIGH",
+                  "review_priority": "high",
+                  "against": "warfarin",
+                  "note": "NCCIH advises discussing ginkgo with a clinician when taking medicines, including warfarin.",
+                  "source": "NCCIH: Ginkgo",
+                  "source_url": "https://www.nccih.nih.gov/health/ginkgo",
+                  "severity_note": "MedGuard review priority, not an official clinical severity rating."
+                }
+              ],
+              "coverage": "This is a small, curated reference set. No matching rule does not mean no interaction, no reported interaction, or that this product is safe for you."
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "status": "success",
+            "result": {
+              "source": "NIH ODS adult reference table",
+              "limits": [],
+              "coverage": "Actual product amount, servings, other products, diet, and personal directions are unknown. These references cannot determine whether a personal dose is safe."
+            }
+          }
+        ],
+        "identity": {
+          "id": "33452",
+          "name": "Ginkgo",
+          "brand": "Vitanica",
+          "ingredients": [
+            "Ginkgo leaf extract",
+            "Ginkgo",
+            "Vegetarian Capsule",
+            "Cellulose",
+            "Water",
+            "L-Leucine"
+          ],
+          "ingredient_status": "available",
+          "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+          "source": "NIH Dietary Supplement Label Database (DSLD)",
+          "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Ginkgo&size=5",
+          "confirmed": true,
+          "confirmation": "user_label_selection",
+          "clinical_verification": "not_clinically_verified"
+        },
+        "candidates": [],
+        "recall": {
+          "source": "openFDA food and drug enforcement feeds",
+          "source_urls": [
+            "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5",
+            "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5"
+          ],
+          "query_phrase": "ginkgo",
+          "status": "potential_matches",
+          "recalled": null,
+          "records": [
+            {
+              "feed": "food",
+              "product_description": "Brain MD - Brain & Memory Power Boost Supports Healthy Brain and Memory Performance  120 capsules - Dietary Supplement UPC: 8 57568 00341 3  Serving Size - 4 capsules' Servings per container - 30  Ingredients - amount per serving:  Phosphatidylserine (PS) - 100 mg Acetylcarnitine - 666 mg N-Acetylcysteine (NAC) - 400 mg Alpha-Lipoic Acie - 200 mg Ginkgo Biloba - 121- mg Huperzine A - 100 mcg  Other ingredients: Vegetable cellulose, silicon dioxide, magnesium stearate, microcrystalline cellulose.  Developed and distributed by: BrainMD, Irvine, CA; brainmd.com",
+              "recalling_firm": "BRAINMD",
+              "recall_number": "F-0010-2022",
+              "code_info": "Lot No. N21301001, Best By 10/1/2022, sku 83-N",
+              "reason_for_recall": "It was discovered that bottles of Brain and Memory Power Boost was filled with multi vitamin-mineral product - NeuroVite Plus",
+              "dates": {
+                "recall_initiation_date": "20210909",
+                "report_date": "20211013",
+                "termination_date": "20211029",
+                "center_classification_date": "20211006"
+              },
+              "status": "Terminated",
+              "classification": "Class II",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:00.230589Z"
+            },
+            {
+              "feed": "food",
+              "product_description": "Iowa Select Herbs LLC, Ginkgo Leave (Ginkgo biloba),  www.iowaselectherbs.com, 7.5 fl. Oz., Cedar Rapids, IA 52402",
+              "recalling_firm": "Iowa Select Herbs LLC",
+              "recall_number": "F-1178-2016",
+              "code_info": "Lot - 30520, Expires - 08/2018;",
+              "reason_for_recall": "Pursuant to a consent decree for injunctive relief the recalling firm was ordered to recall all products because they are misbranded, unapproved new drugs and adulterated dietary supplements.",
+              "dates": {
+                "recall_initiation_date": "20150911",
+                "report_date": "20160511",
+                "termination_date": "20170227",
+                "center_classification_date": "20160502"
+              },
+              "status": "Terminated",
+              "classification": "Class III",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:00.230589Z"
+            },
+            {
+              "feed": "food",
+              "product_description": "Good Herbs, Inc., GINKGO, 1 & 4 oz bottle, 550 Oliver Dr Troy, MI 48084 The Quality Herb That Works",
+              "recalling_firm": "Good Herbs, Inc.",
+              "recall_number": "F-0286-2015",
+              "code_info": "All Lots distributed on or after October 17, 2013",
+              "reason_for_recall": "Products not manufactured under GMP's",
+              "dates": {
+                "recall_initiation_date": "20140505",
+                "report_date": "20141105",
+                "termination_date": "20160203",
+                "center_classification_date": "20141030"
+              },
+              "status": "Terminated",
+              "classification": "Class II",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:00.230589Z"
+            }
+          ],
+          "retrieved_at": "2026-09-12T19:34:00.230589Z",
+          "metadata": {
+            "feeds": [
+              {
+                "feed": "food",
+                "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5",
+                "status": "success",
+                "last_updated": "2026-09-02",
+                "returned_records": 3,
+                "matched_records": 3
+              },
+              {
+                "feed": "drug",
+                "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22ginkgo%22&sort=recall_initiation_date%3Adesc&limit=5",
+                "status": "not_found"
+              }
+            ],
+            "last_updated": {
+              "food": "2026-09-02"
+            }
+          },
+          "source_errors": [],
+          "coverage": "These are potential text/category matches only. They do not establish that your bottle is recalled. Compare the exact product, lot/code, and FDA status with the bottle before acting; a terminated record is not represented as active."
+        },
+        "interactions": [
+          {
+            "risk": "HIGH",
+            "review_priority": "high",
+            "against": "warfarin",
+            "note": "NCCIH advises discussing ginkgo with a clinician when taking medicines, including warfarin.",
+            "source": "NCCIH: Ginkgo",
+            "source_url": "https://www.nccih.nih.gov/health/ginkgo",
+            "severity_note": "MedGuard review priority, not an official clinical severity rating."
+          }
+        ],
+        "interaction_coverage": "This is a small, curated reference set. No matching rule does not mean no interaction, no reported interaction, or that this product is safe for you.",
+        "dosage": [],
+        "dosage_coverage": "Actual product amount, servings, other products, diet, and personal directions are unknown. These references cannot determine whether a personal dose is safe.",
+        "provenance": {
+          "identity": "NIH DSLD live catalog data after user label selection.",
+          "recall": "openFDA food and drug enforcement text/category search; not lot matching.",
+          "interactions": "Curated NIH/NCCIH reference rules, bounded coverage.",
+          "dosage": "Small NIH ODS adult reference table; actual intake unknown."
+        }
+      },
+      "responseText": null
+    },
+    {
+      "label": "st-john-s-wort:lookup",
+      "capturedAt": "2026-09-12T19:34:11.511Z",
+      "request": {
+        "scan": "St. John's Wort",
+        "profile": {
+          "meds": [
+            "warfarin"
+          ],
+          "conditions": [
+            "hypertension"
+          ]
+        }
+      },
+      "status": 200,
+      "statusText": "OK",
+      "responseJson": {
+        "status": "needs_confirmation",
+        "checked_at": "2026-09-12T19:34:11.496209Z",
+        "answer": "Choose the NIH DSLD catalog label that matches your bottle. A search candidate is not a physical-bottle match. Recalls, interaction references, and dosage references have not been checked until you select a label.",
+        "tools": 1,
+        "tool_trace": [
+          {
+            "tool": "identify_supplement",
+            "status": "success",
+            "result": {
+              "status": "needs_confirmation",
+              "source": "NIH Dietary Supplement Label Database (DSLD)",
+              "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=St.+John%27s+Wort&size=5",
+              "retrieved_at": "2026-09-12T19:34:07.400369Z",
+              "candidates": [
+                {
+                  "id": "200553",
+                  "name": "St. John's Wort 440 mg",
+                  "brand": "Christopher's Original Formulas",
+                  "ingredients": [
+                    "St. John's Wort",
+                    "plant-derived Capsule"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=St.+John%27s+Wort&size=5"
+                },
+                {
+                  "id": "211899",
+                  "name": "St. John's Wort",
+                  "brand": "Thymely Solutions",
+                  "ingredients": [
+                    "St. John's Wort",
+                    "Modified Vegetable Cellulose"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=St.+John%27s+Wort&size=5"
+                },
+                {
+                  "id": "10129",
+                  "name": "St. John's Wort",
+                  "brand": "Gaia Herbs Single Herbs",
+                  "ingredients": [
+                    "Calories",
+                    "Total Alcohol Free St. John's Wort Extracts",
+                    "St. John's Wort flowering tops and buds",
+                    "Validated Full Spectrum Profile",
+                    "Hypericins",
+                    "Vegetable Glycerin",
+                    "Capsule"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=St.+John%27s+Wort&size=5"
+                },
+                {
+                  "id": "247461",
+                  "name": "St. John's Wort",
+                  "brand": "Sonora Nutrition",
+                  "ingredients": [
+                    "St. John's Wort extract",
+                    "Gelatin",
+                    "Rice powder"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=St.+John%27s+Wort&size=5"
+                },
+                {
+                  "id": "268764",
+                  "name": "St. John's Wort",
+                  "brand": "Alvita",
+                  "ingredients": [
+                    "St. John's Wort"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=St.+John%27s+Wort&size=5"
+                }
+              ],
+              "coverage": "Catalog candidates are not physical-bottle matches. The user must select a label."
+            }
+          }
+        ],
+        "identity": null,
+        "candidates": [
+          {
+            "id": "200553",
+            "name": "St. John's Wort 440 mg",
+            "brand": "Christopher's Original Formulas",
+            "ingredients": [
+              "St. John's Wort",
+              "plant-derived Capsule"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=St.+John%27s+Wort&size=5"
+          },
+          {
+            "id": "211899",
+            "name": "St. John's Wort",
+            "brand": "Thymely Solutions",
+            "ingredients": [
+              "St. John's Wort",
+              "Modified Vegetable Cellulose"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=St.+John%27s+Wort&size=5"
+          },
+          {
+            "id": "10129",
+            "name": "St. John's Wort",
+            "brand": "Gaia Herbs Single Herbs",
+            "ingredients": [
+              "Calories",
+              "Total Alcohol Free St. John's Wort Extracts",
+              "St. John's Wort flowering tops and buds",
+              "Validated Full Spectrum Profile",
+              "Hypericins",
+              "Vegetable Glycerin",
+              "Capsule"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=St.+John%27s+Wort&size=5"
+          },
+          {
+            "id": "247461",
+            "name": "St. John's Wort",
+            "brand": "Sonora Nutrition",
+            "ingredients": [
+              "St. John's Wort extract",
+              "Gelatin",
+              "Rice powder"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=St.+John%27s+Wort&size=5"
+          },
+          {
+            "id": "268764",
+            "name": "St. John's Wort",
+            "brand": "Alvita",
+            "ingredients": [
+              "St. John's Wort"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=St.+John%27s+Wort&size=5"
+          }
+        ],
+        "recall": null,
+        "interactions": [],
+        "interaction_coverage": null,
+        "dosage": [],
+        "dosage_coverage": null,
+        "provenance": {
+          "identity": "NIH DSLD live catalog data after user label selection.",
+          "recall": "openFDA food and drug enforcement text/category search; not lot matching.",
+          "interactions": "Curated NIH/NCCIH reference rules, bounded coverage.",
+          "dosage": "Small NIH ODS adult reference table; actual intake unknown."
+        }
+      },
+      "responseText": null
+    },
+    {
+      "label": "st-john-s-wort:confirmed-review",
+      "capturedAt": "2026-09-12T19:34:17.588Z",
+      "request": {
+        "scan": "St. John's Wort",
+        "profile": {
+          "meds": [
+            "warfarin"
+          ],
+          "conditions": [
+            "hypertension"
+          ]
+        },
+        "selected_id": "200553"
+      },
+      "status": 200,
+      "statusText": "OK",
+      "responseJson": {
+        "status": "complete",
+        "checked_at": "2026-09-12T19:34:17.568230Z",
+        "answer": "You selected the NIH DSLD label 'St. John's Wort 440 mg' (Christopher's Original Formulas). This is a user label selection, not clinical or physical-bottle verification. openFDA returned explicit NOT_FOUND for this phrase in both enforcement feeds. That does not establish that the bottle has no recall. The cited reference set produced 1 review prompt(s). 0 adult reference limit(s) matched the official ingredients; actual intake is unknown and the table cannot determine personal dose safety. Discuss the confirmed label, amount, and bottle lot/code with a pharmacist or clinician.",
+        "tools": 4,
+        "tool_trace": [
+          {
+            "tool": "identify_supplement",
+            "status": "success",
+            "result": {
+              "status": "success",
+              "identity": {
+                "id": "200553",
+                "name": "St. John's Wort 440 mg",
+                "brand": "Christopher's Original Formulas",
+                "ingredients": [
+                  "St. John's Wort",
+                  "plant-derived Capsule"
+                ],
+                "ingredient_status": "available",
+                "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                "source": "NIH Dietary Supplement Label Database (DSLD)",
+                "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=St.+John%27s+Wort&size=5",
+                "confirmed": true,
+                "confirmation": "user_label_selection",
+                "clinical_verification": "not_clinically_verified"
+              },
+              "coverage": "The user selected this catalog label; it is not a clinical or physical-bottle verification."
+            }
+          },
+          {
+            "tool": "check_recall",
+            "status": "success",
+            "result": {
+              "source": "openFDA food and drug enforcement feeds",
+              "source_urls": [
+                "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22st+johns+wort%22&sort=recall_initiation_date%3Adesc&limit=5",
+                "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22st+johns+wort%22&sort=recall_initiation_date%3Adesc&limit=5"
+              ],
+              "query_phrase": "st johns wort",
+              "status": "no_match",
+              "recalled": null,
+              "records": [],
+              "retrieved_at": "2026-09-12T19:34:14.222873Z",
+              "metadata": {
+                "feeds": [
+                  {
+                    "feed": "food",
+                    "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22st+johns+wort%22&sort=recall_initiation_date%3Adesc&limit=5",
+                    "status": "not_found"
+                  },
+                  {
+                    "feed": "drug",
+                    "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22st+johns+wort%22&sort=recall_initiation_date%3Adesc&limit=5",
+                    "status": "not_found"
+                  }
+                ],
+                "last_updated": {}
+              },
+              "source_errors": [],
+              "coverage": "These are potential text/category matches only. They do not establish that your bottle is recalled. Compare the exact product, lot/code, and FDA status with the bottle before acting; a terminated record is not represented as active."
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "status": "success",
+            "result": {
+              "source": "Curated NIH/NCCIH reference rules",
+              "findings": [
+                {
+                  "risk": "HIGH",
+                  "review_priority": "high",
+                  "against": "warfarin",
+                  "note": "NCCIH lists warfarin among medicines whose effects St. John's Wort can weaken.",
+                  "source": "NCCIH: St. John's Wort and Depression (In Depth)",
+                  "source_url": "https://www.nccih.nih.gov/health/st-johns-wort-and-depression-in-depth",
+                  "severity_note": "MedGuard review priority, not an official clinical severity rating."
+                }
+              ],
+              "coverage": "This is a small, curated reference set. No matching rule does not mean no interaction, no reported interaction, or that this product is safe for you."
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "status": "success",
+            "result": {
+              "source": "NIH ODS adult reference table",
+              "limits": [],
+              "coverage": "Actual product amount, servings, other products, diet, and personal directions are unknown. These references cannot determine whether a personal dose is safe."
+            }
+          }
+        ],
+        "identity": {
+          "id": "200553",
+          "name": "St. John's Wort 440 mg",
+          "brand": "Christopher's Original Formulas",
+          "ingredients": [
+            "St. John's Wort",
+            "plant-derived Capsule"
+          ],
+          "ingredient_status": "available",
+          "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+          "source": "NIH Dietary Supplement Label Database (DSLD)",
+          "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=St.+John%27s+Wort&size=5",
+          "confirmed": true,
+          "confirmation": "user_label_selection",
+          "clinical_verification": "not_clinically_verified"
+        },
+        "candidates": [],
+        "recall": {
+          "source": "openFDA food and drug enforcement feeds",
+          "source_urls": [
+            "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22st+johns+wort%22&sort=recall_initiation_date%3Adesc&limit=5",
+            "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22st+johns+wort%22&sort=recall_initiation_date%3Adesc&limit=5"
+          ],
+          "query_phrase": "st johns wort",
+          "status": "no_match",
+          "recalled": null,
+          "records": [],
+          "retrieved_at": "2026-09-12T19:34:14.222873Z",
+          "metadata": {
+            "feeds": [
+              {
+                "feed": "food",
+                "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22st+johns+wort%22&sort=recall_initiation_date%3Adesc&limit=5",
+                "status": "not_found"
+              },
+              {
+                "feed": "drug",
+                "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22st+johns+wort%22&sort=recall_initiation_date%3Adesc&limit=5",
+                "status": "not_found"
+              }
+            ],
+            "last_updated": {}
+          },
+          "source_errors": [],
+          "coverage": "These are potential text/category matches only. They do not establish that your bottle is recalled. Compare the exact product, lot/code, and FDA status with the bottle before acting; a terminated record is not represented as active."
+        },
+        "interactions": [
+          {
+            "risk": "HIGH",
+            "review_priority": "high",
+            "against": "warfarin",
+            "note": "NCCIH lists warfarin among medicines whose effects St. John's Wort can weaken.",
+            "source": "NCCIH: St. John's Wort and Depression (In Depth)",
+            "source_url": "https://www.nccih.nih.gov/health/st-johns-wort-and-depression-in-depth",
+            "severity_note": "MedGuard review priority, not an official clinical severity rating."
+          }
+        ],
+        "interaction_coverage": "This is a small, curated reference set. No matching rule does not mean no interaction, no reported interaction, or that this product is safe for you.",
+        "dosage": [],
+        "dosage_coverage": "Actual product amount, servings, other products, diet, and personal directions are unknown. These references cannot determine whether a personal dose is safe.",
+        "provenance": {
+          "identity": "NIH DSLD live catalog data after user label selection.",
+          "recall": "openFDA food and drug enforcement text/category search; not lot matching.",
+          "interactions": "Curated NIH/NCCIH reference rules, bounded coverage.",
+          "dosage": "Small NIH ODS adult reference table; actual intake unknown."
+        }
+      },
+      "responseText": null
+    },
+    {
+      "label": "vitamin-d:lookup",
+      "capturedAt": "2026-09-12T19:34:22.605Z",
+      "request": {
+        "scan": "Vitamin D",
+        "profile": {
+          "meds": [
+            "warfarin"
+          ],
+          "conditions": [
+            "hypertension"
+          ]
+        }
+      },
+      "status": 200,
+      "statusText": "OK",
+      "responseJson": {
+        "status": "needs_confirmation",
+        "checked_at": "2026-09-12T19:34:22.591813Z",
+        "answer": "Choose the NIH DSLD catalog label that matches your bottle. A search candidate is not a physical-bottle match. Recalls, interaction references, and dosage references have not been checked until you select a label.",
+        "tools": 1,
+        "tool_trace": [
+          {
+            "tool": "identify_supplement",
+            "status": "success",
+            "result": {
+              "status": "needs_confirmation",
+              "source": "NIH Dietary Supplement Label Database (DSLD)",
+              "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Vitamin+D&size=5",
+              "retrieved_at": "2026-09-12T19:34:19.630637Z",
+              "candidates": [
+                {
+                  "id": "20581",
+                  "name": "Vitamin D Gummy Vitamins",
+                  "brand": "Nutrition Now",
+                  "ingredients": [
+                    "Calories",
+                    "Total Carbohydrates",
+                    "Sugar",
+                    "Vitamin D",
+                    "Glucose Syrup",
+                    "Sucrose",
+                    "Gelatin",
+                    "Citric Acid",
+                    "Natural flavors",
+                    "Lactic Acid",
+                    "colors",
+                    "fractionated Coconut Oil",
+                    "Beeswax"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Vitamin+D&size=5"
+                },
+                {
+                  "id": "35161",
+                  "name": "Calcium Citrate + Vitamin D",
+                  "brand": "The Vitamin Shoppe",
+                  "ingredients": [
+                    "Vitamin D",
+                    "Calcium",
+                    "Microcrystalline Cellulose",
+                    "Stearic Acid",
+                    "Croscarmellose Sodium",
+                    "Magnesium Stearate",
+                    "Pharmaceutical Glaze",
+                    "Silicon Dioxide"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Vitamin+D&size=5"
+                },
+                {
+                  "id": "55706",
+                  "name": "Calcium Citrate + Vitamin D",
+                  "brand": "The Vitamin Shoppe",
+                  "ingredients": [
+                    "Vitamin D",
+                    "Calcium",
+                    "Microcrystalline Cellulose",
+                    "Stearic Acid",
+                    "Croscarmellose Sodium",
+                    "Magnesium Stearate",
+                    "Silicon Dioxide",
+                    "Pharmaceutical Glaze",
+                    "Hypromellose",
+                    "Carnauba Wax",
+                    "Glycerin"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Vitamin+D&size=5"
+                },
+                {
+                  "id": "55705",
+                  "name": "Calcium Citrate + Vitamin D",
+                  "brand": "The Vitamin Shoppe",
+                  "ingredients": [
+                    "Vitamin D",
+                    "Calcium",
+                    "Microcrystalline Cellulose",
+                    "Stearic Acid",
+                    "Croscarmellose Sodium",
+                    "Magnesium Stearate",
+                    "Silicon Dioxide",
+                    "Pharmaceutical Glaze",
+                    "Hypromellose",
+                    "Carnauba Wax",
+                    "Glycerin"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Vitamin+D&size=5"
+                },
+                {
+                  "id": "35162",
+                  "name": "Calcium Citrate + Vitamin D",
+                  "brand": "The Vitamin Shoppe",
+                  "ingredients": [
+                    "Vitamin D",
+                    "Calcium",
+                    "Microcrystalline Cellulose",
+                    "Stearic Acid",
+                    "Croscarmellose Sodium",
+                    "Magnesium Stearate",
+                    "Pharmaceutical Glaze",
+                    "Silicon Dioxide"
+                  ],
+                  "ingredient_status": "available",
+                  "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                  "source": "NIH Dietary Supplement Label Database (DSLD)",
+                  "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Vitamin+D&size=5"
+                }
+              ],
+              "coverage": "Catalog candidates are not physical-bottle matches. The user must select a label."
+            }
+          }
+        ],
+        "identity": null,
+        "candidates": [
+          {
+            "id": "20581",
+            "name": "Vitamin D Gummy Vitamins",
+            "brand": "Nutrition Now",
+            "ingredients": [
+              "Calories",
+              "Total Carbohydrates",
+              "Sugar",
+              "Vitamin D",
+              "Glucose Syrup",
+              "Sucrose",
+              "Gelatin",
+              "Citric Acid",
+              "Natural flavors",
+              "Lactic Acid",
+              "colors",
+              "fractionated Coconut Oil",
+              "Beeswax"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Vitamin+D&size=5"
+          },
+          {
+            "id": "35161",
+            "name": "Calcium Citrate + Vitamin D",
+            "brand": "The Vitamin Shoppe",
+            "ingredients": [
+              "Vitamin D",
+              "Calcium",
+              "Microcrystalline Cellulose",
+              "Stearic Acid",
+              "Croscarmellose Sodium",
+              "Magnesium Stearate",
+              "Pharmaceutical Glaze",
+              "Silicon Dioxide"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Vitamin+D&size=5"
+          },
+          {
+            "id": "55706",
+            "name": "Calcium Citrate + Vitamin D",
+            "brand": "The Vitamin Shoppe",
+            "ingredients": [
+              "Vitamin D",
+              "Calcium",
+              "Microcrystalline Cellulose",
+              "Stearic Acid",
+              "Croscarmellose Sodium",
+              "Magnesium Stearate",
+              "Silicon Dioxide",
+              "Pharmaceutical Glaze",
+              "Hypromellose",
+              "Carnauba Wax",
+              "Glycerin"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Vitamin+D&size=5"
+          },
+          {
+            "id": "55705",
+            "name": "Calcium Citrate + Vitamin D",
+            "brand": "The Vitamin Shoppe",
+            "ingredients": [
+              "Vitamin D",
+              "Calcium",
+              "Microcrystalline Cellulose",
+              "Stearic Acid",
+              "Croscarmellose Sodium",
+              "Magnesium Stearate",
+              "Silicon Dioxide",
+              "Pharmaceutical Glaze",
+              "Hypromellose",
+              "Carnauba Wax",
+              "Glycerin"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Vitamin+D&size=5"
+          },
+          {
+            "id": "35162",
+            "name": "Calcium Citrate + Vitamin D",
+            "brand": "The Vitamin Shoppe",
+            "ingredients": [
+              "Vitamin D",
+              "Calcium",
+              "Microcrystalline Cellulose",
+              "Stearic Acid",
+              "Croscarmellose Sodium",
+              "Magnesium Stearate",
+              "Pharmaceutical Glaze",
+              "Silicon Dioxide"
+            ],
+            "ingredient_status": "available",
+            "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+            "source": "NIH Dietary Supplement Label Database (DSLD)",
+            "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Vitamin+D&size=5"
+          }
+        ],
+        "recall": null,
+        "interactions": [],
+        "interaction_coverage": null,
+        "dosage": [],
+        "dosage_coverage": null,
+        "provenance": {
+          "identity": "NIH DSLD live catalog data after user label selection.",
+          "recall": "openFDA food and drug enforcement text/category search; not lot matching.",
+          "interactions": "Curated NIH/NCCIH reference rules, bounded coverage.",
+          "dosage": "Small NIH ODS adult reference table; actual intake unknown."
+        }
+      },
+      "responseText": null
+    },
+    {
+      "label": "vitamin-d:confirmed-review",
+      "capturedAt": "2026-09-12T19:34:29.664Z",
+      "request": {
+        "scan": "Vitamin D",
+        "profile": {
+          "meds": [
+            "warfarin"
+          ],
+          "conditions": [
+            "hypertension"
+          ]
+        },
+        "selected_id": "20581"
+      },
+      "status": 200,
+      "statusText": "OK",
+      "responseJson": {
+        "status": "complete",
+        "checked_at": "2026-09-12T19:34:29.632767Z",
+        "answer": "You selected the NIH DSLD label 'Vitamin D Gummy Vitamins' (Nutrition Now). This is a user label selection, not clinical or physical-bottle verification. openFDA returned 10 potential product-description match(es); compare exact product and lot/code with the bottle. This does not establish that the bottle is recalled. No matching rule was found in the small curated reference set; that does not mean no interaction or that the product is safe. 1 adult reference limit(s) matched the official ingredients; actual intake is unknown and the table cannot determine personal dose safety. Discuss the confirmed label, amount, and bottle lot/code with a pharmacist or clinician.",
+        "tools": 4,
+        "tool_trace": [
+          {
+            "tool": "identify_supplement",
+            "status": "success",
+            "result": {
+              "status": "success",
+              "identity": {
+                "id": "20581",
+                "name": "Vitamin D Gummy Vitamins",
+                "brand": "Nutrition Now",
+                "ingredients": [
+                  "Calories",
+                  "Total Carbohydrates",
+                  "Sugar",
+                  "Vitamin D",
+                  "Glucose Syrup",
+                  "Sucrose",
+                  "Gelatin",
+                  "Citric Acid",
+                  "Natural flavors",
+                  "Lactic Acid",
+                  "colors",
+                  "fractionated Coconut Oil",
+                  "Beeswax"
+                ],
+                "ingredient_status": "available",
+                "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                "source": "NIH Dietary Supplement Label Database (DSLD)",
+                "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Vitamin+D&size=5",
+                "confirmed": true,
+                "confirmation": "user_label_selection",
+                "clinical_verification": "not_clinically_verified"
+              },
+              "coverage": "The user selected this catalog label; it is not a clinical or physical-bottle verification."
+            }
+          },
+          {
+            "tool": "check_recall",
+            "status": "success",
+            "result": {
+              "source": "openFDA food and drug enforcement feeds",
+              "source_urls": [
+                "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+                "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5"
+              ],
+              "query_phrase": "vitamin d",
+              "status": "potential_matches",
+              "recalled": null,
+              "records": [
+                {
+                  "feed": "food",
+                  "product_description": "1) Clover Valley Vitamin D Whole Milk, 1 GAL (3.78 L), packaged in a plastic jug, UPC: 070744002196 2) Clover Valley Vitamin D Whole Milk, 1/2 GAL (1.89 L), packaged in a plastic jug, UPC:  070744009645",
+                  "recalling_firm": "Dollar General Corporation",
+                  "recall_number": "H-0403-2025",
+                  "code_info": "Exact lot codes/expiration dates are unknown.",
+                  "reason_for_recall": "Temperature abuse due to temperature excursion in one shipping trailer",
+                  "dates": {
+                    "recall_initiation_date": "20250714",
+                    "report_date": "20250813",
+                    "termination_date": "20260306",
+                    "center_classification_date": "20250806"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class II",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:24.980294Z"
+                },
+                {
+                  "feed": "food",
+                  "product_description": "1. Country Club, Price Chopper, Good & Gather, Hiland, Belfonte, Great Value, Hen House Vitamin D Whole Milk, 1 gallon. 2. Country Club, Price Chopper, Good & Gather, Best Choice, Good Nature Family Farms Vitamin D Whole Milk, Half Gallon. 3. Belfonte, Hiland Vitamin D Whole Milk, Quart",
+                  "recalling_firm": "Hiland Dairy Foods Company, LLC",
+                  "recall_number": "F-1241-2024",
+                  "code_info": "1. Best If Use By: 04/18/24 29-162A 2. Best If Use By: 04/18/24 29-162 3. Best If Use By: 04/18/24 29-162",
+                  "reason_for_recall": "May contain potable water.",
+                  "dates": {
+                    "recall_initiation_date": "20240412",
+                    "report_date": "20240522",
+                    "termination_date": "20250909",
+                    "center_classification_date": "20240514"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class III",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:24.980294Z"
+                },
+                {
+                  "feed": "food",
+                  "product_description": "Dr. Berg Nutritionals, Liquid Vitamin D with Zinc Dietary Supplement ( Liquid Vitamin D ), Individual 1 FL OZ bottle (with no secondary packaging), Glass bottle.     The label of the Liquid Vitamin D product includes the following storage instructions:  Store in a cool, dark place, with a lid.",
+                  "recalling_firm": "Health & Wellness Center, Inc.",
+                  "recall_number": "F-0092-2022",
+                  "code_info": "Lot #2104637A, best by April 2023",
+                  "reason_for_recall": "Product recalled because of the presence of mold and/or yeast found in amounts that exceed the product's established specifications .",
+                  "dates": {
+                    "recall_initiation_date": "20210924",
+                    "report_date": "20211110",
+                    "termination_date": "20230614",
+                    "center_classification_date": "20211101"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class II",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:24.980294Z"
+                },
+                {
+                  "feed": "food",
+                  "product_description": "Live Better vegan vitamin d-3 by CVS Health, 50 mcg (2000 IU), 40 tablets in blue PET jar, Distributed by: CVS Pharmacy, Inc. one CVS Drive, Woonsocket, RI 02895, UPC 0 50428 62499 9",
+                  "recalling_firm": "New Generation Wellness Inc.",
+                  "recall_number": "F-0384-2021",
+                  "code_info": "Product code 618-40 (618 is product, -40 is 40 count)  Lot numbers: 003925, exp. 03/22; 004546, exp. 05/22",
+                  "reason_for_recall": "Vitamin D3 stability sample analyzed and found to be less than 100% of label claim.",
+                  "dates": {
+                    "recall_initiation_date": "20210308",
+                    "report_date": "20210414",
+                    "termination_date": "20220422",
+                    "center_classification_date": "20210402"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class III",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:24.980294Z"
+                },
+                {
+                  "feed": "food",
+                  "product_description": "The Vitamin Shoppe Calcium Citrate Plus Magnesium & Vitamin D. 100 count (VS-1086; UPC:6653601086), 300 count (VS-1087; UPC: 6653601087), and 600 count (VS-1123; UPC: 6653601123).",
+                  "recalling_firm": "Vitamin Shoppe",
+                  "recall_number": "F-1143-2020",
+                  "code_info": "Lot#182236",
+                  "reason_for_recall": "Sample analysis revealed product is sub-potent for Vitamin D",
+                  "dates": {
+                    "recall_initiation_date": "20200629",
+                    "report_date": "20200812",
+                    "termination_date": "20210107",
+                    "center_classification_date": "20200806"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class III",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:24.980294Z"
+                },
+                {
+                  "feed": "drug",
+                  "product_description": "Ergocalciferol - Vitamin D Supplement - 10 mcg (400 Units) per 0.05 mL Oral Syringe, Delivers: 0.05 mL Oral Solution, Mfg by: Westminster, Pkg by: Safecor Health, LLC, Columbus, OH 43204, NDC: 69367028302.",
+                  "recalling_firm": "Safecor Health, LLC",
+                  "recall_number": "D-0250-2025",
+                  "code_info": "Lot #:  24300812, Exp 01/31/2025; 24530836, Exp 07/19/2025",
+                  "reason_for_recall": "Defective Delivery System: Leakage observed after oral solution was repackaged into unit-dose syringes.",
+                  "dates": {
+                    "recall_initiation_date": "20250217",
+                    "report_date": "20250312",
+                    "termination_date": "",
+                    "center_classification_date": "20250305"
+                  },
+                  "status": "Ongoing",
+                  "classification": "Class II",
+                  "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:24.980294Z"
+                },
+                {
+                  "feed": "drug",
+                  "product_description": "Vitamin D Supplement Drops, 400 IU, Cherry Flavored 50mL bottle, Distributed by: Akorn Operating Company LLC, Gurnee, IL 60031. ALL NDCs",
+                  "recalling_firm": "Akorn, Inc.",
+                  "recall_number": "D-0855-2023",
+                  "code_info": "All Lots",
+                  "reason_for_recall": "CGMP Deviations: Firm went out of business and could no longer continue stability studies.",
+                  "dates": {
+                    "recall_initiation_date": "20230426",
+                    "report_date": "20230607",
+                    "termination_date": "",
+                    "center_classification_date": "20230601"
+                  },
+                  "status": "Ongoing",
+                  "classification": "Class II",
+                  "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:24.980294Z"
+                },
+                {
+                  "feed": "drug",
+                  "product_description": "Infants Aqueous Vitamin D Oral Drops 400 IU/mL 50 mL (1 2/3 fl oz) Manufactrued by: Silarx Pharmaceuticals, Inc. 19 West Street Spring Valley, NY 10977 USA",
+                  "recalling_firm": "Cardinal Health Inc.",
+                  "recall_number": "D-0503-2021",
+                  "code_info": "All Lots distributed 02/23/2021 through 03/10/2021.",
+                  "reason_for_recall": "CGMP Deviations: Intermittent exposure to temperature excursion during storage.",
+                  "dates": {
+                    "recall_initiation_date": "20210315",
+                    "report_date": "20210602",
+                    "termination_date": "20240617",
+                    "center_classification_date": "20210524"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class II",
+                  "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:24.980294Z"
+                },
+                {
+                  "feed": "drug",
+                  "product_description": "Vitamin D 50,000 unit/ml, 5 mL amber vial, Injectable Liquid, Rx only, Partell Specialty Pharmacy, 5835 S. Eastern Ave. # 101, Las Vegas, NV 89119 (702) 791-3800",
+                  "recalling_firm": "Partell Specialty Pharmacy",
+                  "recall_number": "D-0646-2018",
+                  "code_info": "Lot#: 20180220@4, BUD 03/22/2018, 20180221@14, BUD 03/23/2018, 20180228@1, BUD 03/30/2018.",
+                  "reason_for_recall": "Lack of Assurance Sterility: Firm is recalling various drug products due to a non-approved method of sterilization.",
+                  "dates": {
+                    "recall_initiation_date": "20180322",
+                    "report_date": "20180425",
+                    "termination_date": "20190115",
+                    "center_classification_date": "20180417"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class II",
+                  "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:24.980294Z"
+                },
+                {
+                  "feed": "drug",
+                  "product_description": "Psoriasin Daytime Relief Cream with Vitamin D & Oatmeal, (Coal Tar 1.25%), packagedin 57 g plastic tubes, Distributed by: ALVA-AMCO Pharmacal Cos., Inc., Niles, IL 60714, USA.   NDC 52389-745-56, UPC 0 72959 01045 4.",
+                  "recalling_firm": "Alva-Amco Pharmacal Companies., Inc.",
+                  "recall_number": "D-0589-2018",
+                  "code_info": "Lot #:  61031, 61041, 61051, Exp. 4/30/2018; 61601, 61651, 61751,  Exp. 6/30/2018; 61941, Exp. 7/31/2018; 62321, Exp. 8/31/2018; 62561, 62721, Exp. 9/30/2018; 62871, Exp. 10/31/2018; 63331,  Exp. 11/30/2018; 72011, 72021, 72131, 72141, Exp. 7/31/2019; 72221, 72441, Exp. 8/31/2019; 72921, Exp. 10/31/2019; 73351, Exp. 11/30/2019",
+                  "reason_for_recall": "Subpotent Drug: The product has failed to maintain its label claim of coal tar throughout its labeled 24-month expiry period.",
+                  "dates": {
+                    "recall_initiation_date": "20180309",
+                    "report_date": "20180321",
+                    "termination_date": "20200626",
+                    "center_classification_date": "20180312"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class III",
+                  "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:24.980294Z"
+                }
+              ],
+              "retrieved_at": "2026-09-12T19:34:24.980294Z",
+              "metadata": {
+                "feeds": [
+                  {
+                    "feed": "food",
+                    "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+                    "status": "success",
+                    "last_updated": "2026-09-02",
+                    "returned_records": 5,
+                    "matched_records": 5
+                  },
+                  {
+                    "feed": "drug",
+                    "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+                    "status": "success",
+                    "last_updated": "2026-09-02",
+                    "returned_records": 5,
+                    "matched_records": 5
+                  }
+                ],
+                "last_updated": {
+                  "food": "2026-09-02",
+                  "drug": "2026-09-02"
+                }
+              },
+              "source_errors": [],
+              "coverage": "These are potential text/category matches only. They do not establish that your bottle is recalled. Compare the exact product, lot/code, and FDA status with the bottle before acting; a terminated record is not represented as active."
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "status": "success",
+            "result": {
+              "source": "Curated NIH/NCCIH reference rules",
+              "findings": [],
+              "coverage": "This is a small, curated reference set. No matching rule does not mean no interaction, no reported interaction, or that this product is safe for you."
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "status": "success",
+            "result": {
+              "source": "NIH ODS adult reference table",
+              "limits": [
+                {
+                  "ingredient": "Vitamin D",
+                  "adult_reference_limit": "100 mcg (4,000 IU) per day",
+                  "scope": "Adult tolerable upper intake level from all sources unless a clinician directs otherwise.",
+                  "source": "NIH ODS Vitamin D Fact Sheet for Health Professionals",
+                  "source_url": "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/"
+                }
+              ],
+              "coverage": "Actual product amount, servings, other products, diet, and personal directions are unknown. These references cannot determine whether a personal dose is safe."
+            }
+          }
+        ],
+        "identity": {
+          "id": "20581",
+          "name": "Vitamin D Gummy Vitamins",
+          "brand": "Nutrition Now",
+          "ingredients": [
+            "Calories",
+            "Total Carbohydrates",
+            "Sugar",
+            "Vitamin D",
+            "Glucose Syrup",
+            "Sucrose",
+            "Gelatin",
+            "Citric Acid",
+            "Natural flavors",
+            "Lactic Acid",
+            "colors",
+            "fractionated Coconut Oil",
+            "Beeswax"
+          ],
+          "ingredient_status": "available",
+          "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+          "source": "NIH Dietary Supplement Label Database (DSLD)",
+          "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Vitamin+D&size=5",
+          "confirmed": true,
+          "confirmation": "user_label_selection",
+          "clinical_verification": "not_clinically_verified"
+        },
+        "candidates": [],
+        "recall": {
+          "source": "openFDA food and drug enforcement feeds",
+          "source_urls": [
+            "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+            "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5"
+          ],
+          "query_phrase": "vitamin d",
+          "status": "potential_matches",
+          "recalled": null,
+          "records": [
+            {
+              "feed": "food",
+              "product_description": "1) Clover Valley Vitamin D Whole Milk, 1 GAL (3.78 L), packaged in a plastic jug, UPC: 070744002196 2) Clover Valley Vitamin D Whole Milk, 1/2 GAL (1.89 L), packaged in a plastic jug, UPC:  070744009645",
+              "recalling_firm": "Dollar General Corporation",
+              "recall_number": "H-0403-2025",
+              "code_info": "Exact lot codes/expiration dates are unknown.",
+              "reason_for_recall": "Temperature abuse due to temperature excursion in one shipping trailer",
+              "dates": {
+                "recall_initiation_date": "20250714",
+                "report_date": "20250813",
+                "termination_date": "20260306",
+                "center_classification_date": "20250806"
+              },
+              "status": "Terminated",
+              "classification": "Class II",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:24.980294Z"
+            },
+            {
+              "feed": "food",
+              "product_description": "1. Country Club, Price Chopper, Good & Gather, Hiland, Belfonte, Great Value, Hen House Vitamin D Whole Milk, 1 gallon. 2. Country Club, Price Chopper, Good & Gather, Best Choice, Good Nature Family Farms Vitamin D Whole Milk, Half Gallon. 3. Belfonte, Hiland Vitamin D Whole Milk, Quart",
+              "recalling_firm": "Hiland Dairy Foods Company, LLC",
+              "recall_number": "F-1241-2024",
+              "code_info": "1. Best If Use By: 04/18/24 29-162A 2. Best If Use By: 04/18/24 29-162 3. Best If Use By: 04/18/24 29-162",
+              "reason_for_recall": "May contain potable water.",
+              "dates": {
+                "recall_initiation_date": "20240412",
+                "report_date": "20240522",
+                "termination_date": "20250909",
+                "center_classification_date": "20240514"
+              },
+              "status": "Terminated",
+              "classification": "Class III",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:24.980294Z"
+            },
+            {
+              "feed": "food",
+              "product_description": "Dr. Berg Nutritionals, Liquid Vitamin D with Zinc Dietary Supplement ( Liquid Vitamin D ), Individual 1 FL OZ bottle (with no secondary packaging), Glass bottle.     The label of the Liquid Vitamin D product includes the following storage instructions:  Store in a cool, dark place, with a lid.",
+              "recalling_firm": "Health & Wellness Center, Inc.",
+              "recall_number": "F-0092-2022",
+              "code_info": "Lot #2104637A, best by April 2023",
+              "reason_for_recall": "Product recalled because of the presence of mold and/or yeast found in amounts that exceed the product's established specifications .",
+              "dates": {
+                "recall_initiation_date": "20210924",
+                "report_date": "20211110",
+                "termination_date": "20230614",
+                "center_classification_date": "20211101"
+              },
+              "status": "Terminated",
+              "classification": "Class II",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:24.980294Z"
+            },
+            {
+              "feed": "food",
+              "product_description": "Live Better vegan vitamin d-3 by CVS Health, 50 mcg (2000 IU), 40 tablets in blue PET jar, Distributed by: CVS Pharmacy, Inc. one CVS Drive, Woonsocket, RI 02895, UPC 0 50428 62499 9",
+              "recalling_firm": "New Generation Wellness Inc.",
+              "recall_number": "F-0384-2021",
+              "code_info": "Product code 618-40 (618 is product, -40 is 40 count)  Lot numbers: 003925, exp. 03/22; 004546, exp. 05/22",
+              "reason_for_recall": "Vitamin D3 stability sample analyzed and found to be less than 100% of label claim.",
+              "dates": {
+                "recall_initiation_date": "20210308",
+                "report_date": "20210414",
+                "termination_date": "20220422",
+                "center_classification_date": "20210402"
+              },
+              "status": "Terminated",
+              "classification": "Class III",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:24.980294Z"
+            },
+            {
+              "feed": "food",
+              "product_description": "The Vitamin Shoppe Calcium Citrate Plus Magnesium & Vitamin D. 100 count (VS-1086; UPC:6653601086), 300 count (VS-1087; UPC: 6653601087), and 600 count (VS-1123; UPC: 6653601123).",
+              "recalling_firm": "Vitamin Shoppe",
+              "recall_number": "F-1143-2020",
+              "code_info": "Lot#182236",
+              "reason_for_recall": "Sample analysis revealed product is sub-potent for Vitamin D",
+              "dates": {
+                "recall_initiation_date": "20200629",
+                "report_date": "20200812",
+                "termination_date": "20210107",
+                "center_classification_date": "20200806"
+              },
+              "status": "Terminated",
+              "classification": "Class III",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:24.980294Z"
+            },
+            {
+              "feed": "drug",
+              "product_description": "Ergocalciferol - Vitamin D Supplement - 10 mcg (400 Units) per 0.05 mL Oral Syringe, Delivers: 0.05 mL Oral Solution, Mfg by: Westminster, Pkg by: Safecor Health, LLC, Columbus, OH 43204, NDC: 69367028302.",
+              "recalling_firm": "Safecor Health, LLC",
+              "recall_number": "D-0250-2025",
+              "code_info": "Lot #:  24300812, Exp 01/31/2025; 24530836, Exp 07/19/2025",
+              "reason_for_recall": "Defective Delivery System: Leakage observed after oral solution was repackaged into unit-dose syringes.",
+              "dates": {
+                "recall_initiation_date": "20250217",
+                "report_date": "20250312",
+                "termination_date": "",
+                "center_classification_date": "20250305"
+              },
+              "status": "Ongoing",
+              "classification": "Class II",
+              "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:24.980294Z"
+            },
+            {
+              "feed": "drug",
+              "product_description": "Vitamin D Supplement Drops, 400 IU, Cherry Flavored 50mL bottle, Distributed by: Akorn Operating Company LLC, Gurnee, IL 60031. ALL NDCs",
+              "recalling_firm": "Akorn, Inc.",
+              "recall_number": "D-0855-2023",
+              "code_info": "All Lots",
+              "reason_for_recall": "CGMP Deviations: Firm went out of business and could no longer continue stability studies.",
+              "dates": {
+                "recall_initiation_date": "20230426",
+                "report_date": "20230607",
+                "termination_date": "",
+                "center_classification_date": "20230601"
+              },
+              "status": "Ongoing",
+              "classification": "Class II",
+              "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:24.980294Z"
+            },
+            {
+              "feed": "drug",
+              "product_description": "Infants Aqueous Vitamin D Oral Drops 400 IU/mL 50 mL (1 2/3 fl oz) Manufactrued by: Silarx Pharmaceuticals, Inc. 19 West Street Spring Valley, NY 10977 USA",
+              "recalling_firm": "Cardinal Health Inc.",
+              "recall_number": "D-0503-2021",
+              "code_info": "All Lots distributed 02/23/2021 through 03/10/2021.",
+              "reason_for_recall": "CGMP Deviations: Intermittent exposure to temperature excursion during storage.",
+              "dates": {
+                "recall_initiation_date": "20210315",
+                "report_date": "20210602",
+                "termination_date": "20240617",
+                "center_classification_date": "20210524"
+              },
+              "status": "Terminated",
+              "classification": "Class II",
+              "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:24.980294Z"
+            },
+            {
+              "feed": "drug",
+              "product_description": "Vitamin D 50,000 unit/ml, 5 mL amber vial, Injectable Liquid, Rx only, Partell Specialty Pharmacy, 5835 S. Eastern Ave. # 101, Las Vegas, NV 89119 (702) 791-3800",
+              "recalling_firm": "Partell Specialty Pharmacy",
+              "recall_number": "D-0646-2018",
+              "code_info": "Lot#: 20180220@4, BUD 03/22/2018, 20180221@14, BUD 03/23/2018, 20180228@1, BUD 03/30/2018.",
+              "reason_for_recall": "Lack of Assurance Sterility: Firm is recalling various drug products due to a non-approved method of sterilization.",
+              "dates": {
+                "recall_initiation_date": "20180322",
+                "report_date": "20180425",
+                "termination_date": "20190115",
+                "center_classification_date": "20180417"
+              },
+              "status": "Terminated",
+              "classification": "Class II",
+              "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:24.980294Z"
+            },
+            {
+              "feed": "drug",
+              "product_description": "Psoriasin Daytime Relief Cream with Vitamin D & Oatmeal, (Coal Tar 1.25%), packagedin 57 g plastic tubes, Distributed by: ALVA-AMCO Pharmacal Cos., Inc., Niles, IL 60714, USA.   NDC 52389-745-56, UPC 0 72959 01045 4.",
+              "recalling_firm": "Alva-Amco Pharmacal Companies., Inc.",
+              "recall_number": "D-0589-2018",
+              "code_info": "Lot #:  61031, 61041, 61051, Exp. 4/30/2018; 61601, 61651, 61751,  Exp. 6/30/2018; 61941, Exp. 7/31/2018; 62321, Exp. 8/31/2018; 62561, 62721, Exp. 9/30/2018; 62871, Exp. 10/31/2018; 63331,  Exp. 11/30/2018; 72011, 72021, 72131, 72141, Exp. 7/31/2019; 72221, 72441, Exp. 8/31/2019; 72921, Exp. 10/31/2019; 73351, Exp. 11/30/2019",
+              "reason_for_recall": "Subpotent Drug: The product has failed to maintain its label claim of coal tar throughout its labeled 24-month expiry period.",
+              "dates": {
+                "recall_initiation_date": "20180309",
+                "report_date": "20180321",
+                "termination_date": "20200626",
+                "center_classification_date": "20180312"
+              },
+              "status": "Terminated",
+              "classification": "Class III",
+              "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:24.980294Z"
+            }
+          ],
+          "retrieved_at": "2026-09-12T19:34:24.980294Z",
+          "metadata": {
+            "feeds": [
+              {
+                "feed": "food",
+                "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+                "status": "success",
+                "last_updated": "2026-09-02",
+                "returned_records": 5,
+                "matched_records": 5
+              },
+              {
+                "feed": "drug",
+                "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22vitamin+d%22&sort=recall_initiation_date%3Adesc&limit=5",
+                "status": "success",
+                "last_updated": "2026-09-02",
+                "returned_records": 5,
+                "matched_records": 5
+              }
+            ],
+            "last_updated": {
+              "food": "2026-09-02",
+              "drug": "2026-09-02"
+            }
+          },
+          "source_errors": [],
+          "coverage": "These are potential text/category matches only. They do not establish that your bottle is recalled. Compare the exact product, lot/code, and FDA status with the bottle before acting; a terminated record is not represented as active."
+        },
+        "interactions": [],
+        "interaction_coverage": "This is a small, curated reference set. No matching rule does not mean no interaction, no reported interaction, or that this product is safe for you.",
+        "dosage": [
+          {
+            "ingredient": "Vitamin D",
+            "adult_reference_limit": "100 mcg (4,000 IU) per day",
+            "scope": "Adult tolerable upper intake level from all sources unless a clinician directs otherwise.",
+            "source": "NIH ODS Vitamin D Fact Sheet for Health Professionals",
+            "source_url": "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/"
+          }
+        ],
+        "dosage_coverage": "Actual product amount, servings, other products, diet, and personal directions are unknown. These references cannot determine whether a personal dose is safe.",
+        "provenance": {
+          "identity": "NIH DSLD live catalog data after user label selection.",
+          "recall": "openFDA food and drug enforcement text/category search; not lot matching.",
+          "interactions": "Curated NIH/NCCIH reference rules, bounded coverage.",
+          "dosage": "Small NIH ODS adult reference table; actual intake unknown."
+        }
+      },
+      "responseText": null
+    },
+    {
+      "label": "fish-oil:recheck-after-profile-change",
+      "capturedAt": "2026-09-12T19:34:38.381Z",
+      "request": {
+        "scan": "Fish oil",
+        "profile": {
+          "meds": [
+            "warfarin",
+            "metformin"
+          ],
+          "conditions": [
+            "hypertension"
+          ]
+        },
+        "selected_id": "64567"
+      },
+      "status": 200,
+      "statusText": "OK",
+      "responseJson": {
+        "status": "complete",
+        "checked_at": "2026-09-12T19:34:38.357580Z",
+        "answer": "You selected the NIH DSLD label 'Fish Oil' (Harry & David). This is a user label selection, not clinical or physical-bottle verification. openFDA returned 5 potential product-description match(es); compare exact product and lot/code with the bottle. This does not establish that the bottle is recalled. The cited reference set produced 1 review prompt(s). 0 adult reference limit(s) matched the official ingredients; actual intake is unknown and the table cannot determine personal dose safety. Discuss the confirmed label, amount, and bottle lot/code with a pharmacist or clinician.",
+        "tools": 4,
+        "tool_trace": [
+          {
+            "tool": "identify_supplement",
+            "status": "success",
+            "result": {
+              "status": "success",
+              "identity": {
+                "id": "64567",
+                "name": "Fish Oil",
+                "brand": "Harry & David",
+                "ingredients": [
+                  "Calories",
+                  "Calories from Fat",
+                  "Total Fat",
+                  "Eicosapentaenoic Acid",
+                  "Docosahexaenoic Acid",
+                  "Gelatin",
+                  "purified Water and Glycerin (vegetable source) gelcap",
+                  "Mixed Tocopherols"
+                ],
+                "ingredient_status": "available",
+                "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+                "source": "NIH Dietary Supplement Label Database (DSLD)",
+                "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Fish+oil&size=5",
+                "confirmed": true,
+                "confirmation": "user_label_selection",
+                "clinical_verification": "not_clinically_verified"
+              },
+              "coverage": "The user selected this catalog label; it is not a clinical or physical-bottle verification."
+            }
+          },
+          {
+            "tool": "check_recall",
+            "status": "success",
+            "result": {
+              "source": "openFDA food and drug enforcement feeds",
+              "source_urls": [
+                "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5"
+              ],
+              "query_phrase": "fish oil",
+              "status": "potential_matches",
+              "recalled": null,
+              "records": [
+                {
+                  "feed": "food",
+                  "product_description": "HI-TECH PHARMACEUTICALS FISH OIL HEART AND BRAIN HEALTH EPA/DHA OMEGA 3 FATTY ACIDS SUPPORTS CARDIOVASCULAR HEALTH MAY HELP WITH JOINT PAIN MAY IMPROVE COGNITIVE FUNCTION 90 SOFT GELS UPC 8 11836 02585 9 HI-TECH PHARMACEUTICALS, INC. 6015-B Unity Drive Norcross, GA 30071",
+                  "recalling_firm": "Hi-Tech Pharmaceuticals Inc.",
+                  "recall_number": "H-0589-2025",
+                  "code_info": "Lot 517120551 Exp Date 04/30",
+                  "reason_for_recall": "Unapproved Drug Claims.",
+                  "dates": {
+                    "recall_initiation_date": "20250806",
+                    "report_date": "20250924",
+                    "termination_date": "20260219",
+                    "center_classification_date": "20250912"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class III",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:34.526159Z"
+                },
+                {
+                  "feed": "food",
+                  "product_description": "Item FG 10084, Barlean s, Ultra EPA Fish Oil 1250 mg Omega-3, 60 softgels per bottle, UPC 7 05875 61005 6.",
+                  "recalling_firm": "Barlean's Llc",
+                  "recall_number": "F-1361-2019",
+                  "code_info": "Best By of January 2022 and earlier",
+                  "reason_for_recall": "Barlean's dietary supplement product is recalled due to undeclared Sulfites.  Sulfite levels of finished goods does not exceed 10 ppm.",
+                  "dates": {
+                    "recall_initiation_date": "20190506",
+                    "report_date": "20190522",
+                    "termination_date": "20201015",
+                    "center_classification_date": "20190516"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class III",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:34.526159Z"
+                },
+                {
+                  "feed": "food",
+                  "product_description": "Item FG 10083, Barlean's, Ultra DHA Fish Oil Omega-3, Lemonade Flavor, 90 softgels per bottle, UPC 7 05875 61004 9.",
+                  "recalling_firm": "Barlean's Llc",
+                  "recall_number": "F-1360-2019",
+                  "code_info": "Best By of January 2022 and earlier",
+                  "reason_for_recall": "Barlean's dietary supplement product is recalled due to undeclared Sulfites.  Sulfite levels of finished goods does not exceed 10 ppm.",
+                  "dates": {
+                    "recall_initiation_date": "20190506",
+                    "report_date": "20190522",
+                    "termination_date": "20201015",
+                    "center_classification_date": "20190516"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class III",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:34.526159Z"
+                },
+                {
+                  "feed": "food",
+                  "product_description": "Item FG 10085, Barleans, Ultra EPA-DHA Fish Oil 1,300 mg Omega-3 Orange Flavor, 60 Softgels per bottle. UPC 7 05875 61006 3.",
+                  "recalling_firm": "Barlean's Llc",
+                  "recall_number": "F-1362-2019",
+                  "code_info": "Best By of January 2022 and earlier",
+                  "reason_for_recall": "Barlean's dietary supplement product is recalled due to undeclared Sulfites.  Sulfite levels of finished goods does not exceed 10 ppm.",
+                  "dates": {
+                    "recall_initiation_date": "20190506",
+                    "report_date": "20190522",
+                    "termination_date": "20201015",
+                    "center_classification_date": "20190516"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class III",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:34.526159Z"
+                },
+                {
+                  "feed": "food",
+                  "product_description": "Item FG 10089,  Barlean s, Fish Oil Omega-3 EPA/DHA Orange Flavor, 100 Softgels per bottle. UPC 7 05875 61007 0.    Item FG 10090,  Barlean s, Fish Oil Omega-3 EPA/DHA Orange Flavor, 250 Softgels per bottle. UPC 7 05875 61008 7.",
+                  "recalling_firm": "Barlean's Llc",
+                  "recall_number": "F-1363-2019",
+                  "code_info": "Best By of January 2022 and earlier",
+                  "reason_for_recall": "Barlean's dietary supplement product is recalled due to undeclared Sulfites.  Sulfite levels of finished goods does not exceed 10 ppm.",
+                  "dates": {
+                    "recall_initiation_date": "20190506",
+                    "report_date": "20190522",
+                    "termination_date": "20201015",
+                    "center_classification_date": "20190516"
+                  },
+                  "status": "Terminated",
+                  "classification": "Class III",
+                  "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                  "retrieved_at": "2026-09-12T19:34:34.526159Z"
+                }
+              ],
+              "retrieved_at": "2026-09-12T19:34:34.526159Z",
+              "metadata": {
+                "feeds": [
+                  {
+                    "feed": "food",
+                    "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                    "status": "success",
+                    "last_updated": "2026-09-02",
+                    "returned_records": 5,
+                    "matched_records": 5
+                  },
+                  {
+                    "feed": "drug",
+                    "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                    "status": "not_found"
+                  }
+                ],
+                "last_updated": {
+                  "food": "2026-09-02"
+                }
+              },
+              "source_errors": [],
+              "coverage": "These are potential text/category matches only. They do not establish that your bottle is recalled. Compare the exact product, lot/code, and FDA status with the bottle before acting; a terminated record is not represented as active."
+            }
+          },
+          {
+            "tool": "check_interactions",
+            "status": "success",
+            "result": {
+              "source": "Curated NIH/NCCIH reference rules",
+              "findings": [
+                {
+                  "risk": "REVIEW",
+                  "review_priority": "caution",
+                  "against": "warfarin",
+                  "note": "Omega-3 products merit a pharmacist review with warfarin. NIH ODS describes mixed evidence and notes INR monitoring; do not change either product from this result alone.",
+                  "source": "NIH ODS Omega-3 Fact Sheet for Health Professionals",
+                  "source_url": "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/#h8",
+                  "severity_note": "MedGuard review priority, not an official clinical severity rating."
+                }
+              ],
+              "coverage": "This is a small, curated reference set. No matching rule does not mean no interaction, no reported interaction, or that this product is safe for you."
+            }
+          },
+          {
+            "tool": "check_dosage",
+            "status": "success",
+            "result": {
+              "source": "NIH ODS adult reference table",
+              "limits": [],
+              "coverage": "Actual product amount, servings, other products, diet, and personal directions are unknown. These references cannot determine whether a personal dose is safe."
+            }
+          }
+        ],
+        "identity": {
+          "id": "64567",
+          "name": "Fish Oil",
+          "brand": "Harry & David",
+          "ingredients": [
+            "Calories",
+            "Calories from Fat",
+            "Total Fat",
+            "Eicosapentaenoic Acid",
+            "Docosahexaenoic Acid",
+            "Gelatin",
+            "purified Water and Glycerin (vegetable source) gelcap",
+            "Mixed Tocopherols"
+          ],
+          "ingredient_status": "available",
+          "ingredient_coverage": "Ingredient names are copied from the NIH DSLD label record.",
+          "source": "NIH Dietary Supplement Label Database (DSLD)",
+          "source_url": "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=Fish+oil&size=5",
+          "confirmed": true,
+          "confirmation": "user_label_selection",
+          "clinical_verification": "not_clinically_verified"
+        },
+        "candidates": [],
+        "recall": {
+          "source": "openFDA food and drug enforcement feeds",
+          "source_urls": [
+            "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+            "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5"
+          ],
+          "query_phrase": "fish oil",
+          "status": "potential_matches",
+          "recalled": null,
+          "records": [
+            {
+              "feed": "food",
+              "product_description": "HI-TECH PHARMACEUTICALS FISH OIL HEART AND BRAIN HEALTH EPA/DHA OMEGA 3 FATTY ACIDS SUPPORTS CARDIOVASCULAR HEALTH MAY HELP WITH JOINT PAIN MAY IMPROVE COGNITIVE FUNCTION 90 SOFT GELS UPC 8 11836 02585 9 HI-TECH PHARMACEUTICALS, INC. 6015-B Unity Drive Norcross, GA 30071",
+              "recalling_firm": "Hi-Tech Pharmaceuticals Inc.",
+              "recall_number": "H-0589-2025",
+              "code_info": "Lot 517120551 Exp Date 04/30",
+              "reason_for_recall": "Unapproved Drug Claims.",
+              "dates": {
+                "recall_initiation_date": "20250806",
+                "report_date": "20250924",
+                "termination_date": "20260219",
+                "center_classification_date": "20250912"
+              },
+              "status": "Terminated",
+              "classification": "Class III",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:34.526159Z"
+            },
+            {
+              "feed": "food",
+              "product_description": "Item FG 10084, Barlean s, Ultra EPA Fish Oil 1250 mg Omega-3, 60 softgels per bottle, UPC 7 05875 61005 6.",
+              "recalling_firm": "Barlean's Llc",
+              "recall_number": "F-1361-2019",
+              "code_info": "Best By of January 2022 and earlier",
+              "reason_for_recall": "Barlean's dietary supplement product is recalled due to undeclared Sulfites.  Sulfite levels of finished goods does not exceed 10 ppm.",
+              "dates": {
+                "recall_initiation_date": "20190506",
+                "report_date": "20190522",
+                "termination_date": "20201015",
+                "center_classification_date": "20190516"
+              },
+              "status": "Terminated",
+              "classification": "Class III",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:34.526159Z"
+            },
+            {
+              "feed": "food",
+              "product_description": "Item FG 10083, Barlean's, Ultra DHA Fish Oil Omega-3, Lemonade Flavor, 90 softgels per bottle, UPC 7 05875 61004 9.",
+              "recalling_firm": "Barlean's Llc",
+              "recall_number": "F-1360-2019",
+              "code_info": "Best By of January 2022 and earlier",
+              "reason_for_recall": "Barlean's dietary supplement product is recalled due to undeclared Sulfites.  Sulfite levels of finished goods does not exceed 10 ppm.",
+              "dates": {
+                "recall_initiation_date": "20190506",
+                "report_date": "20190522",
+                "termination_date": "20201015",
+                "center_classification_date": "20190516"
+              },
+              "status": "Terminated",
+              "classification": "Class III",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:34.526159Z"
+            },
+            {
+              "feed": "food",
+              "product_description": "Item FG 10085, Barleans, Ultra EPA-DHA Fish Oil 1,300 mg Omega-3 Orange Flavor, 60 Softgels per bottle. UPC 7 05875 61006 3.",
+              "recalling_firm": "Barlean's Llc",
+              "recall_number": "F-1362-2019",
+              "code_info": "Best By of January 2022 and earlier",
+              "reason_for_recall": "Barlean's dietary supplement product is recalled due to undeclared Sulfites.  Sulfite levels of finished goods does not exceed 10 ppm.",
+              "dates": {
+                "recall_initiation_date": "20190506",
+                "report_date": "20190522",
+                "termination_date": "20201015",
+                "center_classification_date": "20190516"
+              },
+              "status": "Terminated",
+              "classification": "Class III",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:34.526159Z"
+            },
+            {
+              "feed": "food",
+              "product_description": "Item FG 10089,  Barlean s, Fish Oil Omega-3 EPA/DHA Orange Flavor, 100 Softgels per bottle. UPC 7 05875 61007 0.    Item FG 10090,  Barlean s, Fish Oil Omega-3 EPA/DHA Orange Flavor, 250 Softgels per bottle. UPC 7 05875 61008 7.",
+              "recalling_firm": "Barlean's Llc",
+              "recall_number": "F-1363-2019",
+              "code_info": "Best By of January 2022 and earlier",
+              "reason_for_recall": "Barlean's dietary supplement product is recalled due to undeclared Sulfites.  Sulfite levels of finished goods does not exceed 10 ppm.",
+              "dates": {
+                "recall_initiation_date": "20190506",
+                "report_date": "20190522",
+                "termination_date": "20201015",
+                "center_classification_date": "20190516"
+              },
+              "status": "Terminated",
+              "classification": "Class III",
+              "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+              "retrieved_at": "2026-09-12T19:34:34.526159Z"
+            }
+          ],
+          "retrieved_at": "2026-09-12T19:34:34.526159Z",
+          "metadata": {
+            "feeds": [
+              {
+                "feed": "food",
+                "api_url": "https://api.fda.gov/food/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                "status": "success",
+                "last_updated": "2026-09-02",
+                "returned_records": 5,
+                "matched_records": 5
+              },
+              {
+                "feed": "drug",
+                "api_url": "https://api.fda.gov/drug/enforcement.json?search=product_description%3A%22fish+oil%22&sort=recall_initiation_date%3Adesc&limit=5",
+                "status": "not_found"
+              }
+            ],
+            "last_updated": {
+              "food": "2026-09-02"
+            }
+          },
+          "source_errors": [],
+          "coverage": "These are potential text/category matches only. They do not establish that your bottle is recalled. Compare the exact product, lot/code, and FDA status with the bottle before acting; a terminated record is not represented as active."
+        },
+        "interactions": [
+          {
+            "risk": "REVIEW",
+            "review_priority": "caution",
+            "against": "warfarin",
+            "note": "Omega-3 products merit a pharmacist review with warfarin. NIH ODS describes mixed evidence and notes INR monitoring; do not change either product from this result alone.",
+            "source": "NIH ODS Omega-3 Fact Sheet for Health Professionals",
+            "source_url": "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/#h8",
+            "severity_note": "MedGuard review priority, not an official clinical severity rating."
+          }
+        ],
+        "interaction_coverage": "This is a small, curated reference set. No matching rule does not mean no interaction, no reported interaction, or that this product is safe for you.",
+        "dosage": [],
+        "dosage_coverage": "Actual product amount, servings, other products, diet, and personal directions are unknown. These references cannot determine whether a personal dose is safe.",
+        "provenance": {
+          "identity": "NIH DSLD live catalog data after user label selection.",
+          "recall": "openFDA food and drug enforcement text/category search; not lot matching.",
+          "interactions": "Curated NIH/NCCIH reference rules, bounded coverage.",
+          "dosage": "Small NIH ODS adult reference table; actual intake unknown."
+        }
+      },
+      "responseText": null
+    }
+  ],
+  "directApiChecks": [
+    {
+      "label": "loose-pill-fail-closed",
+      "capturedAt": "2026-09-12T19:33:40.402Z",
+      "request": {
+        "scan": "loose white pill without imprint",
+        "profile": {
+          "meds": [
+            "warfarin"
+          ],
+          "conditions": [
+            "hypertension"
+          ]
+        }
+      },
+      "status": 200,
+      "responseJson": {
+        "status": "unidentified",
+        "checked_at": "2026-09-12T19:33:40.398274Z",
+        "answer": "MedGuard cannot identify a loose or unknown pill without an imprint and its bottle label. Use the labeled bottle or ask a pharmacist; no catalog identity or safety conclusion was made.",
+        "tools": 0,
+        "tool_trace": [],
+        "identity": null,
+        "candidates": [],
+        "recall": null,
+        "interactions": [],
+        "interaction_coverage": null,
+        "dosage": [],
+        "dosage_coverage": null,
+        "provenance": {
+          "identity": "NIH DSLD live catalog data after user label selection.",
+          "recall": "openFDA food and drug enforcement text/category search; not lot matching.",
+          "interactions": "Curated NIH/NCCIH reference rules, bounded coverage.",
+          "dosage": "Small NIH ODS adult reference table; actual intake unknown."
+        }
+      },
+      "responseText": null
+    },
+    {
+      "label": "tampered-selected-id",
+      "capturedAt": "2026-09-12T19:33:40.831Z",
+      "request": {
+        "scan": "Fish oil",
+        "profile": {
+          "meds": [
+            "warfarin"
+          ],
+          "conditions": [
+            "hypertension"
+          ]
+        },
+        "selected_id": "synthetic-not-a-returned-dsld-candidate"
+      },
+      "status": 400,
+      "responseJson": {
+        "error": {
+          "code": "invalid_selected_id",
+          "message": "selected_id is not in fresh NIH DSLD results for this scan. Search again and choose a returned label."
+        }
+      },
+      "responseText": null
+    },
+    {
+      "label": "invalid-payload",
+      "capturedAt": "2026-09-12T19:33:40.834Z",
+      "request": {
+        "scan": 42,
+        "profile": {
+          "meds": [],
+          "conditions": []
+        }
+      },
+      "status": 400,
+      "responseJson": {
+        "error": {
+          "code": "invalid_scan",
+          "message": "scan must be a string."
+        }
+      },
+      "responseText": null
+    }
+  ],
+  "syntheticFaultInjection": {
+    "label": "synthetic_fault_injection_503",
+    "interception": true,
+    "response": {
+      "status": 503,
+      "code": "synthetic_fault_injection"
+    }
+  }
+}
