@@ -1,5 +1,7 @@
 # MedGuard — Research Report (for handoff / Codex)
 
+> **2026-09-12 correction:** [COMPETITORS.md](COMPETITORS.md) supersedes the competitor, positioning and consumer-design claims below; [EVALUATION.md](EVALUATION.md) records live counterexamples. In particular, the original Fish Oil recall was an unrelated tea-tree balm; ChatGPT can use live search and personal health context; monitoring, whole-cabinet reasoning and vision were not implemented at baseline. The earlier notes below are historical rationale, not verified shipped capabilities or approved pitch copy. Do not reuse the unverified prevalence/outcome figures in a submission.
+
 > Consolidates the research behind every product decision. Each section states the finding and
 > the sources. This is why MedGuard exists and why it should win. Pair with `DESIGN.md` (what/how).
 > Note on method: web searches + the repo's own prior primary-source research

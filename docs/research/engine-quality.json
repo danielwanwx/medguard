@@ -1,0 +1,354 @@
+{
+  "generated_at": "2026-09-12T18:31:49.404818+00:00",
+  "topic": "Compare Medisafe, MyTherapy, Drugs.com pill identifier, ChatGPT Health/photo search, CARE AI health assistant and Sesame AI clinical assistant for a consumer supplement cabinet evidence-review agent. Verify official product capabilities, limitations, recalls, interactions, health profile memory, caregiver sharing and doctor export. Identify defensible MedGuard differentiation without falsely claiming competitors lack web search. Also research Duolingo, Headspace and Finch official consumer design principles for friendly trustworthy onboarding.",
+  "pack_id": "generic",
+  "row_count": 110,
+  "invalid_evidence_count": 8,
+  "claim_ineligible_count": 55,
+  "unique_evidence_id_count": 110,
+  "evidence_id_collision_count": 0,
+  "unique_evidence_count": 55,
+  "unique_content_count": 55,
+  "duplicate_cluster_count": 12,
+  "average_quality_score": 0.559,
+  "tier_counts": {
+    "low": 48,
+    "high": 58,
+    "medium": 4
+  },
+  "connector_counts": {
+    "web_search": 40,
+    "web_page": 70
+  },
+  "duplicate_clusters": [
+    {
+      "cluster_id": "dup-0001",
+      "dedupe_key": "url:https://apps.apple.com/br/app/medsafeai-ai-doctor-assistant/id6738038008",
+      "evidence_ids": [
+        "chunk-d8e65040898dd489",
+        "chunk-55ee59d43cca903c",
+        "chunk-d06b9f16912752f2",
+        "chunk-5d28509bf5f5ec8d",
+        "chunk-0c1a2827275a87c6"
+      ],
+      "titles": [
+        "MedSafeAI: AI Doctor Assistant - App Store - Apple",
+        "MedSafeAI: AI Doctor Assistant - App Store - Apple",
+        "MedSafeAI: AI Doctor Assistant - App Store - Apple"
+      ],
+      "reason": "same canonical URL"
+    },
+    {
+      "cluster_id": "dup-0002",
+      "dedupe_key": "url:https://apps.apple.com/sk/app/medication-identifier-ai-scan/id6740236712",
+      "evidence_ids": [
+        "chunk-206a6951fa37f9db",
+        "chunk-3e2487510417e0e9",
+        "chunk-3cfd598109cd0c37",
+        "chunk-06d572ec320e4894"
+      ],
+      "titles": [
+        "Medication Identifier AI Scan - App Store",
+        "Medication Identifier AI Scan - App Store — More by Jamal Baga",
+        "Medication Identifier AI Scan - App Store"
+      ],
+      "reason": "same canonical URL"
+    },
+    {
+      "cluster_id": "dup-0003",
+      "dedupe_key": "url:https://health.amazon.com/health-ai/learn-more",
+      "evidence_ids": [
+        "chunk-bc55127d0a864dd0",
+        "chunk-4cbd3a690895751a",
+        "chunk-65b6e674bfb4bbef"
+      ],
+      "titles": [
+        "Amazon Health AI",
+        "https://health.amazon.com/health-ai/learn-more?ref_=hst_hp_health_ai",
+        "Amazon Health AI"
+      ],
+      "reason": "same canonical URL"
+    },
+    {
+      "cluster_id": "dup-0004",
+      "dedupe_key": "url:https://medisafe.com",
+      "evidence_ids": [
+        "chunk-f2403314e9cf7ea6",
+        "chunk-b182d0f1014ddc36",
+        "chunk-ee5c00e06e88322f",
+        "chunk-1982cfb40c65d738",
+        "chunk-8582a5c36a88bba9",
+        "chunk-88cf1f84b142c5d2"
+      ],
+      "titles": [
+        "Medisafe: Patient Engagement Platform for Pharma",
+        "Medisafe: Patient Engagement Platform for Pharma — Bring patient engagement closer to the therapy",
+        "https://medisafe.com/"
+      ],
+      "reason": "same canonical URL"
+    },
+    {
+      "cluster_id": "dup-0005",
+      "dedupe_key": "url:https://mojapteczka.pl/blog/en/best-medicine-cabinet-apps-2026-ranking",
+      "evidence_ids": [
+        "chunk-549266c5fc8b626b",
+        "chunk-2980d47aaa3b8d57",
+        "chunk-87e2e5c83b1019e0",
+        "chunk-a7617e5fce6cc8e9",
+        "chunk-e79ab4f9249dcaf3"
+      ],
+      "titles": [
+        "7 Home Medicine Cabinet Apps — Which Is Best? (2026)",
+        "7 Home Medicine Cabinet Apps — Which Is Best? (2026) — 1. mojApteczka",
+        "7 Home Medicine Cabinet Apps — Which Is Best? (2026) — 3. BEEP (BGPworks)"
+      ],
+      "reason": "same canonical URL"
+    },
+    {
+      "cluster_id": "dup-0006",
+      "dedupe_key": "url:https://myseniorcarehub.com/vs-medisafe",
+      "evidence_ids": [
+        "chunk-a199d97c246f2c69",
+        "chunk-4fc35f659b50029b",
+        "chunk-a92833075db86662",
+        "chunk-9093e618354a5fa2"
+      ],
+      "titles": [
+        "Medisafe vs MySeniorCareHub | Pill Reminder Apps",
+        "Medisafe vs MySeniorCareHub | Pill Reminder Apps",
+        "Medisafe vs MySeniorCareHub | Pill Reminder Apps"
+      ],
+      "reason": "same canonical URL"
+    },
+    {
+      "cluster_id": "dup-0007",
+      "dedupe_key": "url:https://openai.com/pt-BR/index/introducing-chatgpt-health",
+      "evidence_ids": [
+        "chunk-43f8cba783925b78",
+        "chunk-4deb004a50bd5efd",
+        "chunk-f2c8a33824bfbad4",
+        "chunk-263cc277663104ef"
+      ],
+      "titles": [
+        "Apresentamos o ChatGPT Health - OpenAI",
+        "Apresentamos o ChatGPT Health - OpenAI — Criado com privacidade e segurança no centro",
+        "Apresentamos o ChatGPT Health - OpenAI — Criado com médicos"
+      ],
+      "reason": "same canonical URL"
+    },
+    {
+      "cluster_id": "dup-0008",
+      "dedupe_key": "url:https://play.google.com/store/apps/details",
+      "evidence_ids": [
+        "chunk-f625ab7927f5b043",
+        "chunk-c59d5659750a7087",
+        "chunk-6e32b03429f9da87",
+        "chunk-b778abd62a1bbb7a",
+        "chunk-5fd86218cf5eedd5",
+        "chunk-f6b1c1aedc7419f0"
+      ],
+      "titles": [
+        "Medisafe Pill & Med Reminder - Apps on Google Play",
+        "Medisafe Pill & Med Reminder - Apps on Google Play — Medisafe Pill & Med Reminder",
+        "Pill Identifier &Health Report - Apps on Google Play"
+      ],
+      "reason": "same canonical URL"
+    },
+    {
+      "cluster_id": "dup-0009",
+      "dedupe_key": "url:https://pmc.ncbi.nlm.nih.gov/articles/PMC11391868",
+      "evidence_ids": [
+        "chunk-ba46ee1e2bf6a40d",
+        "chunk-f264c3c6a6c4790c",
+        "chunk-1f117d5d1775fb5c",
+        "chunk-a1c68670cfb434d2",
+        "chunk-e0dd7e1fd7f3c44d",
+        "chunk-d10d1fbe6e61540b",
+        "chunk-4b94d7b2884dad64",
+        "chunk-7f2b1396a3863bec",
+        "chunk-69f2f0629ec53e1b",
+        "chunk-4e386043d394a906",
+        "chunk-1b20142d8c0ba832",
+        "chunk-134f073d8350976a"
+      ],
+      "titles": [
+        "Identification of kidney-related medications using AI from self ...",
+        "Identification of kidney-related medications using AI from self ... — Wisit Cheungpasitporn",
+        "Identification of kidney-related medications using AI from self ... — Introduction"
+      ],
+      "reason": "same canonical URL"
+    },
+    {
+      "cluster_id": "dup-0010",
+      "dedupe_key": "url:https://pmc.ncbi.nlm.nih.gov/articles/PMC12712589",
+      "evidence_ids": [
+        "chunk-aa427dbb359d64fb",
+        "chunk-3275fd144c144ecf",
+        "chunk-7b89eefd63368a77",
+        "chunk-fc760665598b622d",
+        "chunk-6dd6e9a45cac7215",
+        "chunk-369ea0e5ee71e563",
+        "chunk-35ca192ed375439e",
+        "chunk-01c4e1938651f6f8",
+        "chunk-a04359b9bb707f2c",
+        "chunk-8e3f5657aedda1c5",
+        "chunk-29ad0a068235a0c2",
+        "chunk-abfe6321d1aa5839",
+        "chunk-56113b447e5318a6",
+        "chunk-e36d52ccb994f361"
+      ],
+      "titles": [
+        "Comparative evaluation of artificial intelligence platforms and drug ...",
+        "Comparative evaluation of artificial intelligence platforms and drug ... — Conclusion",
+        "Comparative evaluation of artificial intelligence platforms and drug ... — 1. Introduction"
+      ],
+      "reason": "same canonical URL"
+    },
+    {
+      "cluster_id": "dup-0012",
+      "dedupe_key": "url:https://www.facebook.com/medscape/posts/save-time-and-get-expert-answers-instantly-with-ai-search-medscapes-ai-powered-c/1566999353938154",
+      "evidence_ids": [
+        "ev-0035",
+        "ev-0064"
+      ],
+      "titles": [
+        "Save time and get expert answers instantly with AI Search ...",
+        "Save time and get expert answers instantly with AI Search ..."
+      ],
+      "reason": "same canonical URL"
+    },
+    {
+      "cluster_id": "dup-0014",
+      "dedupe_key": "url:https://www.mytherapyapp.com",
+      "evidence_ids": [
+        "chunk-a63231ed5d253ce1",
+        "chunk-f8b152747cf3a2fb"
+      ],
+      "titles": [
+        "MyTherapy: Medication Reminder and Pill Tracker App",
+        "MyTherapy: Medication Reminder and Pill Tracker App — Free availability"
+      ],
+      "reason": "same canonical URL"
+    }
+  ],
+  "conflict_flags": [
+    {
+      "flag_id": "directional_growth",
+      "support_evidence_ids": [
+        "chunk-f2403314e9cf7ea6",
+        "chunk-1f117d5d1775fb5c",
+        "chunk-4b94d7b2884dad64",
+        "chunk-4e386043d394a906",
+        "chunk-aa427dbb359d64fb",
+        "chunk-6dd6e9a45cac7215",
+        "chunk-ee5c00e06e88322f"
+      ],
+      "oppose_evidence_ids": [
+        "chunk-7f2b1396a3863bec"
+      ],
+      "support_terms": [
+        "growth",
+        "rising",
+        "increase",
+        "accelerating",
+        "strong demand"
+      ],
+      "oppose_terms": [
+        "decline",
+        "falling",
+        "decrease",
+        "weak demand",
+        "slowdown"
+      ],
+      "note": "Collected evidence contains directionally opposing terms; review before synthesis."
+    }
+  ],
+  "facet_coverage": {
+    "schema_version": "facet_coverage.v1",
+    "required_facets": 5,
+    "required_facets_covered": 0,
+    "missing_required_facets": [
+      "overview",
+      "primary_sources",
+      "current_evidence",
+      "alternatives",
+      "risks"
+    ],
+    "omitted_required_facets": [],
+    "relevance_threshold": 0.15,
+    "facets": [
+      {
+        "facet_id": "overview",
+        "required": true,
+        "planned": true,
+        "query_ids": [
+          "q-0001"
+        ],
+        "relevant_yield_count": 0,
+        "evidence_ids": [],
+        "status": "missing"
+      },
+      {
+        "facet_id": "primary_sources",
+        "required": true,
+        "planned": true,
+        "query_ids": [
+          "q-0002"
+        ],
+        "relevant_yield_count": 0,
+        "evidence_ids": [],
+        "status": "missing"
+      },
+      {
+        "facet_id": "current_evidence",
+        "required": true,
+        "planned": true,
+        "query_ids": [
+          "q-0003"
+        ],
+        "relevant_yield_count": 0,
+        "evidence_ids": [],
+        "status": "missing"
+      },
+      {
+        "facet_id": "alternatives",
+        "required": true,
+        "planned": true,
+        "query_ids": [
+          "q-0004"
+        ],
+        "relevant_yield_count": 0,
+        "evidence_ids": [],
+        "status": "missing"
+      },
+      {
+        "facet_id": "risks",
+        "required": true,
+        "planned": true,
+        "query_ids": [
+          "q-0005"
+        ],
+        "relevant_yield_count": 0,
+        "evidence_ids": [],
+        "status": "missing"
+      }
+    ]
+  },
+  "relevance_preview_evidence_ids": [
+    "chunk-a63231ed5d253ce1",
+    "chunk-549266c5fc8b626b",
+    "chunk-f2403314e9cf7ea6",
+    "chunk-f625ab7927f5b043",
+    "chunk-206a6951fa37f9db",
+    "chunk-aa427dbb359d64fb",
+    "chunk-43f8cba783925b78",
+    "chunk-a199d97c246f2c69"
+  ],
+  "warnings": [
+    "8 invalid evidence row(s) excluded from claims.",
+    "47 discovery-only evidence row(s) excluded from claims.",
+    "55 duplicate evidence row(s) detected across 12 cluster(s).",
+    "48 low-quality evidence row(s) need source review.",
+    "1 directional conflict flag(s) need review before synthesis."
+  ]
+}
