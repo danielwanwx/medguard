@@ -2,6 +2,8 @@
 
 Updated 2026-09-12. This replaces the initial hypothesis-driven notes, which mixed intended features with shipped behavior and misidentified a Fish Oil recall. Git history preserves those earlier notes; they are not current pitch copy.
 
+**Later same-day direction review:** [Supplement purchasing deep research](docs/research/2026-09-12-product-direction-deep-dive.md) and its [user-feedback ledger](docs/research/2026-09-12-user-feedback-ledger.md) supersede the scope of the earlier competitor comparison for the Costco/CVS purchasing question. Direct scanner/stack competitors already cover much of the proposed feature set. The report recommends The Missing 20 for this competition on the basis of bounded, verifiable agent work, explicitly excluding video and submission-package readiness. A narrower MedGuard evidence-and-addition review remains a hypothesis to test, not a shipped pivot.
+
 ## Competition
 
 [Official rules](https://agentsforhumans.devpost.com/rules): five equally weighted criteria—Technical Implementation, Design, Potential Impact, Creativity & Originality, Presentation—with Technical Implementation the first tiebreaker. Deadline is 2026-09-14 17:00 Pacific. Required submission materials include the public repository, architecture and a public YouTube/Vimeo demo of at most five minutes. An appealing everyday topic does not substitute for technical depth or proof that the work runs.
@@ -51,6 +53,8 @@ Adult reference limits cite ODS fact sheets for [Vitamin D](https://ods.od.nih.g
 We removed unsourced prevalence figures and claims that the app prevents ER errors, continuously protects people, or is inherently more novel than enterprise agents. Impact and novelty need evidence, whichever problem domain is chosen.
 
 ## Deadline choice: MedGuard versus The Missing 20 / LogisticPilot
+
+**Historical readiness assessment:** This section answers an earlier delivery-readiness question. It is not the answer to the later request to compare intrinsic problem and technical value; use the deep research linked above for that decision.
 
 This is a dated internal judgment, not a prediction of judges' votes. MedGuard's final local flow is newly verified in [ACCEPTANCE.md](ACCEPTANCE.md). The prior project's comparison is based on its [September 11 authoritative finalization ledger](https://github.com/danielwanwx/the-missing-20/blob/main/docs/submission/finalization-tracker.md), not a new runtime test in this MedGuard session.
 

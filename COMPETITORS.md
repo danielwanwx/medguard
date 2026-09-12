@@ -2,6 +2,8 @@
 
 Research date: 2026-09-12. This is a primary-source feature comparison, not a hands-on review of paid competitor apps or a clinical efficacy study. “Not documented on the reviewed page” does not mean a competitor lacks a feature.
 
+**Later same-day research update:** The comparison below was scoped to medication/cabinet workflows and under-covered supplement purchasing. The [product-direction deep dive](docs/research/2026-09-12-product-direction-deep-dive.md) adds direct competitors SuppCo, Suppi, Suppie, SuppScan AI and Prove It, plus a [public user-feedback ledger](docs/research/2026-09-12-user-feedback-ledger.md). Their advertised and user-reported overlap means that scanning, profiles, whole-stack review, citations and pharmacist sharing must not be presented as exclusive advantages. The new report compares MedGuard with The Missing 20 independently of video/submission readiness; its proposed purchasing workflow is not shipped. Baseline-specific gaps below are historical; [ACCEPTANCE.md](ACCEPTANCE.md) owns current implementation status.
+
 ## The defensible position
 
 **A supplement-cabinet review you can take to your pharmacist: confirm the label, inspect the evidence, keep a dated record.**
