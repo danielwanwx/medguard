@@ -1,0 +1,134 @@
+/* MedGuard design system — clean, trustworthy, mobile-first consumer health app.
+   Reuses Geist fonts + Phosphor icons from styles.css; all layout lives here (mg- prefix). */
+:root {
+  --mg-bg: #f6f8f6;
+  --mg-surface: #ffffff;
+  --mg-ink: #1a201c;
+  --mg-muted: #6b756f;
+  --mg-faint: #9aa39d;
+  --mg-line: #e8ebe8;
+  --mg-green: #1f9d55;
+  --mg-green-ink: #0f2e1c;
+  --mg-green-soft: #eef9f0;
+  --mg-red: #e5533c;
+  --mg-red-soft: #fdf1ef;
+  --mg-red-line: #f2c4b6;
+  --mg-warn: #e0a020;
+  --mg-warn-soft: #fffaf0;
+  --mg-warn-line: #f0e0b0;
+  --mg-blue-ink: #2c5aa0;
+  --mg-blue-soft: #eef3fc;
+  --mg-blue-line: #cdddf5;
+  --mg-radius: 16px;
+  --mg-shadow: 0 1px 2px rgba(20,32,26,.04), 0 8px 24px rgba(20,32,26,.05);
+}
+* { box-sizing: border-box; }
+html, body { overflow-x: hidden; max-width: 100%; }
+body { margin: 0; background: var(--mg-bg); color: var(--mg-ink);
+  font-family: Geist, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+
+.mg-app { max-width: 940px; margin: 0 auto; padding: 28px 20px 96px; }
+
+/* header */
+.mg-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+.mg-mark { width: 42px; height: 42px; border-radius: 12px; background: var(--mg-green-ink);
+  color: #7be0a3; display: grid; place-items: center; font-size: 21px; flex-shrink: 0; }
+.mg-title { margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -.01em; line-height: 1.1; }
+.mg-title b { color: var(--mg-green); font-weight: 700; }
+.mg-tagline { font-size: 13.5px; color: var(--mg-muted); margin-top: 2px; }
+
+/* profile */
+.mg-profile { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 20px; }
+.mg-profile-label { font-size: 11.5px; letter-spacing: .05em; color: var(--mg-faint); font-weight: 700; }
+.mg-profile-hint { font-size: 11.5px; color: var(--mg-faint); }
+.mg-chip { display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; border-radius: 999px;
+  font-size: 12.5px; font-weight: 600; border: 1px solid var(--mg-line); background: #f6f6f6; color: var(--mg-muted); }
+.mg-chip.med { color: var(--mg-blue-ink); background: var(--mg-blue-soft); border-color: var(--mg-blue-line); }
+.mg-chip.cond { color: #a06a20; background: var(--mg-warn-soft); border-color: var(--mg-warn-line); }
+.mg-chip.add { cursor: pointer; border-style: dashed; }
+
+/* cards */
+.mg-card { background: var(--mg-surface); border: 1px solid var(--mg-line); border-radius: var(--mg-radius);
+  box-shadow: var(--mg-shadow); padding: 20px; margin-bottom: 18px; }
+.mg-eyebrow { display: flex; align-items: center; gap: 6px; font-size: 11.5px; letter-spacing: .05em;
+  font-weight: 700; color: var(--mg-faint); margin: 0 0 10px; text-transform: uppercase; }
+
+/* scan */
+.mg-scan-row { display: flex; gap: 8px; }
+.mg-input { flex: 1; min-width: 0; padding: 11px 14px; border-radius: 11px; border: 1px solid var(--mg-line);
+  font-size: 14px; font-family: inherit; background: #fbfcfb; }
+.mg-input:focus { outline: none; border-color: var(--mg-green); background: #fff; }
+.mg-btn { display: inline-flex; align-items: center; gap: 7px; padding: 11px 18px; border-radius: 11px;
+  border: none; background: var(--mg-green); color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.mg-btn:disabled { opacity: .5; cursor: default; }
+.mg-btn.ghost { background: #fff; color: var(--mg-ink); border: 1px solid var(--mg-line); }
+.mg-presets { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 12px; }
+.mg-preset { padding: 6px 13px; border-radius: 999px; border: 1px solid var(--mg-line);
+  background: #fafafa; font-size: 12.5px; cursor: pointer; color: var(--mg-ink); font-family: inherit; }
+.mg-preset:hover:not(:disabled) { border-color: var(--mg-green); }
+.mg-preset:disabled { opacity: .5; cursor: default; }
+
+/* agent workflow trace */
+.mg-trace-box { margin-top: 14px; padding: 14px; border-radius: 12px; background: #f7f9f7; border: 1px solid var(--mg-line); }
+.mg-trace-title { margin: 0 0 9px; font-size: 11px; font-weight: 700; letter-spacing: .04em; color: var(--mg-faint); }
+.mg-trace-row { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 3px 0; }
+.mg-trace-row .ok { color: var(--mg-green); }
+.mg-src { font-size: 10.5px; color: var(--mg-green); border: 1px solid #cfe7d5; background: var(--mg-green-soft);
+  padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.mg-spin { display: inline-block; animation: mg-rot 1s linear infinite; }
+@keyframes mg-rot { to { transform: rotate(360deg); } }
+
+/* finding */
+.mg-finding-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+.mg-finding-name { margin: 2px 0 0; font-size: 20px; font-weight: 700; }
+.mg-finding-name small { color: var(--mg-faint); font-weight: 400; font-size: 14px; }
+.mg-sev { display: inline-flex; align-items: center; padding: 4px 11px; border-radius: 999px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: .03em; border: 1px solid; white-space: nowrap; }
+.mg-sev.recall, .mg-sev.high { color: var(--mg-red); background: var(--mg-red-soft); border-color: var(--mg-red-line); }
+.mg-sev.warning { color: var(--mg-warn); background: var(--mg-warn-soft); border-color: var(--mg-warn-line); }
+.mg-sev.good { color: var(--mg-green); background: var(--mg-green-soft); border-color: #cfe7d5; }
+
+/* banners / rows */
+.mg-banner { display: flex; gap: 11px; padding: 13px 15px; border-radius: 12px; margin-bottom: 12px;
+  border: 1px solid var(--mg-red-line); background: var(--mg-red-soft); border-left: 4px solid var(--mg-red); }
+.mg-banner .ic { color: var(--mg-red); font-size: 20px; flex-shrink: 0; }
+.mg-banner-title { font-weight: 700; color: #b5432f; font-size: 13px; }
+.mg-banner-body { font-size: 13px; color: #5a4a45; }
+.mg-banner-note { font-size: 11px; color: var(--mg-faint); margin-top: 3px; }
+.mg-inter { display: flex; gap: 10px; padding: 11px 14px; border-radius: 12px; margin-bottom: 8px;
+  background: var(--mg-warn-soft); border: 1px solid var(--mg-warn-line); }
+.mg-inter.high { background: var(--mg-red-soft); border-color: var(--mg-red-line); }
+.mg-dot { width: 10px; height: 10px; border-radius: 999px; flex-shrink: 0; margin-top: 5px; }
+.mg-inter-note { font-size: 13px; }
+.mg-inter-src { font-size: 11px; color: var(--mg-faint); margin-top: 2px; }
+.mg-ingredients { font-size: 12px; color: var(--mg-muted); margin: 8px 0 14px; line-height: 1.5; }
+.mg-answer { padding: 14px; border-radius: 12px; background: #f2f7f3; font-size: 13.5px; line-height: 1.55; }
+.mg-agent-badge { display: block; font-size: 11px; font-weight: 700; color: var(--mg-green); margin-bottom: 6px; }
+
+/* cabinet */
+.mg-cabinet-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.mg-cab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+.mg-cab-item { display: flex; align-items: center; gap: 10px; padding: 11px 13px; border: 1px solid var(--mg-line); border-radius: 12px; }
+.mg-cab-name { font-size: 13px; font-weight: 600; }
+.mg-cab-sub { font-size: 11px; color: var(--mg-faint); }
+
+/* modal */
+.mg-modal-backdrop { position: fixed; inset: 0; background: rgba(15,25,18,.45); display: grid; place-items: center; z-index: 60; padding: 16px; }
+.mg-modal { background: var(--mg-surface); border-radius: var(--mg-radius); box-shadow: var(--mg-shadow);
+  width: 560px; max-width: 100%; max-height: 88vh; overflow: auto; padding: 24px; }
+.mg-modal-head { display: flex; justify-content: space-between; align-items: flex-start; }
+.mg-x { border: none; background: #f2f2f2; width: 30px; height: 30px; border-radius: 8px; cursor: pointer; color: var(--mg-muted); }
+.mg-hist-section { font-weight: 700; margin: 12px 0 4px; font-size: 13px; }
+
+.mg-footer { font-size: 12px; color: var(--mg-faint); text-align: center; margin-top: 8px; line-height: 1.5; }
+
+/* responsive */
+@media (max-width: 640px) {
+  .mg-app { padding: 20px 14px 72px; }
+  .mg-title { font-size: 22px; }
+  .mg-scan-row { flex-direction: column; }
+  .mg-btn { justify-content: center; width: 100%; }
+  .mg-cab-grid { grid-template-columns: 1fr; }
+  .mg-finding-head { flex-direction: column; }
+  .mg-cabinet-head .mg-btn { width: 100%; }
+}
