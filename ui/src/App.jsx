@@ -5,6 +5,7 @@ import {
   ArrowLeft,
   ArrowRight,
   BadgeCheck,
+  Camera,
   Check,
   ChevronDown,
   CircleAlert,
@@ -38,7 +39,11 @@ import {
 import { appReducer, createInitialState, makeCabinetItem, resultCanBeSaved } from "./lib/state.js";
 
 const SAMPLE_PROFILE = { meds: ["warfarin"], conditions: ["hypertension"], mode: "sample" };
-const PRODUCT_EXAMPLES = ["Fish oil", "Ginkgo", "St. John's Wort"];
+const PRODUCT_EXAMPLES = [
+  "Fish oil", "Vitamin D", "Vitamin C", "Magnesium", "Melatonin", "Turmeric",
+  "Ginkgo", "Zinc", "Calcium", "Probiotic", "Iron", "Vitamin B12",
+  "Omega-3", "Ashwagandha", "St. John's Wort", "Multivitamin",
+];
 
 const TOOL_META = {
   identify_supplement: { label: "Label catalog", source: "NIH DSLD", type: "live" },
@@ -162,7 +167,7 @@ function TagEditor({ label, hint, entries, onChange, idPrefix, placeholder }) {
                 <X aria-hidden="true" size={14} />
               </button>
             </span>
-          )) : <span className="mg-tag-editor__empty">Nothing added yet</span>}
+          )) : null}
         </div>
         <div className="mg-tag-editor__input-row">
           <input
@@ -212,9 +217,8 @@ function ProfileScreen({ profile, storage, onboarded, cabinetCount, onSave, onRe
 
   return (
     <main className="mg-page mg-profile-page" id="main-content">
-      <span className="mg-kicker"><UserRound aria-hidden="true" size={16} /> Your context</span>
-      <h1>{onboarded ? "Your profile" : "A few details, if you want them."}</h1>
-      <p className="mg-lede">List the medicines and conditions you want the review to consider. You can leave either list empty and update it any time.</p>
+      <span className="mg-kicker"><UserRound aria-hidden="true" size={16} /> About you</span>
+      <h1>Your meds &amp; conditions</h1>
 
       <form className="mg-profile-form" onSubmit={save}>
         {mode === "sample" && (
@@ -226,7 +230,6 @@ function ProfileScreen({ profile, storage, onboarded, cabinetCount, onSave, onRe
         )}
         <TagEditor
           label="Medicines"
-          hint="Examples: warfarin, metformin. Include what you want reviewed; this is not a full medication record."
           entries={meds}
           onChange={setMeds}
           idPrefix="medicines"
@@ -234,7 +237,6 @@ function ProfileScreen({ profile, storage, onboarded, cabinetCount, onSave, onRe
         />
         <TagEditor
           label="Conditions"
-          hint="Examples: hypertension, kidney disease. Leave empty if you do not want to add conditions."
           entries={conditions}
           onChange={setConditions}
           idPrefix="conditions"
@@ -553,21 +555,28 @@ function CheckScreen({ state, onLookup, onChooseCandidate, onRetry, onAdd, onRec
   return (
     <main className="mg-page mg-check-page" id="main-content">
       {hasDecisionScreen ? <button className="mg-back-link" type="button" onClick={onNewLabel}><ArrowLeft aria-hidden="true" size={17} /> Find another label</button> : <>
-        <span className="mg-kicker"><Search aria-hidden="true" size={16} /> Start with the label</span>
-        <h1>Find my label</h1>
-        <p className="mg-lede">Type the product and brand as they appear on the bottle. MedGuard cannot scan a camera image or identify a loose pill.</p>
+        <span className="mg-kicker"><Search aria-hidden="true" size={16} /> Check a product</span>
+        <h1>What's in your cabinet?</h1>
+
+        <button type="button" className="mg-scan-cta" onClick={() => document.getElementById("label-search")?.focus()}>
+          <span className="mg-scan-cta__icon"><Camera aria-hidden="true" size={26} /></span>
+          <span className="mg-scan-cta__text">
+            <strong>Scan a bottle</strong>
+            <small>Camera capture coming soon — pick or type below</small>
+          </span>
+        </button>
+
+        <div className="mg-pick-list" aria-label="Common products">
+          {PRODUCT_EXAMPLES.map((example) => (
+            <button type="button" className="mg-pick" key={example} onClick={() => onLookup(example)}>{example}</button>
+          ))}
+        </div>
 
         <form className="mg-label-search" onSubmit={(event) => { event.preventDefault(); onLookup(state.query); }}>
-          <Field label="Product label" htmlFor="label-search" hint="A fuller label name helps you choose the right catalog result.">
-            <div className="mg-label-search__field-row">
-              <Search aria-hidden="true" className="mg-label-search__icon" size={20} />
-              <input id="label-search" maxLength={160} value={state.query} onChange={(event) => onLookup(event.target.value, { changeOnly: true })} placeholder="Example: fish oil, Nordic Naturals" autoComplete="off" />
-              <Button type="submit" disabled={state.busy || !state.query.trim()} loading={state.busy}><span className="mg-label-search__button-copy">Find label</span></Button>
-            </div>
-          </Field>
-          <div className="mg-examples" aria-label="Label search examples">
-            <span>Try</span>
-            {PRODUCT_EXAMPLES.map((example) => <button type="button" key={example} onClick={() => onLookup(example, { changeOnly: true })}>{example}</button>)}
+          <div className="mg-label-search__field-row">
+            <Search aria-hidden="true" className="mg-label-search__icon" size={20} />
+            <input id="label-search" aria-label="Product name" maxLength={160} value={state.query} onChange={(event) => onLookup(event.target.value, { changeOnly: true })} placeholder="Or type a product name" autoComplete="off" />
+            <Button type="submit" disabled={state.busy || !state.query.trim()} loading={state.busy}><span className="mg-label-search__button-copy">Find</span></Button>
           </div>
         </form>
       </>}

@@ -349,14 +349,63 @@
 .mg-storage-status--warning { color: var(--mg-warning); }
 .mg-profile-form__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 
-.mg-label-search {
+/* Scan-a-bottle hero + tappable common products */
+.mg-scan-cta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
   max-width: 760px;
-  margin-top: 32px;
-  padding: 18px;
-  background: var(--mg-paper);
-  border: 1px solid var(--mg-line);
+  margin-top: 24px;
+  padding: 16px 18px;
+  text-align: left;
+  background: var(--mg-forest);
+  color: #fff;
+  border: 0;
   border-radius: var(--mg-radius);
   box-shadow: var(--mg-shadow);
+}
+.mg-scan-cta:active { transform: scale(.99); }
+.mg-scan-cta__icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  background: rgb(255 255 255 / 0.14);
+  border-radius: 13px;
+}
+.mg-scan-cta__text { display: flex; flex-direction: column; gap: 2px; }
+.mg-scan-cta__text strong { font-size: 16px; font-weight: 800; }
+.mg-scan-cta__text small { font-size: 12.5px; color: rgb(255 255 255 / 0.72); }
+
+.mg-pick-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  max-width: 760px;
+  margin-top: 18px;
+}
+.mg-pick {
+  min-height: 40px;
+  padding: 0 15px;
+  color: var(--mg-forest);
+  font-size: 14px;
+  font-weight: 700;
+  background: #eff2e7;
+  border: 1px solid transparent;
+  border-radius: 999px;
+}
+.mg-pick:hover { border-color: var(--mg-line); }
+.mg-pick:active { transform: scale(.96); }
+
+.mg-label-search {
+  max-width: 760px;
+  margin-top: 16px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
 .mg-back-link {
