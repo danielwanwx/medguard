@@ -136,6 +136,11 @@ function WelcomeScreen({ onSetUp, onTrySample }) {
         <span className="mg-kicker"><HeartPulse aria-hidden="true" size={16} /> A thoughtful cabinet check</span>
         <h1>A little clarity for your cabinet.</h1>
         <p className="mg-lede">Choose the label on your bottle, gather the evidence behind it, and bring a dated record to your pharmacist.</p>
+        <ul className="mg-edges">
+          <li><span className="mg-edges__ic"><BadgeCheck aria-hidden="true" size={20} /></span><div><strong>Live official sources</strong><small>Every flag opens a real NIH or FDA record — not an opinion.</small></div></li>
+          <li><span className="mg-edges__ic"><HeartPulse aria-hidden="true" size={20} /></span><div><strong>Checked against your meds</strong><small>Reviewed with your own medicines and conditions.</small></div></li>
+          <li><span className="mg-edges__ic"><FileText aria-hidden="true" size={20} /></span><div><strong>A note for your pharmacist</strong><small>Leave with a dated, sourced record to bring in.</small></div></li>
+        </ul>
         <div className="mg-welcome__actions">
           <Button onClick={onSetUp}><span>Set up my profile</span><ArrowRight aria-hidden="true" size={18} /></Button>
           <Button variant="secondary" onClick={onTrySample}>Try a sample profile</Button>

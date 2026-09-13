@@ -231,6 +231,12 @@
   min-height: calc(100svh - 210px);
 }
 
+.mg-edges { list-style: none; margin: 26px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.mg-edges li { display: flex; align-items: flex-start; gap: 12px; }
+.mg-edges__ic { display: grid; place-items: center; width: 38px; height: 38px; flex: 0 0 auto; color: var(--mg-forest); background: #eef2e7; border-radius: 11px; }
+.mg-edges strong { display: block; font-size: 15px; font-weight: 800; color: var(--mg-ink); }
+.mg-edges small { display: block; margin-top: 1px; font-size: 13px; color: var(--mg-muted); line-height: 1.45; }
+
 .mg-welcome__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
 
 .mg-welcome__art {
