@@ -757,3 +757,6 @@
   .mg-sample-banner button { padding: 0; }
   .mg-waiting-card, .mg-request-error, .mg-candidates, .mg-result, .mg-cabinet-empty, .mg-profile-form { padding: 19px; }
 }
+
+.mg-recall-reason { margin-top: 8px; padding: 9px 12px; font-size: 13.5px; line-height: 1.5;
+  color: #7a3a2c; background: #fbeae4; border-radius: 10px; }

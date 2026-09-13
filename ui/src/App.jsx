@@ -40,7 +40,7 @@ import { appReducer, createInitialState, makeCabinetItem, resultCanBeSaved } fro
 
 const SAMPLE_PROFILE = { meds: ["warfarin"], conditions: ["hypertension"], mode: "sample" };
 const PRODUCT_EXAMPLES = [
-  "Fish oil", "Vitamin D", "Vitamin C", "Magnesium", "Melatonin", "Turmeric",
+  "Moringa", "Fish oil", "Vitamin D", "Magnesium", "Melatonin", "Turmeric",
   "Ginkgo", "Zinc", "Calcium", "Probiotic", "Iron", "Vitamin B12",
   "Omega-3", "Ashwagandha", "St. John's Wort", "Multivitamin",
 ];
@@ -396,6 +396,7 @@ function RecallFinding({ recall }) {
       return counts;
     }, new Map());
     const statusSummary = [...statusCounts.entries()].map(([status, count]) => `${status} (${count})`).join(" · ");
+    const reasonSummary = [...new Set(recall.records.map((r) => (r.reason_for_recall || "").split(/[.;:]/)[0].trim()).filter(Boolean))].slice(0, 2).join(" · ");
     return (
       <section className="mg-finding-section mg-finding-section--attention">
         <div className="mg-finding-section__heading">
@@ -404,6 +405,7 @@ function RecallFinding({ recall }) {
         </div>
         <p>These are text or category matches, not a claim that your bottle is recalled. Compare the product name, manufacturer, and lot or package code before acting.</p>
         <p className="mg-recall-count"><strong>{singular(recordCount, "potential FDA record")}</strong> returned for this text/category search.{statusSummary && <> Record statuses: {statusSummary}.</>}</p>
+        {reasonSummary && <p className="mg-recall-reason"><strong>Why they were recalled:</strong> {reasonSummary}. Confirm your product and lot against the records below.</p>}
         {recordCount ? <details className="mg-recall-details">
           <summary>Review FDA record details</summary>
           <div className="mg-recall-records">
