@@ -761,3 +761,6 @@
 
 .mg-recall-reason { margin-top: 8px; padding: 9px 12px; font-size: 13.5px; line-height: 1.5;
   color: #7a3a2c; background: #fbeae4; border-radius: 10px; }
+
+.mg-scan-note { margin: 10px 0 0; padding: 10px 13px; font-size: 13px; line-height: 1.45;
+  color: #7a3a2c; background: #fbeae4; border-radius: 12px; }

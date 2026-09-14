@@ -27,7 +27,7 @@ import {
 } from "lucide-react";
 import { BottleArtwork, CabinetArtwork } from "./components/Artwork.jsx";
 import { Badge, Button, Field, IconButton, SourceLink } from "./components/Primitives.jsx";
-import { requestMedcheck } from "./lib/api.js";
+import { requestMedcheck, scanLabel } from "./lib/api.js";
 import { buildReviewNote, buildReviewNoteHtml, downloadReviewNote, printReviewNoteHtml } from "./lib/note.js";
 import {
   clearPersistedState,
@@ -559,19 +559,43 @@ function CheckScreen({ state, onLookup, onChooseCandidate, onRetry, onAdd, onRec
   const savedView = Boolean(existingItem && state.activeCabinetId === existingItem.id);
   const canSave = resultCanBeSaved(state.result);
   const hasDecisionScreen = Boolean(state.candidates || state.result);
+  const fileRef = useRef(null);
+  const [scanning, setScanning] = useState(false);
+  const [scanNote, setScanNote] = useState("");
+  const onScanFile = async (event) => {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+    setScanNote(""); setScanning(true);
+    try {
+      const reading = await scanLabel(file);
+      if (reading.readable && reading.query) {
+        onLookup(reading.query);
+      } else {
+        setScanNote(reading.note || "Couldn't read the label. Retake in good light, or type the name.");
+        document.getElementById("label-search")?.focus();
+      }
+    } catch (error) {
+      setScanNote(error?.message || "Couldn't read that photo. Try again, or type the name.");
+    } finally {
+      setScanning(false);
+    }
+  };
   return (
     <main className="mg-page mg-check-page" id="main-content">
       {hasDecisionScreen ? <button className="mg-back-link" type="button" onClick={onNewLabel}><ArrowLeft aria-hidden="true" size={17} /> Find another label</button> : <>
         <span className="mg-kicker"><Search aria-hidden="true" size={16} /> Check a product</span>
         <h1>What's in your cabinet?</h1>
 
-        <button type="button" className="mg-scan-cta" onClick={() => document.getElementById("label-search")?.focus()}>
-          <span className="mg-scan-cta__icon"><Camera aria-hidden="true" size={26} /></span>
+        <input ref={fileRef} type="file" accept="image/*" capture="environment" hidden onChange={onScanFile} />
+        <button type="button" className="mg-scan-cta" disabled={scanning} onClick={() => fileRef.current?.click()}>
+          <span className="mg-scan-cta__icon">{scanning ? <RotateCcw aria-hidden="true" className="mg-spin" size={24} /> : <Camera aria-hidden="true" size={26} />}</span>
           <span className="mg-scan-cta__text">
-            <strong>Scan a bottle</strong>
-            <small>Camera capture coming soon — pick or type below</small>
+            <strong>{scanning ? "Reading the label…" : "Scan a bottle"}</strong>
+            <small>{scanning ? "Bedrock Nova Pro vision" : "Snap the label — we read the product name"}</small>
           </span>
         </button>
+        {scanNote && <p className="mg-scan-note" role="status">{scanNote}</p>}
 
         <div className="mg-pick-list" aria-label="Common products">
           {PRODUCT_EXAMPLES.map((example) => (

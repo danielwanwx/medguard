@@ -15,6 +15,7 @@ from agent import RequestValidationError, run_medguard, validate_medcheck_payloa
 
 
 MAX_BODY_BYTES = 16 * 1024
+MAX_IMAGE_BYTES = 8 * 1024 * 1024  # base64 bottle photo for /api/scan
 
 
 class H(BaseHTTPRequestHandler):
@@ -52,7 +53,7 @@ class H(BaseHTTPRequestHandler):
 
     def do_OPTIONS(self) -> None:
         # The UI is served on the same origin; intentionally do not enable broad CORS.
-        self._error(405, "method_not_allowed", "Use POST for /api/medcheck.")
+        self._error(405, "method_not_allowed", "Use POST for /api/medcheck or /api/scan.")
 
     def do_GET(self) -> None:
         if self.path == "/":
@@ -60,18 +61,12 @@ class H(BaseHTTPRequestHandler):
         else:
             self._error(404, "not_found", "Not found.")
 
-    def do_POST(self) -> None:
-        if self.path != "/api/medcheck":
-            self._error(404, "not_found", "Not found.")
-            return
-        if not self._origin_allowed():
-            self._error(403, "forbidden_origin", "Cross-origin requests are not allowed.")
-            return
+    def _read_json_body(self, max_bytes: int) -> dict[str, Any] | None:
         content_type = self.headers.get("Content-Type", "")
         media_type = content_type.split(";", 1)[0].strip().casefold()
         if media_type != "application/json":
             self._error(415, "unsupported_media_type", "Content-Type must be application/json.")
-            return
+            return None
         raw_length = self.headers.get("Content-Length")
         try:
             length = int(raw_length) if raw_length is not None else -1
@@ -79,18 +74,32 @@ class H(BaseHTTPRequestHandler):
             length = -1
         if length < 0:
             self._error(411, "length_required", "Content-Length is required.")
-            return
-        if length > MAX_BODY_BYTES:
+            return None
+        if length > max_bytes:
             self._error(413, "request_too_large", "Request body is too large.")
-            return
+            return None
         try:
             raw = self.rfile.read(length)
             if len(raw) != length:
                 self._error(400, "invalid_request", "Request body was incomplete.")
-                return
-            payload = json.loads(raw.decode("utf-8"))
+                return None
+            return json.loads(raw.decode("utf-8"))
         except (UnicodeDecodeError, json.JSONDecodeError, socket.timeout):
             self._error(400, "invalid_json", "Request body must be valid JSON.")
+            return None
+
+    def do_POST(self) -> None:
+        if self.path not in ("/api/medcheck", "/api/scan"):
+            self._error(404, "not_found", "Not found.")
+            return
+        if not self._origin_allowed():
+            self._error(403, "forbidden_origin", "Cross-origin requests are not allowed.")
+            return
+        if self.path == "/api/scan":
+            self._handle_scan()
+            return
+        payload = self._read_json_body(MAX_BODY_BYTES)
+        if payload is None:
             return
         try:
             scan, profile, selected_id = validate_medcheck_payload(payload)
@@ -106,6 +115,33 @@ class H(BaseHTTPRequestHandler):
         agent_error = result.get("error") if isinstance(result, dict) else None
         if isinstance(agent_error, dict) and agent_error.get("code") == "authentication_required":
             self._send(503, result)
+            return
+        self._send(200, result)
+
+    def _handle_scan(self) -> None:
+        import base64
+
+        payload = self._read_json_body(MAX_IMAGE_BYTES)
+        if payload is None:
+            return
+        image_b64 = payload.get("image") if isinstance(payload, dict) else None
+        if not isinstance(image_b64, str) or not image_b64:
+            self._error(400, "invalid_request", "An 'image' (base64) is required.")
+            return
+        try:
+            image_bytes = base64.b64decode(image_b64, validate=True)
+        except Exception:
+            self._error(400, "invalid_image", "The image is not valid base64.")
+            return
+        try:
+            from vision import read_label
+
+            result = read_label(image_bytes)
+        except ValueError as error:
+            self._error(400, "invalid_image", str(error))
+            return
+        except Exception:
+            self._error(503, "service_unavailable", "MedGuard could not read the photo. Retry, or type the name.")
             return
         self._send(200, result)
 

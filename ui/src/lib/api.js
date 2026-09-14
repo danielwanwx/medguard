@@ -18,6 +18,45 @@ const parseBody = async (response) => {
   try { return JSON.parse(text); } catch { return { error: text }; }
 };
 
+const fileToBase64 = (file) => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.onload = () => resolve(String(reader.result).split(",", 2)[1] || "");
+  reader.onerror = () => reject(new MedcheckError("That image could not be read.", { code: "image_read" }));
+  reader.readAsDataURL(file);
+});
+
+// Read a bottle-label photo with real Bedrock Nova Pro vision. Returns { readable, query, product, brand, expiry, note }.
+export async function scanLabel(file, { timeoutMs = 75_000 } = {}) {
+  if (!file || !/^image\//.test(file.type || "")) {
+    throw new MedcheckError("Please choose a photo of the bottle label.", { code: "not_image" });
+  }
+  const image = await fileToBase64(file);
+  const controller = new AbortController();
+  const timeout = globalThis.setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch("/api/scan", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ image }),
+      signal: controller.signal,
+    });
+    const body = await parseBody(response);
+    if (!response.ok) {
+      throw new MedcheckError(
+        conciseMessage(body?.error?.message || body?.error, "Couldn't read that photo. Retake it, or type the name."),
+        { status: response.status, code: `http_${response.status}` },
+      );
+    }
+    return body || {};
+  } catch (error) {
+    if (error instanceof MedcheckError) throw error;
+    if (controller.signal.aborted) throw new MedcheckError("Reading the photo took too long. Try again.", { code: "timeout" });
+    throw new MedcheckError("We could not reach the scan service. Check your connection.", { code: "network" });
+  } finally {
+    globalThis.clearTimeout(timeout);
+  }
+}
+
 export async function requestMedcheck({ scan, profile, selectedId }, { signal, timeoutMs = 75_000 } = {}) {
   const controller = new AbortController();
   let timedOut = false;
