@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1920px; height: 1080px; overflow: hidden;
+        background:
+          radial-gradient(1200px 700px at 12% 4%, rgba(220,232,176,.55), transparent 60%),
+          radial-gradient(1200px 800px at 96% 20%, rgba(240,212,191,.40), transparent 55%),
+          #f8f6ee;
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        color: #18352b;
+      }
+      #root { width: 100%; height: 100%; position: relative; }
+
+      .n { position: absolute; opacity: 0; }         /* animated node wrapper */
+      .card { background: #fffdf7; border: 1px solid #d9dfd4; border-radius: 22px;
+        box-shadow: 0 20px 55px rgba(33,76,61,.10), 0 3px 8px rgba(33,76,61,.05); }
+
+      /* header */
+      #hdr { top: 60px; left: 50%; text-align: center; width: 1200px; }
+      #brand { display: inline-flex; align-items: center; gap: 14px; }
+      #mark { width: 46px; height: 46px; border-radius: 15px 15px 15px 6px; background: #214c3d;
+        color: #dce8b0; display: grid; place-items: center; font-size: 24px; font-weight: 800; }
+      #brand b { font-size: 34px; font-weight: 800; letter-spacing: -.02em; }
+      #brand b span { color: #1b8649; }
+      #sub { margin-top: 12px; font-size: 21px; font-weight: 600; color: #5b7068; letter-spacing: .01em; }
+
+      /* phone / scan */
+      #phone { top: 300px; left: 120px; width: 250px; }
+      #phonebody { width: 250px; height: 300px; border-radius: 30px; background: #18352b; padding: 12px; }
+      #screen { width: 100%; height: 100%; border-radius: 20px; background: #eef2e7; position: relative; overflow: hidden; }
+      #bottle { position: absolute; left: 50%; top: 54%; transform: translate(-50%,-50%); width: 78px; height: 116px; }
+      #bcap { position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 44px; height: 22px; background: #214c3d; border-radius: 8px 8px 4px 4px; }
+      #blabel { position: absolute; left: 0; bottom: 0; width: 78px; height: 92px; background: #fff; border: 2px solid #cfd8cb; border-radius: 12px; box-shadow: inset 0 -30px 0 #e7eee2; }
+      #steplabel { top: 616px; left: 90px; width: 310px; text-align: center; font-size: 18px; font-weight: 800; color: #214c3d; }
+      #steplabel small { display: block; margin-top: 4px; font-size: 14px; font-weight: 600; color: #5f6d64; }
+      #visionbadge { top: 682px; left: 70px; width: 350px; text-align: center; }
+      #visionbadge span { display: inline-block; padding: 8px 16px; border-radius: 999px; font-size: 15px; font-weight: 800;
+        color: #2c5aa0; background: #eef3fc; border: 1px solid #cdddf5; }
+
+      /* hub */
+      #hub { top: 400px; left: 620px; width: 360px; }
+      #hubcard { padding: 26px 24px; text-align: center; }
+      #hubk { font-size: 13px; font-weight: 800; letter-spacing: .08em; color: #5f6d64; }
+      #hubcard h3 { margin-top: 8px; font-size: 30px; font-weight: 800; letter-spacing: -.01em; line-height: 1.1; }
+      #hubcard p { margin-top: 10px; font-size: 16px; font-weight: 600; color: #5b7068; }
+      #hubcard .chipwrap { margin-top: 14px; display: inline-flex; gap: 8px; }
+      .agenttag { padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 800; }
+      .tg-strands { color: #214c3d; background: #dce8b0; }
+      .tg-bedrock { color: #2c5aa0; background: #eef3fc; }
+
+      /* tool chips */
+      .tool { left: 1310px; width: 470px; }
+      #t0 { top: 250px; } #t1 { top: 388px; } #t2 { top: 526px; } #t3 { top: 664px; }
+      .toolcard { display: flex; align-items: center; gap: 16px; padding: 16px 20px; }
+      .tdot { width: 16px; height: 16px; border-radius: 999px; background: #cfd8cb; flex: 0 0 auto; }
+      .tool .tname { font-size: 20px; font-weight: 800; }
+      .tool .tsrc { margin-top: 3px; font-size: 14px; font-weight: 700; }
+      .src-live { color: #1b8649; }
+      .src-ref { color: #5f6d64; }
+      .tick { margin-left: auto; font-size: 22px; color: #1b8649; opacity: 0; font-weight: 900; }
+
+      /* connectors */
+      #wires { position: absolute; inset: 0; }
+      .wire { fill: none; stroke: #cbd5c4; stroke-width: 3; stroke-dasharray: 1; stroke-dashoffset: 1; }
+
+      /* verdict card */
+      #verdict { top: 792px; left: 620px; width: 700px; }
+      #vcard { display: flex; gap: 16px; align-items: flex-start; padding: 20px 24px;
+        background: #fdf1ef; border: 1px solid #f2c4b6; border-left: 6px solid #e5533c; border-radius: 18px; }
+      #vdot { width: 18px; height: 18px; border-radius: 999px; background: #e5533c; margin-top: 5px; flex: 0 0 auto; }
+      #vcard h4 { font-size: 22px; font-weight: 800; color: #18352b; }
+      #vcard p { margin-top: 4px; font-size: 16px; font-weight: 600; color: #7a3a2c; }
+      #vcard .vsrc { margin-top: 10px; display: flex; gap: 8px; }
+      #vcard .vsrc span { font-size: 12px; font-weight: 800; color: #14663a; background: #eef9f0; border: 1px solid #cfe7d5; padding: 3px 10px; border-radius: 999px; }
+
+      /* ribbon */
+      #ribbon { bottom: 56px; left: 50%; width: 1500px; text-align: center; }
+      #ribk { font-size: 13px; font-weight: 800; letter-spacing: .1em; color: #5f6d64; }
+      #words { margin-top: 12px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+      .word { opacity: 0; padding: 11px 20px; border-radius: 14px; font-size: 20px; font-weight: 800;
+        color: #214c3d; background: #fffdf7; border: 1px solid #d9dfd4; }
+      .word b { color: #1b8649; }
+      #agentcore { bottom: 60px; left: 50%; }
+      #agentcore span { display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; border-radius: 999px;
+        font-size: 19px; font-weight: 800; color: #f8f6ee; background: #214c3d; box-shadow: 0 10px 30px rgba(33,76,61,.25); }
+      #agentcore span i { font-style: normal; color: #dce8b0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="45" data-width="1920" data-height="1080">
+      <div class="clip" id="scene" data-start="0" data-duration="45" data-track-index="0" style="position:absolute; inset:0;">
+
+        <svg id="wires" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+          <path class="wire" id="w-scan" d="M 380 470 C 500 470, 520 560, 615 560" />
+          <path class="wire" id="w0" d="M 985 500 C 1150 500, 1180 300, 1305 300" />
+          <path class="wire" id="w1" d="M 992 560 C 1160 560, 1180 438, 1305 438" />
+          <path class="wire" id="w2" d="M 992 600 C 1160 600, 1180 576, 1305 576" />
+          <path class="wire" id="w3" d="M 985 640 C 1150 640, 1180 714, 1305 714" />
+        </svg>
+
+        <div class="n" id="hdr">
+          <div id="brand"><span id="mark">✚</span><b>Med<span>Guard</span></b></div>
+          <div id="sub">A real agent — not a chatbot. Here's how it works.</div>
+        </div>
+
+        <div class="n" id="phone">
+          <div id="phonebody"><div id="screen">
+            <div id="bottle"><div id="bcap"></div><div id="blabel"></div></div>
+          </div></div>
+        </div>
+        <div class="n" id="steplabel">You scan a bottle<small>a real photo, not a guess</small></div>
+        <div class="n" id="visionbadge"><span>📷 Nova Pro Vision · reads the label</span></div>
+
+        <div class="n" id="hub"><div id="hubcard" class="card">
+          <div id="hubk">THE AGENT</div>
+          <h3>Strands Agent</h3>
+          <div class="chipwrap"><span class="agenttag tg-strands">Strands SDK</span><span class="agenttag tg-bedrock">Bedrock Nova Pro</span></div>
+          <p>It chooses and runs its tools — live.</p>
+        </div></div>
+
+        <div class="n tool" id="t0"><div class="toolcard card"><span class="tdot"></span><div><div class="tname">Identify</div><div class="tsrc src-live">NIH DSLD · live catalog</div></div><span class="tick">✓</span></div></div>
+        <div class="n tool" id="t1"><div class="toolcard card"><span class="tdot"></span><div><div class="tname">Check recalls</div><div class="tsrc src-live">openFDA enforcement · live</div></div><span class="tick">✓</span></div></div>
+        <div class="n tool" id="t2"><div class="toolcard card"><span class="tdot"></span><div><div class="tname">Screen interactions</div><div class="tsrc src-ref">cited NIH / NCCIH rules</div></div><span class="tick">✓</span></div></div>
+        <div class="n tool" id="t3"><div class="toolcard card"><span class="tdot"></span><div><div class="tname">Dosage limits</div><div class="tsrc src-ref">NIH ODS reference</div></div><span class="tick">✓</span></div></div>
+
+        <div class="n" id="verdict"><div id="vcard">
+          <span id="vdot"></span>
+          <div>
+            <h4>Worth a closer look</h4>
+            <p>An active recall matched this product — compare your product and lot.</p>
+            <div class="vsrc"><span>openFDA · live</span><span>NIH DSLD</span></div>
+          </div>
+        </div></div>
+
+        <div class="n" id="ribbon">
+          <div id="ribk">THE MEDGUARD CONTRACT</div>
+          <div id="words">
+            <span class="word" id="wd0">Model <b>advises</b></span>
+            <span class="word" id="wd1">Official data <b>owns the truth</b></span>
+            <span class="word" id="wd2"><b>You</b> decide</span>
+            <span class="word" id="wd3"><b>Fail-closed</b> · every flag cited</span>
+          </div>
+        </div>
+
+        <div class="n" id="agentcore"><span>☁ Deployable on <i>Amazon Bedrock AgentCore</i></span></div>
+      </div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const easeO = "power3.out";
+      gsap.set(["#hdr", "#ribbon", "#agentcore"], { xPercent: -50 });
+
+      // header
+      tl.fromTo("#hdr", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.7, ease: easeO }, 0.2);
+
+      // scan
+      tl.fromTo("#phone", { opacity: 0, x: -40, scale: .96 }, { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: easeO }, 2.4);
+      tl.fromTo("#steplabel", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5 }, 2.9);
+      tl.fromTo("#visionbadge", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 }, 4.2);
+      tl.to("#w-scan", { strokeDashoffset: 0, duration: 0.7, ease: easeO }, 5.2);
+
+      // hub
+      tl.fromTo("#hub", { opacity: 0, scale: .9 }, { opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.5)" }, 6.4);
+
+      // tools (sequenced): reveal chip, draw wire, light dot, tick
+      const tools = [
+        { id: "#t0", w: "#w0", t: 9.8 },
+        { id: "#t1", w: "#w1", t: 13.2 },
+        { id: "#t2", w: "#w2", t: 16.6 },
+        { id: "#t3", w: "#w3", t: 20.0 },
+      ];
+      tools.forEach(({ id, w, t }) => {
+        tl.to(w, { strokeDashoffset: 0, stroke: "#9fbf86", duration: 0.6, ease: easeO }, t);
+        tl.fromTo(id, { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.55, ease: easeO }, t + 0.15);
+        tl.to(id + " .tdot", { background: "#1b8649", scale: 1.15, duration: 0.3 }, t + 0.5)
+          .to(id + " .tdot", { scale: 1, duration: 0.2 }, t + 0.8);
+        tl.to(id + " .tick", { opacity: 1, duration: 0.4, ease: "back.out(2)" }, t + 1.9);
+      });
+
+      // converge -> verdict
+      tl.fromTo("#verdict", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.7, ease: easeO }, 24.2);
+      tl.fromTo("#vdot", { scale: .6 }, { scale: 1, duration: 0.4, yoyo: true, repeat: 5, ease: "sine.inOut" }, 25.0);
+
+      // ribbon words
+      tl.fromTo("#ribbon", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 32.5);
+      ["#wd0", "#wd1", "#wd2", "#wd3"].forEach((id, i) => {
+        tl.fromTo(id, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: easeO }, 33.2 + i * 1.05);
+      });
+      // (hold ribbon, then swap to AgentCore tag)
+      tl.to("#ribbon", { opacity: 0, y: -10, duration: 0.5 }, 39.4);
+      tl.fromTo("#agentcore", { opacity: 0, y: 20, scale: .95 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "back.out(1.6)" }, 39.8);
+      tl.to("#agentcore span", { boxShadow: "0 16px 40px rgba(33,76,61,.4)", duration: 0.7, yoyo: true, repeat: 4, ease: "sine.inOut" }, 40.6);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

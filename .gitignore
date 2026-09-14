@@ -6,3 +6,7 @@ dist/
 venv/
 .DS_Store
 *.log
+
+video-architecture/node_modules/
+video-architecture/renders/
+video-architecture/snapshots/
