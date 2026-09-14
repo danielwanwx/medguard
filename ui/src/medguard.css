@@ -809,3 +809,35 @@
 .mg-chat__input input:focus { outline: none; border-color: var(--mg-focus); box-shadow: 0 0 0 3px rgb(107 139 87 / .14); }
 
 @media (max-width: 640px) { .mg-result__cta { grid-template-columns: 1fr; } }
+
+/* ---- Virtual medicine shelf ---- */
+.mg-shelf { margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+.mg-shelf-item { position: relative; border: 1px solid var(--mg-line); border-radius: 18px; background: var(--mg-paper);
+  box-shadow: var(--mg-shadow); overflow: hidden; }
+.mg-shelf-item--check { border-color: #ecd3bb; }
+.mg-shelf-item__open { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 3px;
+  width: 100%; padding: 18px 12px 14px; background: transparent; border: 0; cursor: pointer; }
+.mg-shelf-item__open:active { transform: scale(.98); }
+.mg-shelf-item__name { margin-top: 8px; font-size: 15px; font-weight: 800; color: var(--mg-ink); line-height: 1.15; }
+.mg-shelf-item__brand { font-size: 11.5px; color: var(--mg-faint); }
+.mg-shelf-item__status { margin-top: 8px; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 800; }
+.mg-shelf-item__status--good { color: #356b4f; background: #e2eee6; }
+.mg-shelf-item__status--check { color: var(--mg-warning); background: var(--mg-warning-bg); }
+.mg-shelf-item__status--info { color: #2c6f86; background: var(--mg-sky); }
+.mg-shelf-item .mg-icon-button { position: absolute; top: 8px; left: 8px; width: 30px; height: 30px; opacity: .5; }
+.mg-shelf-item .mg-icon-button:hover { opacity: 1; }
+.mg-shelf-item__alert { position: absolute; top: 11px; right: 11px; width: 12px; height: 12px; border-radius: 999px;
+  background: var(--mg-warning); box-shadow: 0 0 0 0 rgb(145 85 54 / .55); animation: mg-pulse 1.5s ease-in-out infinite; }
+.mg-shelf-item--check .mg-shelf-item__alert { background: var(--mg-danger); box-shadow: 0 0 0 0 rgb(157 66 53 / .55);
+  animation: mg-pulse-red 1.4s ease-in-out infinite; }
+@keyframes mg-pulse-red { 0%,100% { box-shadow: 0 0 0 0 rgb(157 66 53 / .55); } 50% { box-shadow: 0 0 0 7px rgb(157 66 53 / 0); } }
+
+/* little bottle illustration */
+.mg-shelf__bottle { position: relative; display: inline-block; width: 40px; height: 56px; }
+.mg-shelf__cap { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 22px; height: 12px;
+  background: var(--mg-forest); border-radius: 5px 5px 3px 3px; }
+.mg-shelf__label { position: absolute; bottom: 0; left: 0; width: 40px; height: 44px; background: #fff;
+  border: 1.5px solid var(--mg-line); border-radius: 8px; }
+.mg-shelf__bottle--good .mg-shelf__label { border-color: #cfe7d5; box-shadow: inset 0 -14px 0 #eef7ee; }
+.mg-shelf__bottle--check .mg-shelf__label { border-color: #ecd3bb; box-shadow: inset 0 -14px 0 var(--mg-warning-bg); }
+.mg-shelf__bottle--info .mg-shelf__label { border-color: #cfe0e4; box-shadow: inset 0 -14px 0 var(--mg-sky); }

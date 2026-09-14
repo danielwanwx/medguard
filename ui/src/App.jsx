@@ -523,17 +523,26 @@ function IncompleteResult({ result, onRetry }) {
 // One at-a-glance verdict from the gathered evidence. Green = clear, amber = worth a check.
 function verdictOf(result) {
   const recall = result.recall || {};
-  const recallHit = recall.status === "potential_matches" && (recall.records || []).length > 0;
+  const records = recall.records || [];
+  // Only a SERIOUS active recall is worth alarming about on the shelf: ongoing status and a
+  // Class I/II classification (FDA's own severity — reasonable/possible harm). Class III
+  // (minor, e.g. labeling) or terminated-only text matches stay quietly in the details.
+  const activeRecall = recall.status === "potential_matches" && records.find((r) => {
+    const ongoing = /ongoing/i.test(String(r.status || ""));
+    const cls = String(r.classification || "");
+    const serious = !cls || /class i\b/i.test(cls) || /class ii\b/i.test(cls);
+    return ongoing && serious;
+  });
   const interactions = result.interactions || [];
   const flag = interactions.find((f) => ["high", "moderate", "review", "caution"].some((k) => String(f.risk || "").toLowerCase().includes(k)) || String(f.review_priority || "").toLowerCase().includes("caution")) || interactions[0];
-  if (recallHit) {
-    const reason = (recall.records[0]?.reason_for_recall || "").split(/[.;:]/)[0].trim();
-    return { tone: "check", title: "Worth a closer look", line: reason ? `A recall search matched this product (${reason.toLowerCase()}). Compare your product and lot.` : "A recall search matched this product — compare your product and lot." };
+  if (activeRecall) {
+    const reason = (activeRecall.reason_for_recall || "").split(/[.;:]/)[0].trim();
+    return { tone: "check", kind: "recall", title: "Worth a closer look", line: reason ? `An active recall matched this product (${reason.toLowerCase()}). Compare your product and lot.` : "An active recall matched this product — compare your product and lot." };
   }
   if (flag) {
-    return { tone: "check", title: "One thing to check", line: flag.against ? `Worth asking your pharmacist about ${flag.against}.` : "Worth a quick pharmacist check before you take it." };
+    return { tone: "check", kind: "interaction", title: "One thing to check", line: flag.against ? `Worth asking your pharmacist about ${flag.against}.` : "Worth a quick pharmacist check before you take it." };
   }
-  return { tone: "good", title: "No flags found", line: "Nothing matched in the checks. This isn't a safety guarantee — ask the agent or your pharmacist." };
+  return { tone: "good", kind: "clear", title: "No flags found", line: "Nothing active matched in the checks. This isn't a safety guarantee — ask the agent or your pharmacist." };
 }
 
 function EvidenceDialog({ open, onOpenChange, result, triggerRef }) {
@@ -746,22 +755,29 @@ function CheckScreen({ state, onLookup, onChooseCandidate, onRetry, onAdd, onRec
   );
 }
 
-function CabinetCard({ item, onOpen, onRemove }) {
+function ShelfBottle({ tone }) {
   return (
-    <article className={`mg-cabinet-card ${item.stale ? "mg-cabinet-card--stale" : ""}`}>
-      <button className="mg-cabinet-card__open" type="button" onClick={() => onOpen(item)}>
-        <span className="mg-cabinet-card__icon"><Package aria-hidden="true" size={22} /></span>
-        <span className="mg-cabinet-card__content">
-          <span className="mg-cabinet-card__name">{item.identity.name}</span>
-          <span className="mg-cabinet-card__brand">{item.identity.brand || "Confirmed catalog product"}</span>
-          <span className="mg-cabinet-card__date">Reviewed {formatDate(item.checkedAt)}</span>
-        </span>
-        <ArrowRight aria-hidden="true" size={19} />
+    <span className={`mg-shelf__bottle mg-shelf__bottle--${tone}`} aria-hidden="true">
+      <span className="mg-shelf__cap" />
+      <span className="mg-shelf__label" />
+    </span>
+  );
+}
+
+function CabinetCard({ item, onOpen, onRemove }) {
+  const verdict = verdictOf(item.result);
+  const tone = item.stale ? "check" : verdict.tone;
+  const status = item.stale ? "Recheck" : verdict.kind === "recall" ? "Recall — compare lot" : verdict.kind === "interaction" ? "Ask your pharmacist" : "No flags";
+  return (
+    <article className={`mg-shelf-item mg-shelf-item--${tone}`}>
+      <button className="mg-shelf-item__open" type="button" onClick={() => onOpen(item)}>
+        {tone !== "good" && <span className="mg-shelf-item__alert" aria-label="Needs a look" />}
+        <ShelfBottle tone={tone} />
+        <span className="mg-shelf-item__name">{item.identity.name}</span>
+        <span className="mg-shelf-item__brand">{item.identity.brand || "supplement"}</span>
+        <span className={`mg-shelf-item__status mg-shelf-item__status--${tone}`}>{status}</span>
       </button>
-      <div className="mg-cabinet-card__footer">
-        {item.stale ? <Badge tone="warning">Profile changed · recheck</Badge> : <Badge tone="review">Confirmed label</Badge>}
-        <IconButton label={`Remove ${item.identity.name} from cabinet`} onClick={() => onRemove(item.id)}><Trash2 aria-hidden="true" size={17} /></IconButton>
-      </div>
+      <IconButton label={`Remove ${item.identity.name}`} onClick={() => onRemove(item.id)}><Trash2 aria-hidden="true" size={16} /></IconButton>
     </article>
   );
 }
@@ -813,15 +829,14 @@ function CabinetScreen({ cabinet, profile, onOpenItem, onRemove, onCheck }) {
   };
   return (
     <main className="mg-page mg-cabinet-page" id="main-content">
-      <span className="mg-kicker"><Package aria-hidden="true" size={16} /> Confirmed labels only</span>
-      <h1>Your cabinet</h1>
-      <p className="mg-lede">Keep the catalog products you have deliberately confirmed. Each record stays dated to the profile used for its review.</p>
+      <span className="mg-kicker"><Package aria-hidden="true" size={16} /> Your shelf</span>
+      <h1>Your medicine shelf</h1>
       {cabinet.length ? <>
         <div className="mg-cabinet-actions">
-          <p>{singular(cabinet.length, "confirmed product")}</p>
-          <Button ref={noteTriggerRef} variant="secondary" onClick={() => setNoteOpen(true)}><FileText aria-hidden="true" size={18} /> Prepare pharmacist note</Button>
+          <p>{singular(cabinet.length, "product")}</p>
+          <Button ref={noteTriggerRef} variant="secondary" onClick={() => setNoteOpen(true)}><FileText aria-hidden="true" size={18} /> Pharmacist note</Button>
         </div>
-        <div className="mg-cabinet-list">
+        <div className="mg-shelf">
           {cabinet.map((item) => <CabinetCard key={item.id} item={item} onOpen={onOpenItem} onRemove={onRemove} />)}
         </div>
       </> : <section className="mg-cabinet-empty">
