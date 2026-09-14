@@ -28,7 +28,7 @@ import {
 import { BottleArtwork, CabinetArtwork } from "./components/Artwork.jsx";
 import { Badge, Button, Field, IconButton, SourceLink } from "./components/Primitives.jsx";
 import { requestMedcheck } from "./lib/api.js";
-import { buildReviewNote, downloadReviewNote, printReviewNote } from "./lib/note.js";
+import { buildReviewNote, buildReviewNoteHtml, downloadReviewNote, printReviewNoteHtml } from "./lib/note.js";
 import {
   clearPersistedState,
   loadPersistedState,
@@ -625,6 +625,7 @@ function CabinetCard({ item, onOpen, onRemove }) {
 
 function NoteDialog({ open, onOpenChange, profile, cabinet, triggerRef }) {
   const note = useMemo(() => buildReviewNote({ profile, cabinet }), [profile, cabinet]);
+  const noteHtml = useMemo(() => buildReviewNoteHtml({ profile, cabinet }), [profile, cabinet]);
   const [printIssue, setPrintIssue] = useState("");
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -646,11 +647,13 @@ function NoteDialog({ open, onOpenChange, profile, cabinet, triggerRef }) {
             </div>
             <Dialog.Close asChild><IconButton label="Close review note"><X aria-hidden="true" size={20} /></IconButton></Dialog.Close>
           </div>
-          <pre className="mg-note-preview">{note}</pre>
+          <div className="mg-note-preview" aria-label="Review note preview">
+            <iframe className="mg-note-frame" title="Review note preview" srcDoc={noteHtml} />
+          </div>
           {printIssue && <p className="mg-print-issue" role="alert">{printIssue}</p>}
           <div className="mg-dialog-content__actions">
             <Button variant="secondary" onClick={() => downloadReviewNote(note)}><Download aria-hidden="true" size={18} /> Download text</Button>
-            <Button onClick={() => setPrintIssue(printReviewNote(note) ? "" : "Your browser blocked the print window. Allow pop-ups, then try again.")}><Printer aria-hidden="true" size={18} /> Print note</Button>
+            <Button onClick={() => setPrintIssue(printReviewNoteHtml(noteHtml) ? "" : "Your browser blocked the print window. Allow pop-ups, then try again.")}><Printer aria-hidden="true" size={18} /> Print note</Button>
           </div>
         </Dialog.Content>
       </Dialog.Portal>
