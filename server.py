@@ -89,7 +89,7 @@ class H(BaseHTTPRequestHandler):
             return None
 
     def do_POST(self) -> None:
-        if self.path not in ("/api/medcheck", "/api/scan"):
+        if self.path not in ("/api/medcheck", "/api/scan", "/api/ask"):
             self._error(404, "not_found", "Not found.")
             return
         if not self._origin_allowed():
@@ -97,6 +97,9 @@ class H(BaseHTTPRequestHandler):
             return
         if self.path == "/api/scan":
             self._handle_scan()
+            return
+        if self.path == "/api/ask":
+            self._handle_ask()
             return
         payload = self._read_json_body(MAX_BODY_BYTES)
         if payload is None:
@@ -142,6 +145,29 @@ class H(BaseHTTPRequestHandler):
             return
         except Exception:
             self._error(503, "service_unavailable", "MedGuard could not read the photo. Retry, or type the name.")
+            return
+        self._send(200, result)
+
+    def _handle_ask(self) -> None:
+        payload = self._read_json_body(64 * 1024)  # context can hold a few evidence records
+        if payload is None:
+            return
+        question = payload.get("question") if isinstance(payload, dict) else None
+        context = payload.get("context") if isinstance(payload, dict) else None
+        if not isinstance(question, str) or not question.strip():
+            self._error(400, "invalid_request", "A 'question' is required.")
+            return
+        if not isinstance(context, dict):
+            context = {}
+        try:
+            from ask import answer_question
+
+            result = answer_question(question, context)
+        except ValueError as error:
+            self._error(400, "invalid_request", str(error))
+            return
+        except Exception:
+            self._error(503, "service_unavailable", "MedGuard could not answer just now. Try again.")
             return
         self._send(200, result)
 

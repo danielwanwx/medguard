@@ -15,7 +15,10 @@ import {
   FileText,
   HeartPulse,
   Info,
+  MessageCircle,
   Package,
+  Send,
+  Sparkles,
   Plus,
   Printer,
   RotateCcw,
@@ -27,7 +30,7 @@ import {
 } from "lucide-react";
 import { BottleArtwork, CabinetArtwork } from "./components/Artwork.jsx";
 import { Badge, Button, Field, IconButton, SourceLink } from "./components/Primitives.jsx";
-import { requestMedcheck, scanLabel } from "./lib/api.js";
+import { askAgent, requestMedcheck, scanLabel } from "./lib/api.js";
 import { buildReviewNote, buildReviewNoteHtml, downloadReviewNote, printReviewNoteHtml } from "./lib/note.js";
 import {
   clearPersistedState,
@@ -517,39 +520,155 @@ function IncompleteResult({ result, onRetry }) {
   );
 }
 
-function CompleteResult({ result, stale, savedView, existingItem, onAdd, onRecheck }) {
+// One at-a-glance verdict from the gathered evidence. Green = clear, amber = worth a check.
+function verdictOf(result) {
+  const recall = result.recall || {};
+  const recallHit = recall.status === "potential_matches" && (recall.records || []).length > 0;
+  const interactions = result.interactions || [];
+  const flag = interactions.find((f) => ["high", "moderate", "review", "caution"].some((k) => String(f.risk || "").toLowerCase().includes(k)) || String(f.review_priority || "").toLowerCase().includes("caution")) || interactions[0];
+  if (recallHit) {
+    const reason = (recall.records[0]?.reason_for_recall || "").split(/[.;:]/)[0].trim();
+    return { tone: "check", title: "Worth a closer look", line: reason ? `A recall search matched this product (${reason.toLowerCase()}). Compare your product and lot.` : "A recall search matched this product — compare your product and lot." };
+  }
+  if (flag) {
+    return { tone: "check", title: "One thing to check", line: flag.against ? `Worth asking your pharmacist about ${flag.against}.` : "Worth a quick pharmacist check before you take it." };
+  }
+  return { tone: "good", title: "No flags found", line: "Nothing matched in the checks. This isn't a safety guarantee — ask the agent or your pharmacist." };
+}
+
+function EvidenceDialog({ open, onOpenChange, result, triggerRef }) {
   const identity = result.identity;
+  return (
+    <Dialog.Root open={open} onOpenChange={onOpenChange}>
+      <Dialog.Portal>
+        <Dialog.Overlay className="mg-dialog-overlay" />
+        <Dialog.Content className="mg-dialog-content" onCloseAutoFocus={(e) => { e.preventDefault(); triggerRef?.current?.focus(); }}>
+          <div className="mg-dialog-content__header">
+            <div>
+              <span className="mg-kicker"><ClipboardList aria-hidden="true" size={16} /> Evidence, with limits</span>
+              <Dialog.Title>{identity.name}</Dialog.Title>
+              <Dialog.Description>The sources behind this review. MedGuard surfaces them; a pharmacist decides.</Dialog.Description>
+            </div>
+            <Dialog.Close asChild><IconButton label="Close details"><X aria-hidden="true" size={20} /></IconButton></Dialog.Close>
+          </div>
+          <div className="mg-evidence-scroll">
+            <InteractionFindings interactions={result.interactions} coverage={result.interaction_coverage} />
+            <RecallFinding recall={result.recall} />
+            <DosageReferences dosage={result.dosage} coverage={result.dosage_coverage} />
+            <section className="mg-ingredients-section">
+              <h3>Catalog ingredients</h3>
+              {identity.ingredients.length ? <p>{identity.ingredients.join(", ")}</p> : <p>{identity.ingredient_status === "explicitly_empty" ? "The catalog record returned an empty ingredient list." : "The catalog record did not list ingredients."}</p>}
+              <SourceLink href={identity.source_url}>{identity.source || "Confirmed catalog record"} <ExternalLink aria-hidden="true" size={13} /></SourceLink>
+            </section>
+            <ToolTrace trace={result.tool_trace} />
+          </div>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+}
+
+function AskAgentDialog({ open, onOpenChange, result, profile, triggerRef }) {
+  const identity = result.identity;
+  const context = useMemo(() => ({
+    identity: { name: identity.name, brand: identity.brand, ingredients: identity.ingredients },
+    profile: { meds: profile?.meds || [], conditions: profile?.conditions || [] },
+    interactions: result.interactions, recall: result.recall, dosage: result.dosage,
+  }), [result, profile]);
+  const suggestions = [
+    "Is this safe with my meds?",
+    "Why was it flagged?",
+    "What should I ask my pharmacist?",
+  ];
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState("");
+  const [busy, setBusy] = useState(false);
+  const send = async (text) => {
+    const q = (text ?? input).trim();
+    if (!q || busy) return;
+    setInput("");
+    setMessages((m) => [...m, { who: "user", text: q }]);
+    setBusy(true);
+    try {
+      const r = await askAgent(q, context);
+      setMessages((m) => [...m, { who: "agent", text: r.answer || "I don't have enough in this review to answer — ask your pharmacist." }]);
+    } catch (error) {
+      setMessages((m) => [...m, { who: "agent", text: error?.message || "I couldn't answer just now. Try again." }]);
+    } finally {
+      setBusy(false);
+    }
+  };
+  return (
+    <Dialog.Root open={open} onOpenChange={onOpenChange}>
+      <Dialog.Portal>
+        <Dialog.Overlay className="mg-dialog-overlay" />
+        <Dialog.Content className="mg-dialog-content mg-ask" onCloseAutoFocus={(e) => { e.preventDefault(); triggerRef?.current?.focus(); }}>
+          <div className="mg-dialog-content__header">
+            <div>
+              <span className="mg-kicker"><Sparkles aria-hidden="true" size={16} /> Ask the agent</span>
+              <Dialog.Title>{identity.name}</Dialog.Title>
+            </div>
+            <Dialog.Close asChild><IconButton label="Close agent"><X aria-hidden="true" size={20} /></IconButton></Dialog.Close>
+          </div>
+          <div className="mg-chat">
+            {messages.length === 0 && <div className="mg-chat__intro">Ask about this product and your profile. Answers use this review's live evidence and cite their source.</div>}
+            {messages.map((m, i) => <div key={i} className={`mg-bubble mg-bubble--${m.who}`}>{m.text}</div>)}
+            {busy && <div className="mg-bubble mg-bubble--agent mg-bubble--typing"><RotateCcw aria-hidden="true" className="mg-spin" size={15} /> thinking…</div>}
+          </div>
+          {messages.length === 0 && <div className="mg-chat__suggest">{suggestions.map((s) => <button key={s} type="button" className="mg-pick" onClick={() => send(s)}>{s}</button>)}</div>}
+          <form className="mg-chat__input" onSubmit={(e) => { e.preventDefault(); send(); }}>
+            <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ask about this product…" aria-label="Ask the agent" maxLength={400} />
+            <IconButton label="Send" type="submit" disabled={busy || !input.trim()}><Send aria-hidden="true" size={18} /></IconButton>
+          </form>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+}
+
+function CompleteResult({ result, profile, stale, savedView, existingItem, onAdd, onRecheck }) {
+  const identity = result.identity;
+  const verdict = verdictOf(result);
+  const [evidenceOpen, setEvidenceOpen] = useState(false);
+  const [askOpen, setAskOpen] = useState(false);
+  const evidenceRef = useRef(null);
+  const askRef = useRef(null);
   return (
     <section className="mg-result">
       <div className="mg-result__title-row">
         <div>
-          <Badge tone="review"><BadgeCheck aria-hidden="true" size={14} /> Review ready</Badge>
           <h1>{identity.name}</h1>
-          <p className="mg-product-subtitle">{[identity.brand, identity.confirmation === "user_label_selection" ? "Label selection confirmed" : "", identity.clinical_verification === "not_clinically_verified" ? "Not clinically verified" : ""].filter(Boolean).join(" · ")}</p>
+          <p className="mg-product-subtitle">{identity.brand || "Confirmed catalog label"}</p>
         </div>
         <span className="mg-check-date">Checked {formatDate(result.checked_at, true)}</span>
       </div>
-      {stale && <div className="mg-stale-banner"><CircleAlert aria-hidden="true" size={19} /><p><strong>Profile changed after this review.</strong> These findings are dated to an earlier profile. Recheck before relying on them.</p></div>}
-      <div className="mg-result__actions">
-        {savedView ? <Button variant="secondary" disabled><BadgeCheck aria-hidden="true" size={18} /> In your cabinet</Button> : <Button onClick={onAdd}>{existingItem ? <RotateCcw aria-hidden="true" size={18} /> : <Plus aria-hidden="true" size={18} />}{existingItem ? " Update cabinet review" : " Add to cabinet"}</Button>}
-        <Button variant="quiet" onClick={onRecheck}><RotateCcw aria-hidden="true" size={17} /> Recheck current profile</Button>
+
+      {stale && <div className="mg-stale-banner"><CircleAlert aria-hidden="true" size={19} /><p><strong>Profile changed.</strong> Recheck before relying on this.</p></div>}
+
+      <div className={`mg-verdict mg-verdict--${verdict.tone}`}>
+        <span className="mg-verdict__dot" />
+        <div>
+          <strong>{verdict.title}</strong>
+          <p>{verdict.line}</p>
+        </div>
       </div>
 
-      <section className="mg-review-heading"><span className="mg-kicker"><ClipboardList aria-hidden="true" size={16} /> Evidence, with limits</span><h2>Things to review</h2></section>
-      <InteractionFindings interactions={result.interactions} coverage={result.interaction_coverage} />
-      <RecallFinding recall={result.recall} />
-      <DosageReferences dosage={result.dosage} coverage={result.dosage_coverage} />
-      <details className="mg-result__summary">
-        <summary>Read full evidence summary</summary>
-        <p>{result.answer || "The review returned structured evidence without a written summary."}</p>
-      </details>
-      <section className="mg-ingredients-section">
-        <h3>Catalog ingredients</h3>
-        {identity.ingredients.length ? <p>{identity.ingredients.join(", ")}</p> : <p>{identity.ingredient_status === "explicitly_empty" ? "The selected catalog record explicitly returned an empty ingredient list. Ingredient coverage is unknown." : "The selected catalog record did not list ingredients."}</p>}
-        {identity.ingredient_coverage && <p className="mg-coverage-note">{identity.ingredient_coverage}</p>}
-        <SourceLink href={identity.source_url}>{identity.source || "Confirmed catalog record"} <ExternalLink aria-hidden="true" size={13} /></SourceLink>
-      </section>
-      <ToolTrace trace={result.tool_trace} />
+      <div className="mg-result__cta">
+        <button ref={askRef} type="button" className="mg-tile mg-tile--primary" onClick={() => setAskOpen(true)}>
+          <Sparkles aria-hidden="true" size={20} /> Ask the agent
+        </button>
+        <button ref={evidenceRef} type="button" className="mg-tile" onClick={() => setEvidenceOpen(true)}>
+          <ClipboardList aria-hidden="true" size={20} /> See details
+        </button>
+      </div>
+
+      <div className="mg-result__actions">
+        {savedView ? <Button variant="secondary" disabled><BadgeCheck aria-hidden="true" size={18} /> In your cabinet</Button> : <Button onClick={onAdd}>{existingItem ? <RotateCcw aria-hidden="true" size={18} /> : <Plus aria-hidden="true" size={18} />}{existingItem ? " Update cabinet review" : " Add to cabinet"}</Button>}
+        <Button variant="quiet" onClick={onRecheck}><RotateCcw aria-hidden="true" size={17} /> Recheck</Button>
+      </div>
+
+      <EvidenceDialog open={evidenceOpen} onOpenChange={setEvidenceOpen} result={result} triggerRef={evidenceRef} />
+      <AskAgentDialog open={askOpen} onOpenChange={setAskOpen} result={result} profile={profile} triggerRef={askRef} />
     </section>
   );
 }
@@ -622,7 +741,7 @@ function CheckScreen({ state, onLookup, onChooseCandidate, onRetry, onAdd, onRec
       )}
       {state.candidates && <CandidateChoices result={state.candidates} onChoose={onChooseCandidate} busy={state.busy} />}
       {state.result && !canSave && <IncompleteResult result={state.result} onRetry={onRetry} />}
-      {state.result && canSave && <CompleteResult result={state.result} stale={savedView && existingItem?.stale} savedView={savedView} existingItem={existingItem} onAdd={onAdd} onRecheck={onRecheck} />}
+      {state.result && canSave && <CompleteResult result={state.result} profile={state.request?.profileSnapshot || state.profile} stale={savedView && existingItem?.stale} savedView={savedView} existingItem={existingItem} onAdd={onAdd} onRecheck={onRecheck} />}
     </main>
   );
 }
